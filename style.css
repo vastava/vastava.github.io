@@ -11,7 +11,9 @@ body {
 main {
     display: block;
 }
-
+section {
+      margin: 0 auto 1rem auto;
+}
 @media only screen and (min-width: 600px) {
     body {
       margin: 1rem auto;
@@ -143,8 +145,15 @@ h3 {
   margin-top: 4rem;
 }
 
+.work {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap:wrap;
+}
+
 .work__img {
-  width: 30%;
+  width: 20%;
   padding: 0.5rem;
   align-items:flex-start;
   display: flex;
@@ -156,3 +165,79 @@ h3 {
   width: 100%;
 
 }
+
+.work__title {
+  font-size:.875rem;
+  line-height:1.5;
+  display: inline-block;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.work__title__inner {
+  margin-left: 0;
+  font-weight: bold;
+  width: 100%;
+}
+
+.post-content img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%; }
+
+.post-content iframe {
+  display: block;
+  margin: 0 auto; }
+
+
+.tag {
+   border-radius: 9999px;
+   font-size: 0.875rem;
+   padding-left:1rem;
+   padding-right:1rem;
+   padding-top:.25rem;
+   padding-bottom:.25rem;
+   margin-top:.5rem;
+   margin-bottom:.5rem;
+   margin-right: 0.25rem;
+   display: inline-block;
+   background-color: gray;
+   color: white;
+
+}
+
+.unclicked {
+  background-color: gray;
+}
+.clicked {
+   background-color: #5D9ACC;
+
+}
+
+
+.post-title {
+    font-weight: 600;
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1.2rem;
+  }
+
+  .post-title a {
+    text-decoration: none;
+  }
+
+  .post-title a:hover {
+    text-decoration: underline;
+  }
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+        

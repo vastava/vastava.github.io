@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	<title>Hello</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+
+<body>
+	<header class="header" role="banner">
+  <nav class="navbar">
+    <a class="title" href="https://vastava.github.io/" title="Anjali Shrivastava">Anjali Shrivastava</a>
+    <div class="navbar__sections">
+      <a class="section" href="index.html" title="Home">Home</a>
+      <a class="section " href="about.html" title="About">About</a>
+      <a class="section" href="work.html" title="Work">Work</a>
+      <a class="section" href="writing.html" title="Articles"><u>Writing</u></a>
+      
+
+    </div>
+  </nav>
+</header>
+<main class="page-content" aria-label="Content">
+	<div class="wrapper">
+   <div class="writing">
+      <article class="post">
+
+  <div class="post-content lh-copy">
+    <div>Below is a list of selected articles from my byline. Click on tags to filter.</div>
+<div id="tag-picker" class="mvb2"><div class="tag unclicked">campus</div><div class="tag unclicked">city</div><div class="tag unclicked">UC</div><div class="tag unclicked">state</div><div class="tag unclicked">SVSH</div><div class="tag unclicked">ASUC</div><div class="tag unclicked">protests</div><div class="tag unclicked">unions</div><div class="tag unclicked">elections</div><div class="tag unclicked">lawsuit</div><div class="tag unclicked">housing</div>
+<section class="center">
+  <ul  id="articles">
+    
+      
+    
+      
+        <li class="article" data-tags="ASUC campus">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2019/04/22/student-action-senators-planned-to-impeach-3-asuc-judicial-council-members/">Student Action senators planned to impeach 3 ASUC Judicial Council members</a>
+
+  </div>
+</li>
+
+<li class="article" data-tags="campus ASUC protests elections">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2019/04/18/9-asuc-officials-resign-students-protest-in-response-to-student-action-candidates-disqualification-from-2019-elections/">9 ASUC officials resign, students protest in response to Student Action candidates’ disqualification from 2019 elections</a>
+
+  </div>
+</li>
+
+<li class="article" data-tags="campus">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/11/16/uc-berkeley-uncertain-about-whether-class-cancellation-will-continue-in-light-of-poor-air-quality/">UC Berkeley uncertain if class cancellation will continue in light of poor air quality</a>
+
+  </div>
+</li>
+
+<li class="article" data-tags="campus">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/11/15/poor-air-quality-prompts-uc-berkeley-to-cancel-classes-after-community-backlash/">Poor air quality prompts UC Berkeley to cancel classes after community backlash</a>
+  </div>
+</li>
+
+<li class="article" data-tags="campus">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/10/29/students-with-disabilities-face-inaccessibility-dwindling-resources-in-campus-housing/">Students with disabilities face inaccessibility, dwindling resources in campus housing</a>
+  </div>
+</li>
+
+<li class="article" data-tags="campus SVSH">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/10/27/boycottfrats-uc-berkeley-students-protest-fraternity-houses/">‘#BoycottFrats’: UC Berkeley students protest at fraternity houses
+</a>
+  </div>
+</li>
+
+<li class="article" data-tags="UC unions protests">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/10/25/uc-union-members-form-picket-lines-demand-higher-wages-on-3rd-day-of-strike/">UC union members form picket lines, demand higher wages on 3rd day of strike
+</a>
+  </div>
+</li>
+
+<li class="article" data-tags="UC SVSH">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/10/23/title-ix-documents-expose-31-cases-of-ucla-employees-sex-misconduct/">Title IX documents expose 31 cases of UCLA employees’ sex misconduct
+</a>
+  </div>
+</li>
+
+<li class="article" data-tags="UC SVSH campus lawsuit">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/09/17/uc-berkeley-professor-suspended-for-sex-harassment-allegations-decides-to-retire/">UC Berkeley professor suspended for sex harassment allegations retires, threatens to file lawsuit against university
+</a>
+  </div>
+</li>
+
+<li class="article" data-tags="UC SVSH">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/08/20/uc-berkeley-suspends-campus-architecture-professor-sexually-harassing-graduate-student/">UC Berkeley suspends campus architecture professor over sexual harassment allegations
+</a>
+  </div>
+</li>
+
+<li class="article" data-tags="city elections">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/06/05/diluting-debate-city-officials-discuss-city-elections-not-take-place-june/">‘Diluting the debate’: City officials discuss why Berkeley elections do not take place in June
+</a>
+  </div>
+</li>
+
+<li class="article" data-tags="campus city housing">
+  <div>
+    <a class="post-title" href="https://www.dailycal.org/2018/05/31/student-housing-may-come-telegraph-avenue-lot-decadeslong-vacancy/">Student housing may come to Telegraph Avenue lot after decadeslong vacancy
+</a>
+  </div>
+</li>
+
+      
+    
+      
+
+      
+    
+  </ul>
+</section>
+
+<script src="https://d3js.org/d3.v5.js"></script>
+
+<script>
+var tagNames = [];
+var tagState = {};
+
+function getActiveTags() {
+  var activeTags = [];
+  tagNames.forEach(function(d) {
+    if(tagState[d] === true) {
+      activeTags.push(d);
+    }
+  });
+  return activeTags;
+}
+
+function hasAllActiveTags(tags) {
+  var activeTags = getActiveTags();
+  if(activeTags.length === 0) {
+    return true;
+  }
+  var hasAllActive = true;
+
+  activeTags.forEach(function(d) {
+    if(tags.indexOf(d) === -1) {
+      hasAllActive = false;
+    }
+  });
+
+  return hasAllActive;
+}
+
+function init() {
+  var tagSet = d3.set();
+  var articleTags = []; /* array of articles, each element an array of tags */
+  
+  var u = d3.select('#articles')
+    .selectAll('.article')
+    .each(function() {
+      var tags = d3.select(this)
+        .attr('data-tags');
+      tags = tags.split(' ');
+
+      tags.forEach(function(tag) {
+        tagSet.add(tag);
+      });
+
+      articleTags.push(tags);
+    });
+
+  tagNames = tagSet.values();
+
+  tagNames.forEach(function(tag) {
+    tagState[tag] = false;
+  });
+
+  // Bind data
+  d3.select('#articles')
+    .selectAll('.article')
+    .data(articleTags);
+}
+
+function updateTagElements() {
+  var u = d3.select('#tag-picker')
+    .selectAll('div.tag')
+    .data(tagNames)
+    .join('div')
+    .classed('tag', true)
+    .classed('unclicked', function(d) {
+      return tagState[d] === false;
+    })
+    .classed('clicked', function(d) {
+      return tagState[d] === true;
+    })
+    .text(function(d) {
+      return d;
+    })
+    .on('click', function(d) {
+      tagState[d] = !tagState[d];
+      update();
+    });
+}
+
+function updateArticles() {
+  var u = d3.select('#articles')
+    .selectAll('.article')
+    .style('display', function(d) {
+      return hasAllActiveTags(d) ? 'block' : 'none';
+    });
+    
+}
+
+function update() {
+  updateTagElements();
+  updateArticles();
+}
+
+init();
+update();
+
+</script>
+
+  </div>
+
+</article>
+
+   </div>
+</div>
+</main>
+
+</body>
