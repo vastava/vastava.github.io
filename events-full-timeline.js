@@ -76,7 +76,7 @@ d3.select("#filter")
 //     .style('color', function(d) {
 //     	return media_color(d)
 //     })
-    // .style('color', "white")    
+    // .style('color', "black")    
 
 var formatDate = d=> d < 0 ? `${d3.format(",")(-d)} BBY` : `${d}`
 //unnecessary
@@ -196,7 +196,7 @@ function loadTimeline(choices, filter) {
 		 	.attr("y1", function(d) {return y(d.year) + sz*1.4/4})
 		 	// .attr("y2", y(-13000000000)+sz*1.4/4)
 		 	.attr("y2", function(d) {return y(d.year) + sz*1.4/4})
-		 	.attr("stroke", "white")
+		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)
 
 		svg.selectAll(".annotation")
@@ -238,7 +238,7 @@ function loadTimeline(choices, filter) {
 		 	.attr("y1", function(d) {return y(d.year) + sz*1.4/4})
 		 	// .attr("y2", y(-13000000000)+sz*1.4/4)
 		 	.attr("y2", function(d) {return y(d.year) + sz*1.4/4})
-		 	.attr("stroke", "white")
+		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)
 
 		svg.selectAll(".annotation")
@@ -334,7 +334,7 @@ function loadTimeline(choices, filter) {
 		 	.attr("x2", x(0) + sz/2)  
 		 	.attr("y1", 0)
 		 	.attr("y2", fullHeight - fullMargin.top - fullMargin.bottom) 
-		 	.attr("stroke", "white")
+		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)	
 		 	.attr("tranform", "translate(" + sz + "," + sz + ")")
 
@@ -343,7 +343,7 @@ function loadTimeline(choices, filter) {
 		 	.attr("x2", x(0) + 30)  
 		 	.attr("y1", 0 - 5)
 		 	.attr("y2", 0 - 5) 
-		 	.attr("stroke", "white")
+		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)	
 		 	.attr("tranform", "translate(" + sz/2 + "," + -sz + ")")		 	
 
@@ -353,7 +353,7 @@ function loadTimeline(choices, filter) {
 		 	.attr("x2", x(0) + 30)  
 		 	.attr("y1", fullHeight - fullMargin.top - fullMargin.bottom + 5)
 		 	.attr("y2", fullHeight - fullMargin.top - fullMargin.bottom + 5)
-		 	.attr("stroke", "white")
+		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)	
 		 	.attr("tranform", "translate(" + sz/2 + "," + -sz + ")")		 	
 
