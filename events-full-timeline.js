@@ -7,10 +7,25 @@ var svg = d3.select("#events_full_timeline")
   .append("svg")
     .attr("width", fullWidth + fullMargin.left + fullMargin.right)
     .attr("height", fullHeight + fullMargin.top + fullMargin.bottom)
+    .style("margin", "30px")
   .append("g")
     .attr("transform",
           "translate(" + fullMargin.left + "," + fullMargin.top + ")");
 
+var container = d3.select("#events_full_timeline")
+    .append("div")
+        .attr("width", fullWidth)
+        .attr("height", fullHeight)    
+    .attr("id", "myContainer")
+    .style("position", "absolute")
+    .style("margin-right", "auto")
+    .style("top", function(d) { return fullMargin.top + "px"; })
+    .style("left", function(d) { return fullMargin.left + "px"; })
+        // .append("div")
+        // .attr("width", fullWidth + fullMargin.left + fullMargin.right)
+        // .attr("height", fullHeight + fullMargin.top + fullMargin.bottom)    
+        // .attr("id", "relative-container")   
+        // .style("position", "relative");
 //Build checkboxes
 var filter_list = ["Original Trilogy", "Prequel Trilogy", "Sequel Trilogy", "Anthology Films", "The Clone Wars", "The Mandalorian", "Rebels", "Resistance", "Extended Universe"]
 
@@ -294,7 +309,7 @@ function loadTimeline(choices, filter) {
 		 })
 		svg.call(tip)	  
 
-		svg.selectAll(".eventRects")
+		svg.selectAll(".svgRect")
 		 .data(data)
 		 .enter()
 		 .append("rect")
@@ -304,13 +319,10 @@ function loadTimeline(choices, filter) {
                     return x(Math.floor((+d["sub-key"]))) + sz/(spacing*2);
 		 		}
 		 		else {
-                    console.log("here")
-                    console.log(d["sub-key"])
 		 			return x(Math.floor((+d["sub-key"]))) - sz/(spacing*2);
 		 		}
 		 })
 		 .attr("y", function(d, i) {
-		 		// return y(Math.floor((+d["y-key"])/num_cols));
 		 		return y(d["start"])
 		 })
 		 .attr("width", sz/spacing)
@@ -318,21 +330,63 @@ function loadTimeline(choices, filter) {
 		 .attr("z-index", 10)
 		 // .attr("height", y.bandwidth()*.8)
 		 .style("fill", function(d) {
-		 	if (false) {		 		
-		 		return color(d.era)
+		 	if (false) {		
+                //put code here? 		
+		 		// return color(d.era)
+                 return "url(#pattern-" + "/img/allergies.png" + ")";
 		 	}
 		 	else {
-		 		"green"
+		 		return "green"
 		 	}
 		 })
-		 .on('mouseover', function(d) {
-		   tip.show(d, this)
-		   d3.select(this).attr('fill', 'lightgray')                      
-		  })
-		 .on('mouseout', function(d) {
-		   tip.hide(d, this)
-		   d3.select(this).attr('fill', color(d.era_cleaned))
-		 })	 
+
+		var containers = container.selectAll(".divContainers")
+		 .data(data)
+		 .enter()
+		 .append("div")
+		 .attr("class", "container-event")
+         .style("position", "absolute")
+		 .style("left", function(d, i) {
+				if (+d["sub-key"] <= 0) {	
+                    let w = x(Math.floor((+d["sub-key"]))) + sz/(spacing*2) + fullMargin.left; 			
+                    return w + 'px';
+		 		}
+		 		else {
+                    let w = x(Math.floor((+d["sub-key"]))) - sz/(spacing*2) + fullMargin.left;
+		 			return w + 'px';
+		 		}
+		 })
+		 .style("top", function(d, i) {
+                let h = y(d["start"]);
+		 		return h + 'px'
+		 })
+		 .style("width", sz/spacing)
+		 .style("height", sz/spacing)
+		 .attr("z-index", 20)
+        //  .style("background-image", "url(/img/allergies.png)")         
+		 // .attr("height", y.bandwidth()*.8)     
+
+
+         containers.html(function(d) {
+            return "<img src='" + d["img-path"] + "' alt='Image " + d["sub-key"] + d["y-key"] + "' width='" + sz/spacing + "' height='" + sz/spacing + "'>";
+
+          });         
+    // Create patterns dynamically based on unique imgPath values
+    var patterns = svg.selectAll(".pattern")
+    .data(data, function(d) { return "/img/allergies.png"; })
+    .enter().append("pattern")
+    .attr("id", function(d) { return "pattern-" + d["img-path"]; })
+    .attr("class", "pattern")
+    .attr("width", "100%")
+    .attr("height", "100%");
+
+    // Append images to patterns
+    patterns.append("image")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", sz / spacing)
+    .attr("height", sz / spacing)
+    .attr("xlink:href", function(d) { return d['img-path']; });        
 
 		svg.append("line")
 			.attr("id", "vline")

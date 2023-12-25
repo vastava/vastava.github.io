@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <head>
-  <title>Timeline</title>
   <meta charset="utf-8">
   <meta property="og:image" content="preview.png"/>
 </head>
@@ -19,7 +18,6 @@
 <!-- <div id="events_timeline"></div> -->
 <!-- <div id="legends_timeline"></div> -->
 <!-- <h1>something</h1> -->
-<h1>timeline</h1>
 <!-- <p>You may fully explore the differences between <i>Canon</i> and <i>Legends</i> events in this interactive timeline. <i>Canon</i> events are depicted on the left, and <i>Legends</i> events on the right. You may notice an emphasis on military research, space exploration and technology in <i>Legends</i> or a tightening of post-Battle of Yavin events in <i>Canon</i>.<br><br> -->
 <!-- <p>Want to see just how much the Star Wars universe relies on the EU? Try deactivating the lightsabers next to "Extended Universe" and see how the timeline changes (or select the "Color by media" option instead).</p> -->
 <!-- <p class="center"><i>Hover over an event for more details.</i></p> -->
@@ -32,7 +30,10 @@
     <div id="filter" class="form-item form-checkboxes checkbox">
         <form method="post" action="" class="form"></form>
     </div>
-<div id="events_full_timeline"></div>
+    <div id="mega-container">
+        <div id="events_full_timeline"></div>
+    </div>
+
 <!-- <p class="center">This project was made in support of the authors behind the #DisneyMustPay movement. Want more context? Watch my video essay on the matter:</p><br> -->
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/JTJ9IAvoB7c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br> -->
 <p><i>Built with dreams and d3.</i></p>
@@ -227,6 +228,22 @@ label {
 
 form {
   display: inline-block;
+}
+
+.container-event {
+    overflow: auto;
+    /* width: 50px;
+    height: 50px; */
+}
+
+#mega-container {
+    position: relative;
+}
+
+#myContainer {
+  left: 50%;
+  transform: translateX(-50%);
+  margin: auto;
 }
 
 </style>
