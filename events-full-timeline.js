@@ -1,6 +1,6 @@
 var fullMargin = {top: 30, right: 30, bottom: 30, left: 30},
-    fullHeight = 500 - fullMargin.left - fullMargin.right,
-    fullWidth = (1000- fullMargin.top - fullMargin.bottom);
+    fullHeight = 764 - fullMargin.left - fullMargin.right,
+    fullWidth = (1000 - fullMargin.top - fullMargin.bottom);
 
 // append the canoneventline object to the body of the page
 var svg = d3.select("#events_full_timeline")
@@ -90,7 +90,10 @@ function loadTimeline(choices, filter) {
 
 		data = data.sort(function(a,b) {return a.start - b.start});
 		var years = d3.set(data.map(function(d) {return d.start})).values();
-		var sz = (fullHeight - fullMargin.bottom - fullMargin.top)/years.length;
+		// var sz = (fullHeight - fullMargin.bottom - fullMargin.top)/years.length;        
+        var sz = (fullWidth - fullMargin.left - fullMargin.right)/years.length;
+        console.log(sz)
+        var spacing = 1.8;
 		//master color scheme for eras
 		var swcolors_master = ["#A1A333", "#D5BE78", "#EFAF82", "#E7250A", "#9E5B60", "#0E5AA1", "#5FA0DE", "#453110", "#FBFFFE", "#3D5E78", "#D8DA8E", "#0C9198", "#353E9F", "#027693", "#A7281C", "#FBA411", "#0387E9", "#F26C28", "#BFAB87", "#5AC2F1", "#E7250A", "#1D652F", "#8A2239", "#32E6AC", "#AF639E", "#343D9D"]
 
@@ -192,10 +195,10 @@ function loadTimeline(choices, filter) {
 		 	.attr("x1", x(0) + sz*2)
 		 	.attr("x2", x(0) + 300)  
 		 	.attr("z-index", 0)
-		 	// .attr("y1", y(-13000000000)+sz*1.4/4)
-		 	.attr("y1", function(d) {return y(d.year) + sz*1.4/4})
-		 	// .attr("y2", y(-13000000000)+sz*1.4/4)
-		 	.attr("y2", function(d) {return y(d.year) + sz*1.4/4})
+		 	// .attr("y1", y(-13000000000)+sz*spacing/4)
+		 	.attr("y1", function(d) {return y(d.year) + sz*spacing/4})
+		 	// .attr("y2", y(-13000000000)+sz*spacing/4)
+		 	.attr("y2", function(d) {return y(d.year) + sz*spacing/4})
 		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)
 
@@ -206,8 +209,8 @@ function loadTimeline(choices, filter) {
 			.attr("class", "svg-label")
 		 	.attr("x", x(0) + sz*2)
 		 	.attr("x", x(0) + 300)  
-		 	// .attr("y", y(-13000000000)+sz*1.4/4)
-		 	.attr("y", function(d) {return y(d.year) + sz*1.4/4})
+		 	// .attr("y", y(-13000000000)+sz*spacing/4)
+		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4})
 		 	.text(function(d) {return d.event})	
 		 	.attr("text-anchor", "end") 
 		 	.attr("alignment-baseline", "hanging")	
@@ -220,8 +223,8 @@ function loadTimeline(choices, filter) {
 			.attr("class", "svg-label")
 		 	.attr("x", x(0) + sz*2)
 		 	.attr("x", x(0) + 300)  
-		 	// .attr("y", y(-13000000000)+sz*1.4/4 - 5)
-		 	.attr("y", function(d) {return y(d.year) + sz*1.4/4 - 5})
+		 	// .attr("y", y(-13000000000)+sz*spacing/4 - 5)
+		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4 - 5})
 		 	.text("13,000,000 BBY")	
 		 	.text(function(d) {return formatDate(d.year)})
 		 	.attr("text-anchor", "end") 
@@ -234,10 +237,10 @@ function loadTimeline(choices, filter) {
 			.attr("class", "svg-label")
 		 	.attr("x1", x(0) - sz*2)
 		 	.attr("x2", x(0) - 300)  
-		 	// .attr("y1", y(-13000000000)+sz*1.4/4)
-		 	.attr("y1", function(d) {return y(d.year) + sz*1.4/4})
-		 	// .attr("y2", y(-13000000000)+sz*1.4/4)
-		 	.attr("y2", function(d) {return y(d.year) + sz*1.4/4})
+		 	// .attr("y1", y(-13000000000)+sz*spacing/4)
+		 	.attr("y1", function(d) {return y(d.year) + sz*spacing/4})
+		 	// .attr("y2", y(-13000000000)+sz*spacing/4)
+		 	.attr("y2", function(d) {return y(d.year) + sz*spacing/4})
 		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)
 
@@ -248,8 +251,8 @@ function loadTimeline(choices, filter) {
 			.attr("class", "svg-label")
 		 	.attr("x", x(0) - sz*2)
 		 	.attr("x", x(0) - 300)  
-		 	// .attr("y", y(-13000000000)+sz*1.4/4)
-		 	.attr("y", function(d) {return y(d.year) + sz*1.4/4})
+		 	// .attr("y", y(-13000000000)+sz*spacing/4)
+		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4})
 		 	.text(function(d) {return d.event})	
 		 	.attr("text-anchor", "start") 
 		 	.attr("alignment-baseline", "hanging")	
@@ -262,8 +265,8 @@ function loadTimeline(choices, filter) {
 			.attr("class", "svg-label")
 		 	.attr("x", x(0) - sz*2)
 		 	.attr("x", x(0) - 300)  
-		 	// .attr("y", y(-13000000000)+sz*1.4/4 - 5)
-		 	.attr("y", function(d) {return y(d.year) + sz*1.4/4 - 5})
+		 	// .attr("y", y(-13000000000)+sz*spacing/4 - 5)
+		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4 - 5})
 		 	.text(function(d) {return formatDate(d.year)})
 		 	.attr("text-anchor", "start") 
 		 	// .attr("alignment-baseline", "hanging")	
@@ -274,6 +277,7 @@ function loadTimeline(choices, filter) {
 
 	  	//width calc
 	  	//console.log(d3.max(data, function(d) { return +d["y-key"]})*sz + fullMargin.left + fullMargin.right)
+          console.log("height", d3.max(data, function(d) { return +d["y-key"]})*sz + fullMargin.top + fullMargin.bottom)
 
 		var tip = d3.tip()
 		 .attr('class', 'd3-tip')
@@ -296,21 +300,21 @@ function loadTimeline(choices, filter) {
 		 .append("rect")
 		 .attr("class", "rect-event")
 		 .attr("x", function(d, i) {
-				if (d["type"] != "Legends") {	 			
-		 			return x(-Math.floor((+d["sub-key"])/2)-1)
+				if (+d["sub-key"] <= 0) {	 			
+                    return x(Math.floor((+d["sub-key"]))) + sz/(spacing*2);
 		 		}
 		 		else {
                     console.log("here")
                     console.log(d["sub-key"])
-		 			return x(Math.floor((+d["sub-key"])))
+		 			return x(Math.floor((+d["sub-key"]))) - sz/(spacing*2);
 		 		}
 		 })
 		 .attr("y", function(d, i) {
 		 		// return y(Math.floor((+d["y-key"])/num_cols));
 		 		return y(d["start"])
 		 })
-		 .attr("width", sz/1.4)
-		 .attr("height", sz/1.4)
+		 .attr("width", sz/spacing)
+		 .attr("height", sz/spacing)
 		 .attr("z-index", 10)
 		 // .attr("height", y.bandwidth()*.8)
 		 .style("fill", function(d) {
@@ -332,8 +336,8 @@ function loadTimeline(choices, filter) {
 
 		svg.append("line")
 			.attr("id", "vline")
-		 	.attr("x1", x(0) + sz/(1.4*2))
-		 	.attr("x2", x(0) + sz/(1.4*2))  
+		 	.attr("x1", x(0) + sz/(spacing*2))
+		 	.attr("x2", x(0) + sz/(spacing*2))  
 		 	.attr("y1", 0)
 		 	.attr("y2", fullHeight - fullMargin.top - fullMargin.bottom) 
 		 	.attr("stroke", "black")
@@ -341,8 +345,8 @@ function loadTimeline(choices, filter) {
 		 	.attr("tranform", "translate(" + sz + "," + sz + ")")
 
 		svg.append("line")
-		 	.attr("x1", x(0) - 30 + sz/(1.4*2))
-		 	.attr("x2", x(0) + 30 + sz/(1.4*2))  
+		 	.attr("x1", x(0) - 30 + sz/(spacing*2))
+		 	.attr("x2", x(0) + 30 + sz/(spacing*2))  
 		 	.attr("y1", 0 - 5)
 		 	.attr("y2", 0 - 5) 
 		 	.attr("stroke", "black")
@@ -351,8 +355,8 @@ function loadTimeline(choices, filter) {
 
 
 		svg.append("line")
-		 	.attr("x1", x(0) - 30 + sz/(1.4*2))
-		 	.attr("x2", x(0) + 30 + sz/(1.4*2))  
+		 	.attr("x1", x(0) - 30 + sz/(spacing*2))
+		 	.attr("x2", x(0) + 30 + sz/(spacing*2))  
 		 	.attr("y1", fullHeight - fullMargin.top - fullMargin.bottom + 5)
 		 	.attr("y2", fullHeight - fullMargin.top - fullMargin.bottom + 5)
 		 	.attr("stroke", "black")
