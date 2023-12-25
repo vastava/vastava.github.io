@@ -1,6 +1,6 @@
 var fullMargin = {top: 30, right: 30, bottom: 30, left: 30},
     fullHeight = 500 - fullMargin.left - fullMargin.right,
-    fullWidth = (900- fullMargin.top - fullMargin.bottom);
+    fullWidth = (1000- fullMargin.top - fullMargin.bottom);
 
 // append the canoneventline object to the body of the page
 var svg = d3.select("#events_full_timeline")
@@ -127,7 +127,7 @@ function loadTimeline(choices, filter) {
 			.range([0, fullHeight - fullMargin.top - fullMargin.bottom])
 
 		var x = d3.scaleLinear()
-			.domain([-d3.max(data, function(d) { return +d["y-key"]/2; }), d3.max(data, function(d) { return +d["y-key"]/2; })])
+			.domain([-d3.max(data, function(d) { return +d["y-key"]; }), d3.max(data, function(d) { return +d["y-key"]; })])
 			.range([0, fullWidth - fullMargin.left - fullMargin.right])
 
 		var startDate = d3.min(data, function(d) { return +d.start; });
@@ -300,7 +300,9 @@ function loadTimeline(choices, filter) {
 		 			return x(-Math.floor((+d["sub-key"])/2)-1)
 		 		}
 		 		else {
-		 			return x(Math.floor((+d["sub-key"])/2)+1)
+                    console.log("here")
+                    console.log(d["sub-key"])
+		 			return x(Math.floor((+d["sub-key"])))
 		 		}
 		 })
 		 .attr("y", function(d, i) {
@@ -312,11 +314,11 @@ function loadTimeline(choices, filter) {
 		 .attr("z-index", 10)
 		 // .attr("height", y.bandwidth()*.8)
 		 .style("fill", function(d) {
-		 	if (filter == "era_cleaned") {		 		
+		 	if (false) {		 		
 		 		return color(d.era)
 		 	}
 		 	else {
-		 		return color(d["source_cleaned"])
+		 		"green"
 		 	}
 		 })
 		 .on('mouseover', function(d) {
@@ -330,8 +332,8 @@ function loadTimeline(choices, filter) {
 
 		svg.append("line")
 			.attr("id", "vline")
-		 	.attr("x1", x(0) + sz/2)
-		 	.attr("x2", x(0) + sz/2)  
+		 	.attr("x1", x(0) + sz/(1.4*2))
+		 	.attr("x2", x(0) + sz/(1.4*2))  
 		 	.attr("y1", 0)
 		 	.attr("y2", fullHeight - fullMargin.top - fullMargin.bottom) 
 		 	.attr("stroke", "black")
@@ -339,23 +341,23 @@ function loadTimeline(choices, filter) {
 		 	.attr("tranform", "translate(" + sz + "," + sz + ")")
 
 		svg.append("line")
-		 	.attr("x1", x(0) - 30 + sz)
-		 	.attr("x2", x(0) + 30)  
+		 	.attr("x1", x(0) - 30 + sz/(1.4*2))
+		 	.attr("x2", x(0) + 30 + sz/(1.4*2))  
 		 	.attr("y1", 0 - 5)
 		 	.attr("y2", 0 - 5) 
 		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)	
-		 	.attr("tranform", "translate(" + sz/2 + "," + -sz + ")")		 	
+		 	// .attr("tranform", "translate(" + sz/2 + "," + -sz + ")")		 	
 
 
 		svg.append("line")
-		 	.attr("x1", x(0) - 30 + sz)
-		 	.attr("x2", x(0) + 30)  
+		 	.attr("x1", x(0) - 30 + sz/(1.4*2))
+		 	.attr("x2", x(0) + 30 + sz/(1.4*2))  
 		 	.attr("y1", fullHeight - fullMargin.top - fullMargin.bottom + 5)
 		 	.attr("y2", fullHeight - fullMargin.top - fullMargin.bottom + 5)
 		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)	
-		 	.attr("tranform", "translate(" + sz/2 + "," + -sz + ")")		 	
+		 	// .attr("tranform", "translate(" + sz/2 + "," + -sz + ")")		 	
 
 
 		svg.append("text")
