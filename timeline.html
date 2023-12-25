@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<head>
+  <title>Timeline</title>
+  <meta charset="utf-8">
+  <meta property="og:image" content="preview.png"/>
+</head>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="d3-tip.js"></script>
+
+
+<!-- Create a div where the graph will take place -->
+<!-- <p class="intro">Episode I</p> -->
+<!-- <h1 class="intro title">THE LEGENDS-CANON WARS</h1> -->
+<!-- <p class="intro">It is a period of change. In 2012, the Walt Disney Company acquired Lucasfilm, and the sprawling Star Wars saga with it. Two years after the acquisition, Disney erased much of the Expanded Universe lore from the official canon — countless stories comprising novels, comics, video games, television shows, holiday specials, radio series, magazine issues and reference books are said to have no longer taken place. These stories — rebranded as “Star Wars legends” — live on in the minds of few, committed fans.</p> -->
+
+<!-- <p><i>Hover over a section of the timeline for a more detailed picture.</i></p> -->
+<!-- <div id="events_timeline"></div> -->
+<!-- <div id="legends_timeline"></div> -->
+<!-- <h1>something</h1> -->
+<h1>timeline</h1>
+<!-- <p>You may fully explore the differences between <i>Canon</i> and <i>Legends</i> events in this interactive timeline. <i>Canon</i> events are depicted on the left, and <i>Legends</i> events on the right. You may notice an emphasis on military research, space exploration and technology in <i>Legends</i> or a tightening of post-Battle of Yavin events in <i>Canon</i>.<br><br> -->
+<!-- <p>Want to see just how much the Star Wars universe relies on the EU? Try deactivating the lightsabers next to "Extended Universe" and see how the timeline changes (or select the "Color by media" option instead).</p> -->
+<!-- <p class="center"><i>Hover over an event for more details.</i></p> -->
+<!-- <div id="my_dataviz"></div> -->
+<!-- <form id="color_filter" class="form-radio">
+  <input  type='radio' id="era_cleaned" class="filter-radio" name="mode" checked>Color by era</input>
+  <input type='radio' id="source_cleaned" class="filter-radio" name="mode">Color by media</input>
+</form> -->
+<!-- <p class="center">Haven't watched something, and don't want spoilers? Deactivate the lightsabers to filter out events from that piece of media in the timeline.</p> -->
+    <div id="filter" class="form-item form-checkboxes checkbox">
+        <form method="post" action="" class="form"></form>
+    </div>
+<div id="events_full_timeline"></div>
+<!-- <p class="center">This project was made in support of the authors behind the #DisneyMustPay movement. Want more context? Watch my video essay on the matter:</p><br> -->
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/JTJ9IAvoB7c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br> -->
+<p><i>Built with dreams and d3.</i></p>
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
+@import url("https://use.typekit.net/jcy0mvn.css");
+
+body {
+  background: black;
+  /* background-image: url('https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/A11FF0C824A45B7D466AA336DC07F3D5AEF32E94A8E31ED9E6FEC67551C744CA/scale?aspectRatio=1.78&format=jpeg'); */
+  background-size: 100%;
+  font: "News Cycle", sans-serif;
+  text-align: center;
+}
+
+text, #text {
+	/*fill: white;*/
+	/*font-family: Helvetica, sans-serif;*/
+	font-family: "News Cycle", sans-serif;
+	font-weight: bold;
+}
+svg {
+  display: block;
+  margin: auto;
+}
+h1, p, text, #text, #color_filter {
+	fill: white;
+	color: white;
+	font-family: "News Cycle", sans-serif;
+}
+
+p {
+  text-align: left;
+  width: 80%;
+  margin: auto;
+}
+
+.source {
+  text-align: right;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  /*height: 800px;*/
+  color: #feda4a;
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 150%;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: justify;
+}
+
+.title {
+  font-size: 60px;
+  text-align: center;
+  margin: 0
+}
+.center {
+  text-align: center;
+}
+
+.axis line {
+  fill: white;
+  /*stroke: #000;*/
+  stroke: white;
+  /*shape-rendering: crispEdges;*/
+}
+
+.axis text {
+  fill: white;
+}
+
+.axis path {
+  /*fill: white;*/
+}
+
+a {
+  color: white;
+}
+
+.d3-tip {
+  line-height: 1.4;
+  padding: 12px;
+  background: white;
+  color: black;
+  border-radius:  2px;
+  border: 2px;
+  border-color: black;
+  font-size: 12px;
+  font-family: Helvetica Neue;
+  width: 300px;
+  box-shadow: 3px 3px 1px lightgrey;
+  text-align: left;
+
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  width: 100%;
+  line-height: 1;
+  color: rgba(200, 200, 200, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+/*saber switches*/
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+label {
+  display: inline-block;
+  text-align: center;
+  /*width: 150px;*/
+}
+
+.text-label {
+  display: inline;
+}
+
+.rect-event {
+  z-index: 300;
+}
+
+.movie-rect {
+  z-index: -1;
+}
+/*.saber-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}*/
+
+.saber-switch {
+  font-size: 8px;
+  display: inline-block;
+  position: relative;
+  /*width: 100%;*/
+  /*height: 30px;*/
+  margin: -2.2em auto 0 0.2em;
+  cursor: pointer;
+  margin: -3.2em 0 0 0.7em;
+}
+
+.saber-switch .bar {
+  display: block;
+  width: 3.8em;
+  height: 0.2em;
+  margin: 0.9em;
+  border-right: 2.8em solid #fff;
+  border-left: 0.6em solid #d6d6d6;
+  box-sizing: border-box;
+}
+
+.bar:nth-of-type(1) {
+    margin-left: 1.4em;
+  transform: rotate(-137deg) translateY(-1.5em);
+/*    border-right-color: #A43837;
+  box-shadow: 0.4em 0 0.6em 0.1em rgba(205,40,44,0.75);*/  
+}
+
+
+.bar:nth-of-type(2) {
+  margin-left: 0.5em;
+  transform: rotate(-42deg);
+/*    border-right-color: #78ED74;
+  box-shadow: 0.4em 0 0.6em 0.1em #78ED74;*/
+}
+
+form {
+  display: inline-block;
+}
+
+</style>
+<script type="text/javascript" src="events-full-timeline.js"></script>
+<!-- <script type="text/javascript" src="events-timeline.js"></script> -->
