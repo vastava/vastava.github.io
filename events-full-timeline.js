@@ -111,6 +111,7 @@ function loadTimeline(choices, filter) {
 		// years.push(2024)
 		// var sz = (fullHeight - fullMargin.bottom - fullMargin.top)/years.length;        
         var sz = (fullWidth - fullMargin.left - fullMargin.right)/years.length;
+		var szh = (fullHeight - fullMargin.bottom - fullMargin.top)/years.length;
         console.log(sz)
         var spacing = 1.8;
 		//master color scheme for eras
@@ -315,7 +316,16 @@ function loadTimeline(choices, filter) {
 			  .attr("y1", fullHeight - fullMargin.top - fullMargin.bottom + 5)
 			  .attr("y2", fullHeight - fullMargin.top - fullMargin.bottom + 5)
 			  .attr("stroke", "black")
-			  .attr("stroke-width", 1)			
+			  .attr("stroke-width", 1)	
+
+		svg.append("line")
+			  .attr("x1", x(-1))
+			  .attr("x2", x(0))  
+			  .attr("y1",y(2023) + szh/3)
+			  .attr("y2", y(2023) + szh/3)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  .attr("stroke-dasharray", ("1, 3"))			  
 
 		svg.selectAll(".label")
 			.data(years)
@@ -323,9 +333,10 @@ function loadTimeline(choices, filter) {
 			.append("rect")
 			.attr("class", "svg-label")
 			.attr("x", x(0) + 30)	
-			.attr("y", function(d) {return y(d) + sz/(spacing*2) - 15})
+			// .attr("y", function(d) {return y(d) + sz/(spacing*2) - 15})
+			.attr("y", function(d) {return y(d) + szh/2 - 17})
 			.attr("width", "30px")
-			.attr("height", "17px")
+			.attr("height", "23px")
 			// .style("font-weight", "lighter")
 			.style("fill", "white")
 			// .style("stroke", "white") 
@@ -338,7 +349,8 @@ function loadTimeline(choices, filter) {
 			.append("text")
 			.attr("class", "svg-label")
 			.attr("x", x(0) + 30)	
-			.attr("y", function(d) {return y(d) + sz/(spacing*2)})
+			// .attr("y", function(d) {return y(d) + sz/(spacing*2)})
+			.attr("y", function(d) {return y(d) + szh/2})
 			.text(function(d) {return formatDate(d)})
 			.attr("text-anchor", "start") 
 			// .style("font-weight", "lighter")
@@ -443,7 +455,7 @@ function loadTimeline(choices, filter) {
 		   .style("stroke-dasharray", ("1, 3"))
 		//    .attr("tranform", "translate(" + sz + "," + sz + ")")
 
-		var circleData = [{"year": 2021, "y_adjust": sz/2, "color": "#4C4082"}, {"year": 2022, "y_adjust": sz/2, "color": "#800035"}, {"year": 2023, "y_adjust": 0, "color": "#800035"}]
+		var circleData = [{"year": 2021, "y_adjust": sz/2, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2023, "y_adjust": 0, "color": "#800035"}]
 		svg.selectAll("mycircle")
 			 .data(circleData)
 			 .enter()
@@ -454,11 +466,36 @@ function loadTimeline(choices, filter) {
 			   .style("fill", function(d) { return d.color; })		
 			//    .style("opacity", 0.75)	
 
+		var firefly = container.append("div")
+		.attr("class", "container-annotation")
+		.style("position", "absolute")
+		.style("left", x(0) - sz*1.4 + 'px')
+		.style("top", y(2023) + 'px')
+
+		var hyperlinkURL = "https://www.redsharknews.com/adobe-express-with-firefly-moves-out-of-beta"
+
+		firefly.node().innerHTML =    
+		"<div style='border: 2px solid #800035; border-radius: 15px; padding: 10px; text-align: center; background-color: white; width: 220px;'>" +
+		"<div style='display: flex; align-items: center;'>" +
+		  "<img src='img/express.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+		  "<span style='margin: 0 10px;'>+</span>" +
+		  "<img src='img/firefly.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+		  "<span style='margin-left: 10px; border-left: 1px solid black; padding-left: 10px; height: " + sz/3 + "px;'> " +
+			"<p style='margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>August 2023</p>" +
+		  "</span>" +
+		"</div>" +
+		"<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
+		"Adobe Express and Adobe Firefly <a href='" + hyperlinkURL + "' style='text-decoration: none; color: #800035;'>move</a> out of beta" +
+		"</p>" +
+	  "</div>";
+	//   "<p style='font-weight: normal; font-family: Lato; margin-bottom: 10px; width: 100%;'>August 2023</p>" +
+
+	
 		svg.append("text")
 			.text("Joined Adobe")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
-			.attr("y", y(2022) + sz/2 + 2)
+			.attr("y", y(2022) + szh*5/12 + 2)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
