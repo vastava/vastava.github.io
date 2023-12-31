@@ -465,7 +465,7 @@ function loadTimeline(choices, filter) {
 		   .style("stroke-dasharray", ("1, 3"))
 		//    .attr("tranform", "translate(" + sz + "," + sz + ")")
 
-		var circleData = [{"year": 2021, "y_adjust": sz/2, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2023, "y_adjust": 0, "color": "#800035"}]
+		var circleData = [{"year": 2021, "y_adjust": sz/2, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2023, "y_adjust": 0, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh*7/12, "color": "blue"}]
 		svg.selectAll("mycircle")
 			 .data(circleData)
 			 .enter()
@@ -532,6 +532,28 @@ function loadTimeline(choices, filter) {
 			.style("font-size", "15px")
 			.style("font-family", "Lato")
 
+			svg.append("text")
+			.text("Growth Data Scientist, Monetization")
+			.attr("class", "svg-label")
+			.attr("x", x(0) - 10)
+			.attr("y", y(2022) + szh*5/12 + 22)
+			.attr("text-anchor", "end")
+			.attr("alignment-baseline", "middle")
+			.style("font-size", "12px")
+			.style("font-family", "Lato")	
+			.style("font-weight", 399)		
+
+			// svg.append("text")
+			// .text("July 2022 - present")
+			// .attr("class", "svg-label")
+			// .attr("x", x(0) - 10)
+			// .attr("y", y(2022) + szh*5/12 + 38)
+			// .attr("text-anchor", "end")
+			// .attr("alignment-baseline", "middle")
+			// .style("font-size", "12px")
+			// .style("font-family", "Lato")	
+			// .style("font-weight", 399)				
+
 		svg.append("text")
 			.text("Joined ThermoFisher Scientific")
 			.attr("class", "svg-label")
@@ -542,6 +564,17 @@ function loadTimeline(choices, filter) {
 			.style("font-size", "15px")
 			.style("font-family", "Lato")			
 			// .style("font-weight", 499)
+
+			svg.append("text")
+			.text("Data Scientist, eCommerce")
+			.attr("class", "svg-label")
+			.attr("x", x(0) - 10)
+			.attr("y", y(2021) + sz/2 + 22)
+			.attr("text-anchor", "end")
+			.attr("alignment-baseline", "middle")
+			.style("font-size", "12px")
+			.style("font-family", "Lato")	
+			.style("font-weight", 399)					
 
 		svg.append("text")
 			.text("PROFESSIONAL")
