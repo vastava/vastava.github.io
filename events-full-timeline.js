@@ -318,6 +318,7 @@ function loadTimeline(choices, filter) {
 			  .attr("stroke", "black")
 			  .attr("stroke-width", 1)	
 
+		//horizontal dashed line	  
 		svg.append("line")
 			  .attr("x1", x(-1))
 			  .attr("x2", x(0))  
@@ -325,7 +326,16 @@ function loadTimeline(choices, filter) {
 			  .attr("y2", y(2023) + szh/3)
 			  .attr("stroke", "black")
 			  .attr("stroke-width", 1)	
-			  .attr("stroke-dasharray", ("1, 3"))			  
+			  .attr("stroke-dasharray", ("1, 3"))			
+			  
+		svg.append("line")
+			  .attr("x1", x(0) + sz/(spacing*2))
+			  .attr("x2", x(3))  
+			  .attr("y1",y(2023) + szh/12)
+			  .attr("y2", y(2023) + szh/12)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  .attr("stroke-dasharray", ("1, 3"))					  
 
 		svg.selectAll(".label")
 			.data(years)
@@ -381,40 +391,40 @@ function loadTimeline(choices, filter) {
 		 })
 		svg.call(tip)	  
 
-		svg.selectAll(".svgRect")
-		 .data(data)
-		 .enter()
-		 .append("rect")
-		 .attr("class", "rect-event")
-		 .attr("x", function(d, i) {
-				let w = sz/(spacing*4);
-				if (+d["anno_flag"] == 1) {
-					w -= sz/2;
-				}
-				if (+d["sub-key"] <= 0) {	 			
-                    return x(Math.floor((+d["sub-key"]))) + w;
-		 		}
-		 		else {
-		 			return x(Math.floor((+d["sub-key"]))) - w;
-		 		}
-		 })
-		 .attr("y", function(d, i) {
-		 		return y(d["yr_cleaned"])
-		 })
-		 .attr("width", sz/spacing)
-		 .attr("height", sz/spacing)
-		 .attr("z-index", 10)
-		 // .attr("height", y.bandwidth()*.8)
-		 .style("fill", function(d) {
-		 	if (false) {		
-                //put code here? 		
-		 		// return color(d.era)
-                 return "url(#pattern-" + "/img/allergies.png" + ")";
-		 	}
-		 	else {
-		 		return "green"
-		 	}
-		 })
+		// svg.selectAll(".svgRect")
+		//  .data(data)
+		//  .enter()
+		//  .append("rect")
+		//  .attr("class", "rect-event")
+		//  .attr("x", function(d, i) {
+		// 		let w = sz/(spacing*4);
+		// 		if (+d["anno_flag"] == 1) {
+		// 			w -= sz/2;
+		// 		}
+		// 		if (+d["sub-key"] <= 0) {	 			
+        //             return x(Math.floor((+d["sub-key"]))) + w;
+		//  		}
+		//  		else {
+		//  			return x(Math.floor((+d["sub-key"]))) - w;
+		//  		}
+		//  })
+		//  .attr("y", function(d, i) {
+		//  		return y(d["yr_cleaned"])
+		//  })
+		//  .attr("width", sz/spacing)
+		//  .attr("height", sz/spacing)
+		//  .attr("z-index", 10)
+		//  // .attr("height", y.bandwidth()*.8)
+		//  .style("fill", function(d) {
+		//  	if (false) {		
+        //         //put code here? 		
+		//  		// return color(d.era)
+        //          return "url(#pattern-" + "/img/allergies.png" + ")";
+		//  	}
+		//  	else {
+		//  		return "white"
+		//  	}
+		//  })
 
 		var containers = container.selectAll(".divContainers")
 		 .data(data)
@@ -440,9 +450,9 @@ function loadTimeline(choices, filter) {
 		 .style("height", sz/spacing)
 		 .attr("z-index", 20)
 
-         containers.html(function(d) {
-            return "<img src='" + d["img-path"] + "' alt='Image " + d["sub-key"] + d["y-key"] + "' width='" + sz/spacing + "' height='" + sz/spacing + "'>";
-          });         
+        //  containers.html(function(d) {
+        //     return "<img src='" + d["img-path"] + "' alt='Image " + d["sub-key"] + d["y-key"] + "' width='" + sz/spacing + "' height='" + sz/spacing + "'>";
+        //   });         
 		
 		svg.append("line")
 		  .attr("id", "vline-dotted")
@@ -472,6 +482,12 @@ function loadTimeline(choices, filter) {
 		.style("left", x(0) - sz*1.4 + 'px')
 		.style("top", y(2023) + 'px')
 
+		var glitchme = container.append("div")
+		.attr("class", "container-annotation")
+		.style("position", "absolute")
+		.style("left", x(0) + sz*.67 + 'px')
+		.style("top", y(2023) + 'px')		
+
 		var hyperlinkURL = "https://www.redsharknews.com/adobe-express-with-firefly-moves-out-of-beta"
 
 		firefly.node().innerHTML =    
@@ -488,6 +504,21 @@ function loadTimeline(choices, filter) {
 		"Adobe Express and Adobe Firefly <a href='" + hyperlinkURL + "' style='text-decoration: none; color: #800035;'>move</a> out of beta" +
 		"</p>" +
 	  "</div>";
+
+	  glitchme.node().innerHTML =    
+	  "<div style='border: 2px solid blue; border-radius: 15px; padding: 10px; text-align: center; background-color: white;'>" +
+	  "<div style='display: flex; align-items: center;'>" +
+		"<span style='text-align: right; margin-right: 10px; border-right: 1px solid black; padding-right: 10px; height: " + sz/3 + "px;'> " +
+			"<p style='text-align: right; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>November 2023</p>" +
+		"</span>" +	  
+		"<img src='img/express.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+		"<span style='margin: 0 10px;'>+</span>" +
+		"<img src='img/firefly.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+	  "</div>" +
+	  "<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
+	  "Adobe Express and Adobe Firefly <a href='" + hyperlinkURL + "' style='text-decoration: none; color: #800035;'>move</a> out of beta" +
+	  "</p>" +
+	"</div>";	  
 	//   "<p style='font-weight: normal; font-family: Lato; margin-bottom: 10px; width: 100%;'>August 2023</p>" +
 
 	
