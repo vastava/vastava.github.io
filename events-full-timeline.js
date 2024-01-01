@@ -328,14 +328,14 @@ function loadTimeline(choices, filter) {
 			  .attr("stroke-width", 1)	
 			  .attr("stroke-dasharray", ("1, 3"))			
 			  
-		svg.append("line")
-			  .attr("x1", x(0) + sz/(spacing*2))
-			  .attr("x2", x(3))  
-			  .attr("y1",y(2023) + szh/12)
-			  .attr("y2", y(2023) + szh/12)
-			  .attr("stroke", "black")
-			  .attr("stroke-width", 1)	
-			  .attr("stroke-dasharray", ("1, 3"))					  
+		// svg.append("line")
+		// 	  .attr("x1", x(0) + sz/(spacing))
+		// 	  .attr("x2", x(3))  
+		// 	  .attr("y1",y(2023) + szh/12)
+		// 	  .attr("y2", y(2023) + szh/12)
+		// 	  .attr("stroke", "black")
+		// 	  .attr("stroke-width", 1)	
+		// 	  .attr("stroke-dasharray", ("1, 3"))					  
 
 		svg.selectAll(".label")
 			.data(years)
@@ -463,8 +463,16 @@ function loadTimeline(choices, filter) {
 		   .attr("stroke", "black")
 		   .attr("stroke-width", 1)	
 		   .style("stroke-dasharray", ("1, 3"))
-		//    .attr("tranform", "translate(" + sz + "," + sz + ")")
 
+		   svg.append("line")
+		   .attr("id", "vline-dotted")
+			.attr("x1", x(0) + sz/spacing)
+			.attr("x2", x(0) + sz/spacing)
+			.attr("y1", y(2023)+szh/12)
+			.attr("y2", y(2021) + sz/2) 
+			.attr("stroke", "black")
+			.attr("stroke-width", 1)	
+			.style("stroke-dasharray", ("1, 3"))		   
 		var circleData = [{"year": 2021, "y_adjust": sz/2, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2023, "y_adjust": 0, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh*7/12, "color": "blue"}]
 		svg.selectAll("mycircle")
 			 .data(circleData)
@@ -473,7 +481,17 @@ function loadTimeline(choices, filter) {
 			   .attr("cx", function(d) { return x(0); })
 			   .attr("cy", function(d) { return y(d.year) + d.y_adjust; })
 			   .attr("r", "6")
-			   .style("fill", function(d) { return d.color; })		
+			   .style("fill", function(d) { return d.color; })	
+			   
+			   var circleData2 = [{"year": 2023, "y_adjust": szh/12, "color": "green"}, {"year": 2022, "y_adjust": szh*3/12, "color": "pink"}, {"year": 2021, "y_adjust": szh*7/12, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh*7/12, "color": "blue"}]
+			   svg.selectAll("mycircle")
+					.data(circleData2)
+					.enter()
+					.append("circle")
+					  .attr("cx", function(d) { return x(0) + sz/spacing; })
+					  .attr("cy", function(d) { return y(d.year) + d.y_adjust; })
+					  .attr("r", "6")
+					  .style("fill", function(d) { return d.color; })			   
 			//    .style("opacity", 0.75)	
 
 		var firefly = container.append("div")
@@ -485,7 +503,7 @@ function loadTimeline(choices, filter) {
 		var glitchme = container.append("div")
 		.attr("class", "container-annotation")
 		.style("position", "absolute")
-		.style("left", x(0) + sz*.67 + 'px')
+		.style("left", x(0) + sz + 'px')
 		.style("top", y(2023) + 'px')		
 
 		var hyperlinkURL = "https://www.redsharknews.com/adobe-express-with-firefly-moves-out-of-beta"
@@ -505,20 +523,20 @@ function loadTimeline(choices, filter) {
 		"</p>" +
 	  "</div>";
 
-	  glitchme.node().innerHTML =    
-	  "<div style='border: 2px solid blue; border-radius: 15px; padding: 10px; text-align: center; background-color: white;'>" +
-	  "<div style='display: flex; align-items: center;'>" +
-		"<span style='text-align: right; margin-right: 10px; border-right: 1px solid black; padding-right: 10px; height: " + sz/3 + "px;'> " +
-			"<p style='text-align: right; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>November 2023</p>" +
-		"</span>" +	  
-		"<img src='img/express.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
-		"<span style='margin: 0 10px;'>+</span>" +
-		"<img src='img/firefly.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
-	  "</div>" +
-	  "<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
-	  "Adobe Express and Adobe Firefly <a href='" + hyperlinkURL + "' style='text-decoration: none; color: #800035;'>move</a> out of beta" +
-	  "</p>" +
-	"</div>";	  
+	//   glitchme.node().innerHTML =    
+	//   "<div style='border: 2px solid blue; border-radius: 15px; padding: 10px; text-align: center; background-color: white;'>" +
+	//   "<div style='display: flex; align-items: center;'>" +
+	// 	"<span style='text-align: right; margin-right: 10px; border-right: 1px solid black; padding-right: 10px; height: " + sz/3 + "px;'> " +
+	// 		"<p style='text-align: right; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>November 2023</p>" +
+	// 	"</span>" +	  
+	// 	"<img src='img/express.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+	// 	"<span style='margin: 0 10px;'>+</span>" +
+	// 	"<img src='img/firefly.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+	//   "</div>" +
+	//   "<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
+	//   "Adobe Express and Adobe Firefly <a href='" + hyperlinkURL + "' style='text-decoration: none; color: #800035;'>move</a> out of beta" +
+	//   "</p>" +
+	// "</div>";	  
 	//   "<p style='font-weight: normal; font-family: Lato; margin-bottom: 10px; width: 100%;'>August 2023</p>" +
 
 	
@@ -563,8 +581,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")			
-			// .style("font-weight", 499)
-
+			
 			svg.append("text")
 			.text("Data Scientist, eCommerce")
 			.attr("class", "svg-label")
@@ -574,7 +591,63 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 399)					
+			.style("font-weight", 399)	
+			
+			svg.append("text")
+			.text("GlitchBooth")
+			.attr("class", "svg-label")
+			.attr("x", x(0) + sz/spacing + 10)
+			.attr("y", y(2023) + szh/12 + 2)
+			.attr("text-anchor", "start")
+			.attr("alignment-baseline", "middle")
+			.style("font-size", "15px")
+			.style("font-family", "Lato")
+			.style("cursor", "pointer")
+			.on("click", function() {
+			  window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
+			})
+			// .append("tspan")
+			// .text("Go to GlitchBooth");			
+
+// Original text content
+var textContent = "Photo Booth style web app for glitch video effects, built with three.js.";
+
+// Manually split text
+var breakIndex = 43; // You can adjust this index based on your desired break point
+var firstPart = textContent.slice(0, breakIndex);
+var secondPart = textContent.slice(breakIndex);
+
+// Append first part of the text
+svg.append("text")
+  .attr("class", "svg-label")
+  .attr("x", x(0) + sz / spacing + 10)
+  .attr("y", y(2023) + szh / 12 + 22)
+  .attr("text-anchor", "start")
+  .attr("alignment-baseline", "middle")
+  .style("font-size", "12px")
+  .style("font-family", "Lato")
+  .style("font-weight", 399)
+  .text(firstPart)
+  .style("cursor", "pointer")
+  .on("click", function() {
+	window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
+  })  ;
+
+// Append second part of the text
+svg.append("text")
+  .attr("class", "svg-label")
+  .attr("x", x(0) + sz / spacing + 10)
+  .attr("y", y(2023) + szh / 12 + 36) // Adjust the y-coordinate for spacing
+  .attr("text-anchor", "start")
+  .attr("alignment-baseline", "middle")
+  .style("font-size", "12px")
+  .style("font-family", "Lato")
+  .style("font-weight", 399)
+  .text(secondPart)
+  .style("cursor", "pointer")
+  .on("click", function() {
+	window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
+  })  ;
 
 		svg.append("text")
 			.text("PROFESSIONAL")
