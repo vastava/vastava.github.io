@@ -705,7 +705,7 @@ function loadTimeline(choices, filter) {
 			.attr("transform", "translate(" + fullMargin.left*2 + ",350) rotate(270)")
 
 		svg.append("text")
-			.text("PERSONAL")
+			.text("PERSONAL PROJECTS")
 			.attr("class", "svg-label")
 			.attr("text-anchor", "middle")
 			.style("font-family", "trajan-pro-3")
