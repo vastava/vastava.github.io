@@ -483,7 +483,7 @@ function loadTimeline(choices, filter) {
 			   .attr("r", "6")
 			   .style("fill", function(d) { return d.color; })	
 			   
-			   var circleData2 = [{"year": 2023, "y_adjust": szh/12, "color": "green"}, {"year": 2022, "y_adjust": szh*3/12, "color": "pink"}, {"year": 2021, "y_adjust": szh*7/12, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh*7/12, "color": "blue"}]
+			   var circleData2 = [{"year": 2023, "y_adjust": szh/12, "color": "#27f727"}, {"year": 2022, "y_adjust": szh/12, "color": "#FEBFBF"}, {"year": 2022, "y_adjust": szh, "color": "#267368"}, {"year": 2020, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh/4, "color": "blue"}, {"year": 2019, "y_adjust": szh*7/12, "color": "blue"}]
 			   svg.selectAll("mycircle")
 					.data(circleData2)
 					.enter()
@@ -593,61 +593,107 @@ function loadTimeline(choices, filter) {
 			.style("font-family", "Lato")	
 			.style("font-weight", 399)	
 			
-			svg.append("text")
-			.text("GlitchBooth")
-			.attr("class", "svg-label")
-			.attr("x", x(0) + sz/spacing + 10)
-			.attr("y", y(2023) + szh/12 + 2)
-			.attr("text-anchor", "start")
-			.attr("alignment-baseline", "middle")
-			.style("font-size", "15px")
-			.style("font-family", "Lato")
-			.style("cursor", "pointer")
-			.on("click", function() {
-			  window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
-			})
-			// .append("tspan")
-			// .text("Go to GlitchBooth");			
+			function createText(year, label, url, textContent, breakIndex=43, yOffset=(szh/12)) {
+				// Append main text
+				svg.append("text")
+				  .text(label)
+				  .attr("class", "svg-label")
+				  .attr("x", x(0) + sz / spacing + 10)
+				  .attr("y", y(year) + yOffset + 2)
+				  .attr("text-anchor", "start")
+				  .attr("alignment-baseline", "middle")
+				  .style("font-size", "15px")
+				  .style("font-family", "Lato")
+				  .style("cursor", "pointer")
+				  .on("click", function() {
+					window.open(url, "_blank");
+				  });
+			  
+				// Manually split text
+				var firstPart = textContent.slice(0, breakIndex);
+				var secondPart = textContent.slice(breakIndex);
+			  
+				// Append first part of the text
+				appendText(year, firstPart, yOffset + 22, url);
+			  
+				// Append second part of the text
+				appendText(year, secondPart, yOffset + 36, url);
+			  }
+			  
+			  function appendText(year, text, yOffset, url) {
+				svg.append("text")
+				  .attr("class", "svg-label")
+				  .attr("x", x(0) + sz / spacing + 10)
+				  .attr("y", y(year) + yOffset)
+				  .attr("text-anchor", "start")
+				  .attr("alignment-baseline", "middle")
+				  .style("font-size", "12px")
+				  .style("font-family", "Lato")
+				  .style("font-weight", 399)
+				  .text(text)
+				  .style("cursor", "pointer")
+				  .on("click", function() {
+					window.open(url, "_blank");
+				  });
+			  }
+			  
+			  // Example usage:
+			  createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js.", 43);
+			  createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47);
+			  createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh);
+			  
+// 			svg.append("text")
+// 			.text("GlitchBooth")
+// 			.attr("class", "svg-label")
+// 			.attr("x", x(0) + sz/spacing + 10)
+// 			.attr("y", y(2023) + szh/12 + 2)
+// 			.attr("text-anchor", "start")
+// 			.attr("alignment-baseline", "middle")
+// 			.style("font-size", "15px")
+// 			.style("font-family", "Lato")
+// 			.style("cursor", "pointer")
+// 			.on("click", function() {
+// 			  window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
+// 			})
+// // Original text content
+// var textContent = "Photo Booth style web app for glitch video effects, built with three.js.";
 
-// Original text content
-var textContent = "Photo Booth style web app for glitch video effects, built with three.js.";
+// // Manually split text
+// var breakIndex = 43; // You can adjust this index based on your desired break point
+// var firstPart = textContent.slice(0, breakIndex);
+// var secondPart = textContent.slice(breakIndex);
 
-// Manually split text
-var breakIndex = 43; // You can adjust this index based on your desired break point
-var firstPart = textContent.slice(0, breakIndex);
-var secondPart = textContent.slice(breakIndex);
+// // Append first part of the text
+// svg.append("text")
+//   .attr("class", "svg-label")
+//   .attr("x", x(0) + sz / spacing + 10)
+//   .attr("y", y(2023) + szh / 12 + 22)
+//   .attr("text-anchor", "start")
+//   .attr("alignment-baseline", "middle")
+//   .style("font-size", "12px")
+//   .style("font-family", "Lato")
+//   .style("font-weight", 399)
+//   .text(firstPart)
+//   .style("cursor", "pointer")
+//   .on("click", function() {
+// 	window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
+//   })  ;
 
-// Append first part of the text
-svg.append("text")
-  .attr("class", "svg-label")
-  .attr("x", x(0) + sz / spacing + 10)
-  .attr("y", y(2023) + szh / 12 + 22)
-  .attr("text-anchor", "start")
-  .attr("alignment-baseline", "middle")
-  .style("font-size", "12px")
-  .style("font-family", "Lato")
-  .style("font-weight", 399)
-  .text(firstPart)
-  .style("cursor", "pointer")
-  .on("click", function() {
-	window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
-  })  ;
-
-// Append second part of the text
-svg.append("text")
-  .attr("class", "svg-label")
-  .attr("x", x(0) + sz / spacing + 10)
-  .attr("y", y(2023) + szh / 12 + 36) // Adjust the y-coordinate for spacing
-  .attr("text-anchor", "start")
-  .attr("alignment-baseline", "middle")
-  .style("font-size", "12px")
-  .style("font-family", "Lato")
-  .style("font-weight", 399)
-  .text(secondPart)
-  .style("cursor", "pointer")
-  .on("click", function() {
-	window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
-  })  ;
+// // Append second part of the text
+// svg.append("text")
+//   .attr("class", "svg-label")
+//   .attr("x", x(0) + sz / spacing + 10)
+//   .attr("y", y(2023) + szh / 12 + 36) // Adjust the y-coordinate for spacing
+//   .attr("text-anchor", "start")
+//   .attr("alignment-baseline", "middle")
+//   .style("font-size", "12px")
+//   .style("font-family", "Lato")
+//   .style("font-weight", 399)
+//   .text(secondPart)
+//   .style("cursor", "pointer")
+//   .on("click", function() {
+// 	window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
+//   })  ;
 
 		svg.append("text")
 			.text("PROFESSIONAL")
