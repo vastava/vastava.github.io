@@ -593,9 +593,9 @@ function loadTimeline(choices, filter) {
 			.style("font-family", "Lato")	
 			.style("font-weight", 399)	
 			
-			function createText(year, label, url, textContent, breakIndex=43, yOffset=(szh/12)) {
+			function createText(year, label, url, textContent, breakIndex=43, yOffset=(szh/12), opacity=1) {
 				// Append main text
-				svg.append("text")
+				var textlabel = svg.append("text")
 				  .text(label)
 				  .attr("class", "svg-label")
 				  .attr("x", x(0) + sz / spacing + 10)
@@ -604,23 +604,60 @@ function loadTimeline(choices, filter) {
 				  .attr("alignment-baseline", "middle")
 				  .style("font-size", "15px")
 				  .style("font-family", "Lato")
-				  .style("cursor", "pointer")
-				  .on("click", function() {
-					window.open(url, "_blank");
+				  .style("opacity", opacity)
+				  .each(function() {
+					// Check if opacity is equal to 1 before setting cursor and attaching click event
+					if (opacity === 1) {
+					  d3.select(this)
+						.style("cursor", "pointer")
+						.on("click", function() {
+						  window.open(url, "_blank");
+						});
+					}
 				  });
+				//   .style("cursor", "pointer")				  
+				//   .on("click", function() {
+				// 	window.open(url, "_blank");
+				//   });
+				
+				if (opacity < 1) {
+					// Append a red oval
+					var labelWidth = textlabel.node().getBBox().width;
+					svg.append("rect")
+					.attr("x", x(0) + sz / spacing + 12 + labelWidth) // Adjust the x-coordinate as needed
+					.attr("y", y(year) + yOffset + 2 - 15/spacing)
+					.attr("width", 70) // Set the width of the oval
+					.attr("height", 15) // Set the height of the oval
+					.attr("rx", 6) // Set the x-radius of the oval
+					.attr("ry", 4) // Set the y-radius of the oval
+					.style("fill", "#fee2e2")
+					.style("opacity", opacity);			
+					
+					svg.append("text")
+					.text("Discontinued")
+					.attr("class", "svg-label")					
+					.attr("x", x(0) + sz / spacing + 18 + labelWidth) // Adjust the x-coordinate as needed
+					.attr("y", y(year) + yOffset + 2)
+					.attr("text-anchor", "start")
+					.attr("alignment-baseline", "middle")
+					.style("font-size", "10px")
+					.style("font-family", "Lato")
+					.style("fill", "#991b1b")
+					// .style("opacity", opacity);						
+				}
 			  
 				// Manually split text
 				var firstPart = textContent.slice(0, breakIndex);
 				var secondPart = textContent.slice(breakIndex);
 			  
 				// Append first part of the text
-				appendText(year, firstPart, yOffset + 22, url);
+				appendText(year, firstPart, yOffset + 22, url, opacity);
 			  
 				// Append second part of the text
-				appendText(year, secondPart, yOffset + 36, url);
+				appendText(year, secondPart, yOffset + 36, url, opacity);
 			  }
 			  
-			  function appendText(year, text, yOffset, url) {
+			  function appendText(year, text, yOffset, url, opacity) {
 				svg.append("text")
 				  .attr("class", "svg-label")
 				  .attr("x", x(0) + sz / spacing + 10)
@@ -630,17 +667,28 @@ function loadTimeline(choices, filter) {
 				  .style("font-size", "12px")
 				  .style("font-family", "Lato")
 				  .style("font-weight", 399)
+				  .style("opacity", opacity)
 				  .text(text)
-				  .style("cursor", "pointer")
-				  .on("click", function() {
-					window.open(url, "_blank");
-				  });
+				  .each(function() {
+					// Check if opacity is equal to 1 before setting cursor and attaching click event
+					if (opacity === 1) {
+					  d3.select(this)
+						.style("cursor", "pointer")
+						.on("click", function() {
+						  window.open(url, "_blank");
+						});
+					}
+				  });				  
+				//   .style("cursor", "pointer")
+				//   .on("click", function() {
+				// 	window.open(url, "_blank");
+				//   });
 			  }
 			  
 			  // Example usage:
 			  createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js.", 43);
 			  createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47);
-			  createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh);
+			  createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5);
 			  
 // 			svg.append("text")
 // 			.text("GlitchBooth")
