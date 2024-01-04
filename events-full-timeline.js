@@ -318,6 +318,15 @@ function loadTimeline(choices, filter) {
 			  .attr("stroke", "black")
 			  .attr("stroke-width", 1)	
 
+			  svg.append("line")
+			  .attr("x1", x(0) + sz/(spacing) + 25)
+			  .attr("x2", x(0) + sz/(spacing) + 25)
+			  .attr("y1",y(2020) + 9*szh/12)
+			  .attr("y2",y(2020) + szh/4)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)			
+			  .attr("stroke-dasharray", ("1, 3"))		  
+
 		//horizontal dashed line	  
 		svg.append("line")
 			  .attr("x1", x(-1))
@@ -328,14 +337,33 @@ function loadTimeline(choices, filter) {
 			  .attr("stroke-width", 1)	
 			  .attr("stroke-dasharray", ("1, 3"))			
 			  
-		// svg.append("line")
-		// 	  .attr("x1", x(0) + sz/(spacing))
-		// 	  .attr("x2", x(3))  
-		// 	  .attr("y1",y(2023) + szh/12)
-		// 	  .attr("y2", y(2023) + szh/12)
-		// 	  .attr("stroke", "black")
-		// 	  .attr("stroke-width", 1)	
-		// 	  .attr("stroke-dasharray", ("1, 3"))					  
+		svg.append("line")
+			  .attr("x1", x(0) + sz/(spacing) + 25)
+			  .attr("x2", x(3))  
+			  .attr("y1",y(2020) + szh/2)
+			  .attr("y2", y(2020) + szh/2)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  .attr("stroke-dasharray", ("1, 3"))			
+			  
+			svg.append("line")
+			  .attr("x1", x(0) + sz/(spacing))
+			  .attr("x2", x(0) + sz/(spacing) + 25)
+			  .attr("y1",y(2020) + 9*szh/12)
+			  .attr("y2",y(2020) + 9*szh/12)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  .attr("stroke-dasharray", ("1, 3"))	
+			  
+			svg.append("line")
+			  .attr("x1", x(0) + sz/(spacing))
+			  .attr("x2", x(0) + sz/(spacing) + 25)
+			//   .attr("x2", x(3))  
+			  .attr("y1",y(2020) + szh/4)
+			  .attr("y2",y(2020) + szh/4)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  .attr("stroke-dasharray", ("1, 3"))				  
 
 		svg.selectAll(".label")
 			.data(years)
@@ -484,7 +512,7 @@ function loadTimeline(choices, filter) {
 			   .attr("r", "6")
 			   .style("fill", function(d) { return d.color; })	
 			   
-			   var circleData2 = [{"year": 2023, "y_adjust": szh/12, "color": "#27f727"}, {"year": 2022, "y_adjust": szh/12, "color": "#FEBFBF"}, {"year": 2022, "y_adjust": szh, "color": "#267368"}, {"year": 2021, "y_adjust": sz/2, "color": "blue"}, {"year": 2020, "y_adjust": szh/4, "color": "blue"}, {"year": 2020, "y_adjust": szh*10/12, "color": "blue"}]
+			   var circleData2 = [{"year": 2023, "y_adjust": szh/12, "color": "#27f727"}, {"year": 2022, "y_adjust": szh/12, "color": "#FEBFBF"}, {"year": 2022, "y_adjust": szh, "color": "#267368"}, {"year": 2021, "y_adjust": sz/2, "color": "blue"}, {"year": 2020, "y_adjust": szh/4, "color": "blue"}, {"year": 2020, "y_adjust": szh*9/12, "color": "blue"}]
 			   svg.selectAll("mycircle")
 					.data(circleData2)
 					.enter()
@@ -501,11 +529,11 @@ function loadTimeline(choices, filter) {
 		.style("left", x(0) - sz*1.4 + 'px')
 		.style("top", y(2023) + 'px')
 
-		var glitchme = container.append("div")
+		var dataviz = container.append("div")
 		.attr("class", "container-annotation")
 		.style("position", "absolute")
-		.style("left", x(0) + sz + 'px')
-		.style("top", y(2023) + 'px')		
+		.style("left", x(0) + sz*1 + 'px')
+		.style("top", y(2020) + 'px')		
 
 		var hyperlinkURL = "https://www.redsharknews.com/adobe-express-with-firefly-moves-out-of-beta"
 
@@ -514,7 +542,7 @@ function loadTimeline(choices, filter) {
 		"<div style='display: flex; align-items: center;'>" +
 		  "<img src='img/express.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
 		  "<span style='margin: 0 10px;'>+</span>" +
-		  "<img src='img/firefly.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+		  "<img src='img/firefly.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
 		  "<span style='margin-left: 10px; border-left: 1px solid black; padding-left: 10px; height: " + sz/3 + "px;'> " +
 			"<p style='margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>August 2023</p>" +
 		  "</span>" +
@@ -524,20 +552,22 @@ function loadTimeline(choices, filter) {
 		"</p>" +
 	  "</div>";
 
-	//   glitchme.node().innerHTML =    
-	//   "<div style='border: 2px solid blue; border-radius: 15px; padding: 10px; text-align: center; background-color: white;'>" +
-	//   "<div style='display: flex; align-items: center;'>" +
-	// 	"<span style='text-align: right; margin-right: 10px; border-right: 1px solid black; padding-right: 10px; height: " + sz/3 + "px;'> " +
-	// 		"<p style='text-align: right; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>November 2023</p>" +
-	// 	"</span>" +	  
-	// 	"<img src='img/express.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
-	// 	"<span style='margin: 0 10px;'>+</span>" +
-	// 	"<img src='img/firefly.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
-	//   "</div>" +
-	//   "<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
-	//   "Adobe Express and Adobe Firefly <a href='" + hyperlinkURL + "' style='text-decoration: none; color: #800035;'>move</a> out of beta" +
-	//   "</p>" +
-	// "</div>";	  
+	  dataviz.node().innerHTML =    
+	  "<div style='border: 2px solid blue; border-radius: 15px; padding: 10px; text-align: center; background-color: white;'>" +
+	  "<div style='display: flex; align-items: center; flex-grow: 1;'>" +
+		"<span style='flex: 1; text-align: right; margin-right: 10px; border-right: 1px solid black; padding-right: 10px; height: " + sz/3 + "px; width: " + sz/2.8 + "px; overflow: hidden;'> " +
+			"<p style='text-align: right; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>March to June 2020</p>" +
+		"</span>" +	  
+		"<img src='img/allergies.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
+		"<span style='margin: 0 10px;'>+</span>" +
+		"<img src='img/starwars.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+		"<span style='margin: 0 10px;'>+</span>" +
+		"<img src='img/tiktok.png' alt='Tiktok Map' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
+	  "</div>" +
+	  "<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
+	  "Adobe Express and Adobe Firefly <a href='" + hyperlinkURL + "' style='text-decoration: none; color: #800035;'>move</a> out of beta" +
+	  "</p>" +
+	"</div>";	  
 	//   "<p style='font-weight: normal; font-family: Lato; margin-bottom: 10px; width: 100%;'>August 2023</p>" +
 
 	
