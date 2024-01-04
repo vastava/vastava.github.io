@@ -502,7 +502,7 @@ function loadTimeline(choices, filter) {
 			.attr("stroke-width", 1)	
 			.style("stroke-dasharray", ("1, 3"))	
 
-		var circleData = [{"year": 2021, "y_adjust": sz/2, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2023, "y_adjust": 0, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "#818cf8"}, {"year": 2019, "y_adjust": 0, "color": "#f59e0b"}, {"year": 2019, "y_adjust": szh*7/12, "color": "#2563eb"}]
+		var circleData = [{"year": 2021, "y_adjust": 5*szh/12, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2023, "y_adjust": 0, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "#818cf8"}, {"year": 2019, "y_adjust": 0, "color": "#f59e0b"}, {"year": 2019, "y_adjust": szh*7/12, "color": "#2563eb"}]
 		svg.selectAll("mycircle")
 			 .data(circleData)
 			 .enter()
@@ -512,7 +512,7 @@ function loadTimeline(choices, filter) {
 			   .attr("r", "6")
 			   .style("fill", function(d) { return d.color; })	
 			   
-			   var circleData2 = [{"year": 2023, "y_adjust": szh/12, "color": "#27f727"}, {"year": 2022, "y_adjust": szh/12, "color": "#FEBFBF"}, {"year": 2022, "y_adjust": szh, "color": "#267368"}, {"year": 2021, "y_adjust": sz/2, "color": "blue"}, {"year": 2020, "y_adjust": szh/4, "color": "blue"}, {"year": 2020, "y_adjust": szh*9/12, "color": "blue"}]
+			   var circleData2 = [{"year": 2023, "y_adjust": szh/12, "color": "#27f727"}, {"year": 2022, "y_adjust": szh/12, "color": "#FEBFBF"}, {"year": 2022, "y_adjust": szh, "color": "#267368"}, {"year": 2021, "y_adjust": sz/2, "color": "gold"}, {"year": 2020, "y_adjust": szh/4, "color": "#7dd3fc"}, {"year": 2020, "y_adjust": szh*9/12, "color": "#7dd3fc"}]
 			   svg.selectAll("mycircle")
 					.data(circleData2)
 					.enter()
@@ -533,7 +533,7 @@ function loadTimeline(choices, filter) {
 		.attr("class", "container-annotation")
 		.style("position", "absolute")
 		.style("left", x(0) + sz*1 + 'px')
-		.style("top", y(2020) + 'px')		
+		.style("top", y(2020) + szh/12 + 'px')		
 
 		var hyperlinkURL = "https://www.redsharknews.com/adobe-express-with-firefly-moves-out-of-beta"
 
@@ -553,7 +553,7 @@ function loadTimeline(choices, filter) {
 	  "</div>";
 
 	  dataviz.node().innerHTML =    
-	  "<div style='border: 2px solid blue; border-radius: 15px; padding: 10px; text-align: center; background-color: white;'>" +
+	  "<div style='border: 2px solid #7dd3fc; border-radius: 15px; padding: 10px; text-align: center; background-color: white;'>" +
 	  "<div style='display: flex; align-items: center; flex-grow: 1;'>" +
 		"<span style='flex: 1; text-align: right; margin-right: 10px; border-right: 1px solid black; padding-right: 10px; height: " + sz/3 + "px; width: " + sz/2.8 + "px; overflow: hidden;'> " +
 			"<p style='text-align: right; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>March to June 2020</p>" +
@@ -607,7 +607,7 @@ function loadTimeline(choices, filter) {
 			.text("Joined ThermoFisher Scientific")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
-			.attr("y", y(2021) + sz/2 + 2)
+			.attr("y", y(2021) + 5*szh/12 + 2)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
@@ -617,7 +617,7 @@ function loadTimeline(choices, filter) {
 			.text("Data Scientist, eCommerce")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
-			.attr("y", y(2021) + sz/2 + 22)
+			.attr("y", y(2021) + 5*szh/12 + 22)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
@@ -632,7 +632,7 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")			
+			.style("font-family", "Lato")		
 			
 			svg.append("text")
 			.text("Data Visualization Engineer")
@@ -687,6 +687,16 @@ function loadTimeline(choices, filter) {
 			.style("font-family", "Lato")	
 			.style("font-weight", 399)				
 			
+			svg.append("text")
+			.text("Graduated!")
+			.attr("class", "svg-label")
+			.attr("x", x(0) + sz / spacing + 10)
+			.attr("y", y(2021) + sz/2 + 2)
+			.attr("text-anchor", "start")
+			.attr("alignment-baseline", "middle")
+			.style("font-size", "15px")
+			.style("font-family", "Lato")	
+
 			function createText(year, label, url, textContent, breakIndex=43, yOffset=(szh/12), opacity=1) {
 				// Append main text
 				var textlabel = svg.append("text")
