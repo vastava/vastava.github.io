@@ -1,308 +1,216 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta property="og:image" content="img/preview.png" />
-	<title>Anjali Shrivastava | Storytelling with Data</title>
+    <title>Anjali Shrivastava | Storytelling with Data</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156901405-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-156901405-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  gtag('config', 'UA-156901405-1');
-</script>
-<script src="https://d3js.org/d3.v4.js"></script>
-<script src="d3-tip.js"></script>
-<!--     <script type="text/javascript" src="seismic.js"></script>
- -->    
+      gtag("config", "UA-156901405-1");
+    </script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="d3-tip.js"></script>
+    <!--     <script type="text/javascript" src="seismic.js"></script>
+ -->
   </head>
 
-<body>
-	<header class="header" role="banner">
-  <nav class="navbar">
-    <a class="title" href="https://vastava.github.io/" title="Anjali Shrivastava">Anjali Shrivastava</a>
-    <div class="navbar__sections">
-      <a class="section" href="https://vastava.github.io/" title="Home"><u>Home</u></a>
-      <a class="section " href="about.html" title="About">About</a>
-      <a class="section" href="work.html" title="Work">Work</a>
-      <a class="section" href="writing.html" title="Articles">Writing</a>
-      
-<!--       <a class="section" href="https://vastava.github.io/contact" title="Contact">Contact</a> -->
-    </div>
-  </nav>
-</header>
-<main class="page-content" aria-label="Content">
-	<div class="wrapper">
-          <div class="home">
-    <h2>Data scientist and storyteller</h2>
+  <body>
+    <header class="header" role="banner">
+      <nav class="navbar">
+        <a
+          class="title"
+          href="https://vastava.github.io/"
+          title="Anjali Shrivastava"
+          >Anjali Shrivastava</a
+        >
+        <div class="navbar__sections">
+          <a class="section" href="https://vastava.github.io/" title="Home"
+            ><u>Home</u></a
+          >
+          <a class="section" href="about.html" title="About">About</a>
+          <a class="section" href="work.html" title="Work">Work</a>
+          <a class="section" href="writing.html" title="Articles">Writing</a>
 
-    <div class="wrap">
-    <div class="img">
-    <a href="https://vastava.github.io/starwars-timeline/" class="db link dim tc no-link-underline">
-      <img src="./img/starwars.png" alt="" class="img__icon">
-    </a>
-    </div> 
+          <!--       <a class="section" href="https://vastava.github.io/contact" title="Contact">Contact</a> -->
+        </div>
+      </nav>
+    </header>
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="home">
+          <h2>Data scientist and storyteller</h2>
 
-    <div class="img">
-    <a href="https://vastava.github.io/coronavirus-dashboard/" class="db link dim tc no-link-underline">
-      <img src="./img/corona.png" alt="" class="img__icon">
-    </a>
-    </div>     
+          <div class="wrap">
+            <div class="img">
+              <a
+                href="https://vastava.github.io/starwars-timeline/"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/starwars.png" alt="" class="img__icon" />
+              </a>
+            </div>
 
-    <div class="img">
-    <a href="https://towardsdatascience.com/the-debate-drinking-game-with-data-science-7a0c0692e5a" class="db link dim tc no-link-underline">
-      <img src="./img/debate.png" alt="" class="img__icon">
-    </a>
-    </div>      
+            <div class="img">
+              <a
+                href="https://vastava.github.io/coronavirus-dashboard/"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/corona.png" alt="" class="img__icon" />
+              </a>
+            </div>
 
-    <div class="img">
-    <a href="https://public.tableau.com/profile/anjali3991#!/vizhome/TheimportanceofsleepDataviz/Dashboard12" class="db link dim tc no-link-underline">
-      <img src="./img/sleep.png" alt="" class="img__icon">
-    </a>
-    </div>  	
+            <div class="img">
+              <a
+                href="https://towardsdatascience.com/the-debate-drinking-game-with-data-science-7a0c0692e5a"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/debate.png" alt="" class="img__icon" />
+              </a>
+            </div>
 
-    <div class="img">
-    <a href="https://towardsdatascience.com/analyzing-sonic-fan-art-with-data-science-fddcaa8bbb68" class="db link dim tc no-link-underline">
-      <img src="./img/sonic.png" alt="" class="img__icon">
-    </a>
-  </div>  
+            <div class="img">
+              <a
+                href="https://public.tableau.com/profile/anjali3991#!/vizhome/TheimportanceofsleepDataviz/Dashboard12"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/sleep.png" alt="" class="img__icon" />
+              </a>
+            </div>
 
-    <div class="img">
-    <a href="https://vastava.github.io/allergies/" class="db link dim tc no-link-underline">
-      <img src="./img/allergies.png" alt="" class="img__icon">
-    </a>
-    </div>
-  <!--     <div class="img">
+            <div class="img">
+              <a
+                href="https://towardsdatascience.com/analyzing-sonic-fan-art-with-data-science-fddcaa8bbb68"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/sonic.png" alt="" class="img__icon" />
+              </a>
+            </div>
+
+            <div class="img">
+              <a
+                href="https://vastava.github.io/allergies/"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/allergies.png" alt="" class="img__icon" />
+              </a>
+            </div>
+            <!--     <div class="img">
     <a href="https://vastava.github.io/cotton-fund/" class="db link dim tc no-link-underline">
       <img src="./img/cotton.png" alt="" class="img__icon">
     </a>
     </div> -->
 
-    <div class="img">
-    <a href="https://vastava.github.io/police-presence/" class="db link dim tc no-link-underline">
-      <img src="./img/police.png" alt="" class="img__icon">
-    </a>
-    </div>
+            <div class="img">
+              <a
+                href="https://vastava.github.io/police-presence/"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/police.png" alt="" class="img__icon" />
+              </a>
+            </div>
 
-  <!--   <div class="img">
+            <!--   <div class="img">
     <a href="https://vastava.github.io/covid_college_closures/" class="db link dim tc no-link-underline">
       <img src="./img/covid.png" alt="" class="img__icon">
     </a>
   </div> -->
 
-    <div class="img">
-    <a href="https://vastava.github.io/tiktok-mansions-map/story.html" class="db link dim tc no-link-underline">
-      <img src="./img/tiktok.png" alt="" class="img__icon">
-    </a>
-  </div>
+            <div class="img">
+              <a
+                href="https://vastava.github.io/tiktok-mansions-map/story.html"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/tiktok.png" alt="" class="img__icon" />
+              </a>
+            </div>
 
-    <div class="img">
-    <a href="https://vastava.github.io/pipeline-map/" class="db link dim tc no-link-underline">
-      <img src="./img/pipeline.png" alt="" class="img__icon">
-    </a>
-  </div>
+            <div class="img">
+              <a
+                href="https://vastava.github.io/pipeline-map/"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/pipeline.png" alt="" class="img__icon" />
+              </a>
+            </div>
 
-  <!-- <div class="img">
+            <!-- <div class="img">
     <a href="https://vastava.github.io/chile-map/" class="db link dim tc no-link-underline">
       <img src="./img/chile.png" alt="" class="img__icon">
     </a>
   </div> -->
 
-  <div class="img">
-    <a href="https://public.tableau.com/profile/anjali3991#!/vizhome/ViolenceinSouthandSoutheastAsia/Dashboard1" class="db link dim tc no-link-underline">
-      <img src="./img/violence.png" alt="" class="img__icon">
-    </a>
-  </div>
+            <div class="img">
+              <a
+                href="https://public.tableau.com/profile/anjali3991#!/vizhome/ViolenceinSouthandSoutheastAsia/Dashboard1"
+                class="db link dim tc no-link-underline"
+              >
+                <img src="./img/violence.png" alt="" class="img__icon" />
+              </a>
+            </div>
 
-
-  <!-- <div class="img">
+            <!-- <div class="img">
     <a href="https://public.tableau.com/profile/anjali3991#!/vizhome/ViolenceinSouthandSoutheastAsia/Dashboard1" class="db link dim tc no-link-underline">
       <img src="./img/sf.png" alt="" class="img__icon">
     </a>
   </div> -->
 
-
-  <!-- <div class="img">
+            <!-- <div class="img">
     <a href="https://public.tableau.com/profile/anjali3991#!/vizhome/SCOTUSanalysis/Dashboard1" class="db link dim tc no-link-underline">
       <img src="./img/SCOTUS.png" alt="" class="img__icon">
     </a>
   </div> -->
 
-  <!-- <div class="img">
+            <!-- <div class="img">
     <a href="https://medium.com/@ashrivastava_32656/analysis-of-uc-admissions-by-source-school-b5e872175c2e" class="db link dim tc no-link-underline">
       <img src="./img/uc.png" alt="" class="img__icon">
     </a>
   </div> -->
+          </div>
 
-
-    </div>
-
-    <section class="text">
-      <!-- <p>I'm a senior finishing my degrees in industrial engineering and operations research and data science at UC Berkeley. Currently, I'm a data visualization engineer for <a href="https://hi-george.com/">HiGeorge</a> and a researcher for the <a href="https://humanrights.berkeley.edu/home">Human Rights Center</a>. I have also been published in <a href="https://medium.com/@vastava.writes">Towards Data Science</a>. This website will serve as a portfolio of the work that I'm most proud of. </p> -->
-      <p>I'm a data scientist on the Product Led Growth team at <a href="https://new.express.adobe.com/">Adobe Express</a>. I've also built a few web apps, the most popular of which is <a href="https://stylesense.io/">stylesense.io</a>, which gets about 1,000 daily visitors. I also, also have been published in <a href="https://vastava.medium.com/">Towards Data Science</a>. This website will serve as a portfolio of the data science and visualization work that I'm most proud of. </p>
-      <p>Read more <a href="about.html">about me</a>, or see my <a href="work.html">personal projects</a> &amp; <a href="writing.html">writing</a>. Check out my timeline below. 👇
-      </p>
-      <iframe src="/timeline" width="100%" height="970px" frameborder="0"></iframe> 
-      <!-- <div class="divider"></div> -->
-      <div class="">Reach me at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> or <a href="https://twitter.com/vastava_">@vastava_</a> on Twitter.</div>
-    </section>    
-  </div>
-</div>
-</main>
-</body>
-<!-- <style>
-  @import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
-  @import url("https://use.typekit.net/jcy0mvn.css");
-  
-  body {
-    /* background: black; */
-    /* background-image: url('https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/A11FF0C824A45B7D466AA336DC07F3D5AEF32E94A8E31ED9E6FEC67551C744CA/scale?aspectRatio=1.78&format=jpeg'); */
-    background-size: 100%;
-    font: "News Cycle", sans-serif;
-    text-align: center;
-  }
-  
-  text, #text {
-    /*fill: white;*/
-    /*font-family: Helvetica, sans-serif;*/
-    /* font-family: "News Cycle", sans-serif; */
-    font-weight: bold;
-  }
-  svg {
-    display: block;
-    margin: auto;
-  }
-  h1, p, text, #text, #color_filter {
-    fill: black;
-    color: black;
-    font-family: "News Cycle", sans-serif;
-  }
-  
-  p {
-    text-align: left;
-    width: 80%;
-    margin: auto;
-  }
-  
-  .source {
-    text-align: right;
-  }
-  
-  .intro {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    /*height: 800px;*/
-    color: #feda4a;
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 150%;
-    font-weight: 600;
-    letter-spacing: 2px;
-    line-height: 150%;
-    perspective: 400px;
-    text-align: justify;
-  }
-  
-  .title {
-    font-size: 60px;
-    text-align: center;
-    margin: 0
-  }
-  .center {
-    text-align: center;
-  }
-  
-  .axis line {
-    fill: white;
-    /*stroke: #000;*/
-    stroke: white;
-    /*shape-rendering: crispEdges;*/
-  }
-  
-  .axis text {
-    fill: white;
-  }
-  
-  .axis path {
-    /*fill: white;*/
-  }
-  
-  a {
-    color: white;
-  }
-  
-  .d3-tip {
-    line-height: 1.4;
-    padding: 12px;
-    background: white;
-    color: black;
-    border-radius:  2px;
-    border: 2px;
-    border-color: black;
-    font-size: 12px;
-    font-family: Helvetica Neue;
-    width: 300px;
-    box-shadow: 3px 3px 1px lightgrey;
-    text-align: left;
-  
-  }
-  
-  /* Creates a small triangle extender for the tooltip */
-  .d3-tip:after {
-    box-sizing: border-box;
-    display: inline;
-    width: 100%;
-    line-height: 1;
-    color: rgba(200, 200, 200, 0.8);
-    content: "\25BC";
-    position: absolute;
-    text-align: center;
-  }
-  
-  /* Style northward tooltips differently */
-  .d3-tip.n:after {
-    margin: -1px 0 0 0;
-    top: 100%;
-    left: 0;
-  }
-  
-  /*saber switches*/
-  .switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  label {
-    display: inline-block;
-    text-align: center;
-    /*width: 150px;*/
-  }
-  
-  .text-label {
-    display: inline;
-  }
-  
-  .container-event {
-      overflow: auto;
-      cursor: pointer;
-      /* width: 50px;
-      height: 50px; */
-  }
-  
-  #mega-container {
-      position: relative;
-  }
-  
-  #myContainer {
-    left: 50%;
-    transform: translateX(-50%);
-    margin: auto;
-  }
-  
-  </style> -->
-  <!-- <script type="text/javascript" src="events-full-timeline.js"></script> -->
+          <section class="text">
+            <!-- <p>I'm a senior finishing my degrees in industrial engineering and operations research and data science at UC Berkeley. Currently, I'm a data visualization engineer for <a href="https://hi-george.com/">HiGeorge</a> and a researcher for the <a href="https://humanrights.berkeley.edu/home">Human Rights Center</a>. I have also been published in <a href="https://medium.com/@vastava.writes">Towards Data Science</a>. This website will serve as a portfolio of the work that I'm most proud of. </p> -->
+            <p>
+              I'm a data scientist on the Product Led Growth team at
+              <a href="https://new.express.adobe.com/">Adobe Express</a>. I've
+              also built a few web apps, the most popular of which is
+              <a href="https://stylesense.io/">stylesense.io</a>, which gets
+              about 1,000 daily visitors. I also, also have been published in
+              <a href="https://vastava.medium.com/">Towards Data Science</a>.
+              This website will serve as a portfolio of the data science and
+              visualization work that I'm most proud of.
+            </p>
+            <p>
+              Read more <a href="about.html">about me</a>, or see my
+              <a href="work.html">personal projects</a> &amp;
+              <a href="writing.html">writing</a>. Check out my timeline below.
+              👇
+            </p>
+            <iframe
+              src="/timeline"
+              width="100%"
+              height="970px"
+              frameborder="0"
+            ></iframe>
+            <!-- <div class="divider"></div> -->
+            <div class="">
+              Reach me at
+              <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> or <a href="https://twitter.com/vastava_">@vastava_</a> on Twitter.
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -576,7 +576,7 @@ function loadTimeline(choices, filter) {
 		"</a>" +
 	  "</div>" +
 	  "<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
-	  "I start learning d3.js and web development — see my data visualization portfolio <a href='" + "https://vastava.github.io/work.html" + "' style='text-decoration: none; color: #800035;'>here</a>" +
+	  "I start learning d3.js and web development — see my data visualization portfolio <a href='" + "https://vastava.github.io/work.html" + "' style='text-decoration: none; color: #7dd3fc;'>here</a>" +
 	  "</p>" +
 	"</div>";	  
 	//   "<p style='font-weight: normal; font-family: Lato; margin-bottom: 10px; width: 100%;'>August 2023</p>" +
