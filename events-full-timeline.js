@@ -540,12 +540,16 @@ function loadTimeline(choices, filter) {
 		firefly.node().innerHTML =    
 		"<div style='border: 2px solid #800035; border-radius: 15px; padding: 10px; text-align: center; background-color: white; width: 220px;'>" +
 		"<div style='display: flex; align-items: center;'>" +
-		  "<img src='img/express.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
-		  "<span style='margin: 0 10px;'>+</span>" +
-		  "<img src='img/firefly.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
-		  "<span style='margin-left: 10px; border-left: 1px solid black; padding-left: 10px; height: " + sz/3 + "px;'> " +
-			"<p style='margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>August 2023</p>" +
-		  "</span>" +
+			"<a href='https://new.express.adobe.com/'>" +
+				"<img src='img/express.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+			"</a>" +
+			"<span style='margin: 0 10px;'>+</span>" +
+			"<a href='https://firefly.adobe.com/'>" +
+				"<img src='img/firefly.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
+			"</a>" +		  
+			"<span style='margin-left: 10px; border-left: 1px solid black; padding-left: 10px; height: " + sz/3 + "px;'> " +
+				"<p style='margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>August 2023</p>" +
+			"</span>" +
 		"</div>" +
 		"<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
 		"Adobe Express and Adobe Firefly <a href='" + hyperlinkURL + "' style='text-decoration: none; color: #800035;'>move</a> out of beta" +
@@ -558,14 +562,20 @@ function loadTimeline(choices, filter) {
 		"<span style='flex: 1; text-align: right; margin-right: 10px; border-right: 1px solid black; padding-right: 10px; height: " + sz/3 + "px; width: " + sz/2.8 + "px; overflow: hidden;'> " +
 			"<p style='text-align: right; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>March to June 2020</p>" +
 		"</span>" +	  
-		"<img src='img/allergies.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
+		"<a href='https://vastava.github.io/allergies/'>" +
+			"<img src='img/allergies.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
+	    "</a>" +		
 		"<span style='margin: 0 10px;'>+</span>" +
-		"<img src='img/starwars.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+		"<a href='https://vastava.github.io/starwars-timeline/'>" +
+			"<img src='img/starwars.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+		"</a>" +
 		"<span style='margin: 0 10px;'>+</span>" +
-		"<img src='img/tiktok.png' alt='Tiktok Map' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
+		"<a href='https://vastava.github.io/tiktok-mansions-map/story.html'>" +
+			"<img src='img/tiktok.png' alt='Tiktok Map' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
+		"</a>" +
 	  "</div>" +
 	  "<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
-	  "Adobe Express and Adobe Firefly <a href='" + hyperlinkURL + "' style='text-decoration: none; color: #800035;'>move</a> out of beta" +
+	  "I start learning d3.js and web development — see my data visualization portfolio <a href='" + "https://vastava.github.io/work.html" + "' style='text-decoration: none; color: #800035;'>here</a>" +
 	  "</p>" +
 	"</div>";	  
 	//   "<p style='font-weight: normal; font-family: Lato; margin-bottom: 10px; width: 100%;'>August 2023</p>" +
@@ -790,7 +800,7 @@ function loadTimeline(choices, filter) {
 			  }
 			  
 			  // Example usage:
-			  createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js.", 43);
+			  createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43);
 			  createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47);
 			  createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5);
 			  
