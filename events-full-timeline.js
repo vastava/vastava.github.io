@@ -707,7 +707,8 @@ function loadTimeline(choices, filter) {
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
 
-			function createText(year, label, url, textContent, breakIndex=43, yOffset=(szh/12), opacity=1) {
+			function createText(year, label, url, textContent, breakIndex=43, yOffset=(szh/12), opacity=1, labelAppend=false) {
+				console.log(textContent, yOffset, opacity, labelAppend)
 				// Append main text
 				var textlabel = svg.append("text")
 				  .text(label)
@@ -734,21 +735,39 @@ function loadTimeline(choices, filter) {
 				// 	window.open(url, "_blank");
 				//   });
 				
-				if (opacity < 1) {
+				if (opacity < 1 || labelAppend) {
 					// Append a red oval
+					var rectColor = "#fee2e2";
+					var textColor = "#991b1b";
+					var textLabelContent = "Discontinued";
 					var labelWidth = textlabel.node().getBBox().width;
+					var w = 70;
+					if (labelAppend == "New") {
+						rectColor = "#e5f5e0";
+						textColor = "#276749";
+						textLabelContent = "New";
+						w = 33
+						// labelWidth = labelWidth/5;
+					}
+					else if (labelAppend == "Popular") {
+						rectColor = "#fce7f3";
+						textColor = "#831843";
+						textLabelContent = "1k users/mo";
+						w = 65
+						// labelWidth = labelWidh/5;
+					}
 					svg.append("rect")
 					.attr("x", x(0) + sz / spacing + 12 + labelWidth) // Adjust the x-coordinate as needed
 					.attr("y", y(year) + yOffset + 2 - 15/spacing)
-					.attr("width", 70) // Set the width of the oval
+					.attr("width", w) // Set the width of the oval
 					.attr("height", 15) // Set the height of the oval
 					.attr("rx", 6) // Set the x-radius of the oval
 					.attr("ry", 4) // Set the y-radius of the oval
-					.style("fill", "#fee2e2")
+					.style("fill", rectColor)
 					.style("opacity", opacity);			
 					
 					svg.append("text")
-					.text("Discontinued")
+					.text(textLabelContent)
 					.attr("class", "svg-label")					
 					.attr("x", x(0) + sz / spacing + 18 + labelWidth) // Adjust the x-coordinate as needed
 					.attr("y", y(year) + yOffset + 2)
@@ -756,7 +775,7 @@ function loadTimeline(choices, filter) {
 					.attr("alignment-baseline", "middle")
 					.style("font-size", "10px")
 					.style("font-family", "Lato")
-					.style("fill", "#991b1b")
+					.style("fill", textColor)
 					// .style("opacity", opacity);						
 				}
 			  
@@ -800,8 +819,8 @@ function loadTimeline(choices, filter) {
 			  }
 			  
 			  // Example usage:
-			  createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43);
-			  createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47);
+			  createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43, undefined, undefined, "New");
+			  createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47, undefined, undefined, "Popular");
 			  createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5);
 			  
 // 			svg.append("text")
