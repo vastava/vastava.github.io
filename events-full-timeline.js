@@ -22,6 +22,7 @@ var container = d3.select("#events_full_timeline")
     .style("margin-right", "auto")
     .style("top", function(d) { return fullMargin.top + "px"; })
     .style("left", function(d) { return fullMargin.left + "px"; })
+	
 
 //Build checkboxes
 var filter_list = ["Original Trilogy", "Prequel Trilogy", "Sequel Trilogy", "Anthology Films", "The Clone Wars", "The Mandalorian", "Rebels", "Resistance", "Extended Universe"]
@@ -527,7 +528,7 @@ function loadTimeline(choices, filter) {
 		.attr("class", "container-annotation")
 		.style("position", "absolute")
 		.style("left", x(0) - sz*1.4 + 'px')
-		.style("top", y(2023) + 'px')
+		.style("top", y(2023) + 'px')	
 
 		var dataviz = container.append("div")
 		.attr("class", "container-annotation")
