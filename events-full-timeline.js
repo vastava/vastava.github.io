@@ -1,6 +1,5 @@
 var fullMargin = {top: 30, right: 30, bottom: 30, left: 30},
-    fullHeight = 764 
-	// - fullMargin.left - fullMargin.right,
+    fullHeight = 764 - fullMargin.left - fullMargin.right,
     fullWidth = (1000 - fullMargin.top - fullMargin.bottom);
 
 // append the canoneventline object to the body of the page
@@ -8,10 +7,18 @@ var svg = d3.select("#events_full_timeline")
   .append("svg")
     .attr("width", fullWidth + fullMargin.left + fullMargin.right)
     .attr("height", fullHeight + fullMargin.top + fullMargin.bottom)
-    .style("margin", "30px")
+    // .style("margin", "30px")
+	.attr("id", "svg-element")
   .append("g")
     .attr("transform",
           "translate(" + fullMargin.left + "," + fullMargin.top + ")");
+
+var svgDiv = document.getElementById("svg-element");	
+var timelineDiv = document.getElementById('events_full_timeline');
+// var divWidth = timelineDiv.clientWidth;	  
+
+var marginAutoLeft = (timelineDiv.clientWidth - 1000)/2;
+console.log("mal", marginAutoLeft)
 
 var container = d3.select("#events_full_timeline")
     .append("div")
@@ -19,9 +26,11 @@ var container = d3.select("#events_full_timeline")
         .attr("height", fullHeight)    
     .attr("id", "myContainer")
     .style("position", "absolute")
-    .style("margin-right", "auto")
+	.attr("transform",
+          "translate(" + fullMargin.left + "," + fullMargin.top + ")")
+    // .style("margin-right", "auto")
     .style("top", function(d) { return fullMargin.top + "px"; })
-    .style("left", function(d) { return fullMargin.left + "px"; })
+    .style("left", function(d) { return marginAutoLeft + "px"; })
 	
 
 //Build checkboxes
@@ -742,7 +751,7 @@ function loadTimeline(choices, filter) {
 					var textColor = "#991b1b";
 					var textLabelContent = "Discontinued";
 					var labelWidth = textlabel.node().getBBox().width;
-					var w = 70;
+					var w = 72;
 					if (labelAppend == "New") {
 						rectColor = "#e5f5e0";
 						textColor = "#276749";
@@ -753,8 +762,8 @@ function loadTimeline(choices, filter) {
 					else if (labelAppend == "Popular") {
 						rectColor = "#fce7f3";
 						textColor = "#831843";
-						textLabelContent = "1k users/mo";
-						w = 65
+						textLabelContent = "1k users/day";
+						w = 67
 						// labelWidth = labelWidh/5;
 					}
 					svg.append("rect")
@@ -895,6 +904,16 @@ function loadTimeline(choices, filter) {
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
 			.attr("transform", "translate(" + (fullWidth - fullMargin.right*2) + ",200) rotate(90)")
+
+			// svg.append("text")
+			// .text("boundary")
+			// .attr("class", "svg-label")
+			// .attr("text-anchor", "middle")
+			// .style("font-family", "trajan-pro-3")
+			// .style("font-size", "30px")
+			// .style("opacity", 0.7)
+			// .style("font-weight", 199)
+			// .attr("transform", "translate(" + (fullWidth) + ",200) rotate(90)")			
 		 // .on("mouseover", etc.)
 	})
 
