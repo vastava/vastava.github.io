@@ -110,20 +110,20 @@ function loadTimeline(choices, filter) {
 		d3.select("#vline").remove();
 		d3.selectAll(".svg-label").remove()
 
-		data = data.sort(function (a, b) { return a.yr_cleaned - b.yr_cleaned });
-		var years = d3.set(data.map(function (d) { return d.yr_cleaned })).values();
-		// years.push(2024)
-		years.sort(function (a, b) {
+		data = data.sort(function(a,b) {return a.yr_cleaned - b.yr_cleaned});
+		var years = d3.set(data.map(function(d) {return d.yr_cleaned})).values();
+		years.push(2024)
+		years.sort(function(a, b) {
 			return b - a;
 		});
 		console.log(years)
 		//append 2024 to years
 		// years.push(2024)
 		// var sz = (fullHeight - fullMargin.bottom - fullMargin.top)/years.length;        
-		var sz = (fullWidth - fullMargin.left - fullMargin.right) / years.length;
-		var szh = (fullHeight - fullMargin.bottom - fullMargin.top) / years.length;
-		console.log(sz)
-		var spacing = 1.8;
+        var sz = (fullWidth - fullMargin.left - fullMargin.right)/(years.length-1);
+		var szh = (fullHeight - fullMargin.bottom - fullMargin.top)/(years.length-1);
+        console.log(sz)
+        var spacing = 1.8;
 		//master color scheme for eras
 		var swcolors_master = ["#A1A333", "#D5BE78", "#EFAF82", "#E7250A", "#9E5B60", "#0E5AA1", "#5FA0DE", "#453110", "#FBFFFE", "#3D5E78", "#D8DA8E", "#0C9198", "#353E9F", "#027693", "#A7281C", "#FBA411", "#0387E9", "#F26C28", "#BFAB87", "#5AC2F1", "#E7250A", "#1D652F", "#8A2239", "#32E6AC", "#AF639E", "#343D9D"]
 
@@ -171,38 +171,6 @@ function loadTimeline(choices, filter) {
 		var w_axis = x(endDate) - x(yr_cleanedDate)
 
 
-		// var movieData = []
-
-		// movieData[0] = {"yr_cleaned": -32, "end": -19, "section": 2, "text": "Prequel Trilogy", "text_x": -25}
-		// movieData[1] = {"yr_cleaned": 0, "end": 4, "section": 3, "text": "Original Trilogy", "text_x": 0}
-		// movieData[2] = {"yr_cleaned": 34, "end": 35, "section": 3, "text": "Sequel Trilogy", "text_x": 34}	
-
-		// svg.selectAll(".myRects")
-		// 	.data(movieData)
-		// 	.enter()
-		// 	.append("rect")
-		// 	.attr("class", "movie-rect")
-		// 	.attr("x", 0)
-		// 	.attr("y", function(d) {return y(d.yr_cleaned)})		
-		// 	.attr("width", fullWidth)
-		// 	.attr("height", function(d) {return y(d.end) - y(d.yr_cleaned)})
-		// 	.style("fill", function(d) {
-		// 		if (d.text != "Sequel Trilogy") {
-		// 			return media_color(d.text);
-		// 		}
-		// 		return "yellow";
-		// 	})
-		// 	.style("fill-opacity", 0.33)
-
-		// svg.selectAll(".myLabels")
-		// 	.data(movieData)
-		// 	.enter()
-		// 	.append("text")
-		// 	.attr("class", "movie-rect")
-		// 	.attr("x", 0+5)
-		// 	.attr("y", function(d) {return y(d.yr_cleaned)-5})		
-		// 	.text(function(d) {return d.text});
-
 		var yrs = []
 		var events = ["okokok", "lalala", "hahahah"]
 
@@ -213,11 +181,6 @@ function loadTimeline(choices, filter) {
 
 		yrs_canon = yrs_canon.map(function (x, i) { return { "year": x, "event": events_canon[i] } });
 
-		console.log(years)
-		console.log(yrs)
-		console.log(yrs.filter(function (d) { return years.includes(d.year.toString()) }))
-
-		//Canon annotations 	
 
 		svg.selectAll(".annotation")
 			.data(yrs.filter(function (d) { return years.includes(d.year.toString()) }))
@@ -493,14 +456,14 @@ function loadTimeline(choices, filter) {
 		//   });         
 
 		svg.append("line")
-			.attr("id", "vline-dotted")
-			.attr("x1", x(0))
-			.attr("x2", x(0))
-			.attr("y1", y(2023))
-			.attr("y2", y(2020) + szh / 4)
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
-			.style("stroke-dasharray", ("1, 3"))
+		  .attr("id", "vline-dotted")
+		   .attr("x1", x(0))
+		   .attr("x2", x(0))  
+		   .attr("y1", y(2024))
+		   .attr("y2", y(2020) + szh/4) 
+		   .attr("stroke", "black")
+		   .attr("stroke-width", 1)	
+		   .style("stroke-dasharray", ("1, 3"))
 
 		svg.append("line")
 			.attr("id", "vline-dotted-2")
@@ -512,7 +475,7 @@ function loadTimeline(choices, filter) {
 			.attr("stroke-width", 1)
 			.style("stroke-dasharray", ("1, 3"))
 
-		var circleData = [{ "year": 2021, "y_adjust": 5 * szh / 12, "color": "#4C4082" }, { "year": 2022, "y_adjust": szh * 5 / 12, "color": "#800035" }, { "year": 2023, "y_adjust": 0, "color": "#800035" }, { "year": 2020, "y_adjust": szh / 4, "color": "#818cf8" }, { "year": 2019, "y_adjust": 0, "color": "#f59e0b" }, { "year": 2019, "y_adjust": szh * 7 / 12, "color": "#2563eb" }]
+		var circleData = [{"year": 2021, "y_adjust": 5*szh/12, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2024, "y_adjust": 0, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "#818cf8"}, {"year": 2019, "y_adjust": 0, "color": "#f59e0b"}, {"year": 2019, "y_adjust": szh*7/12, "color": "#2563eb"}]
 		svg.selectAll("mycircle")
 			.data(circleData)
 			.enter()
@@ -600,6 +563,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")
+			.style("font-weight", 500)
 
 		svg.append("text")
 			.text("Growth Data Scientist, Monetization")
@@ -609,19 +573,18 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
-			.style("font-family", "Lato")
-			.style("font-weight", 399)
-
-		// svg.append("text")
-		// .text("July 2022 - present")
-		// .attr("class", "svg-label")
-		// .attr("x", x(0) - 10)
-		// .attr("y", y(2022) + szh*5/12 + 38)
-		// .attr("text-anchor", "end")
-		// .attr("alignment-baseline", "middle")
-		// .style("font-size", "12px")
-		// .style("font-family", "Lato")	
-		// .style("font-weight", 399)				
+			.style("font-family", "Lato")	
+			.style("font-weight", 300)	
+			// svg.append("text")
+			// .text("July 2022 - present")
+			// .attr("class", "svg-label")
+			// .attr("x", x(0) - 10)
+			// .attr("y", y(2022) + szh*5/12 + 38)
+			// .attr("text-anchor", "end")
+			// .attr("alignment-baseline", "middle")
+			// .style("font-size", "12px")
+			// .style("font-family", "Lato")	
+			// .style("font-weight", 399)				
 
 		svg.append("text")
 			.text("Joined ThermoFisher Scientific")
@@ -631,9 +594,11 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")
+			.style("font-family", "Lato")	
+			.style("font-weight", 500)		
 
-		svg.append("text")
+			
+			svg.append("text")
 			.text("Data Scientist, eCommerce")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
@@ -641,8 +606,8 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
-			.style("font-family", "Lato")
-			.style("font-weight", 399)
+			.style("font-family", "Lato")	
+			.style("font-weight", 300)				
 
 		svg.append("text")
 			.text("Joined HiGeorge")
@@ -652,9 +617,10 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")
-
-		svg.append("text")
+			.style("font-family", "Lato")	
+			.style("font-weight", 500)		
+			
+			svg.append("text")
 			.text("Data Visualization Engineer")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
@@ -662,10 +628,10 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
-			.style("font-family", "Lato")
-			.style("font-weight", 399)
-
-		svg.append("text")
+			.style("font-family", "Lato")	
+			.style("font-weight", 300)	
+			
+			svg.append("text")
 			.text("Interned at elin.ai")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
@@ -673,9 +639,10 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")
-
-		svg.append("text")
+			.style("font-family", "Lato")	
+			.style("font-weight", 500)			
+			
+			svg.append("text")
 			.text("Data Science Intern")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
@@ -683,8 +650,8 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
-			.style("font-family", "Lato")
-			.style("font-weight", 399)
+			.style("font-family", "Lato")	
+			.style("font-weight", 300)	
 
 		svg.append("text")
 			.text("Interned at Intuit")
@@ -694,9 +661,10 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")
-
-		svg.append("text")
+			.style("font-family", "Lato")	
+			.style("font-weight", 500)			
+			
+			svg.append("text")
 			.text("Business Systems Analyst Intern")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
@@ -704,10 +672,10 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
-			.style("font-family", "Lato")
-			.style("font-weight", 399)
-
-		svg.append("text")
+			.style("font-family", "Lato")	
+			.style("font-weight", 300)	
+			
+			svg.append("text")
 			.text("Graduated!")
 			.attr("class", "svg-label")
 			.attr("x", x(0) + sz / spacing + 10)
@@ -716,6 +684,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
+			.style("font-weight", 500)	
 
 		// Add CSS style for hiding the image initially
 		d3.select("head").append("style").text(
@@ -911,21 +880,24 @@ function loadTimeline(choices, filter) {
 		svg.append("text")
 			.text("PROFESSIONAL")
 			.attr("class", "svg-label")
-			.style("font-family", "trajan-pro-3")
+			.attr("text-anchor", "end")
+			.style("font-family", "Libre Baskerville")
 			.style("font-size", "30px")
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
-			.attr("transform", "translate(" + fullMargin.left * 2 + ",350) rotate(270)")
+			.attr("transform", "translate(" + (fullWidth/2 - fullMargin.left*3) + ",10)")
+			// .attr("transform", "translate(" + fullMargin.left*2 + ",350) rotate(270)")
 
 		svg.append("text")
-			.text("PERSONAL PROJECTS")
+			.text("PERSONAL")
 			.attr("class", "svg-label")
-			.attr("text-anchor", "middle")
-			.style("font-family", "trajan-pro-3")
+			.attr("text-anchor", "start")
+			.style("font-family", "Libre Baskerville")
 			.style("font-size", "30px")
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
-			.attr("transform", "translate(" + (fullWidth - fullMargin.right * 2) + ",200) rotate(90)")
+			.attr("transform", "translate(" + (fullWidth/2 + fullMargin.right*3) + ",10)")
+			// .attr("transform", "translate(" + (fullWidth - fullMargin.right*2) + ",200) rotate(90)")
 
 		// svg.append("text")
 		// .text("boundary")
