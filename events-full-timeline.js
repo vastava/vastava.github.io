@@ -715,41 +715,11 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "start")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")
-
-		var imageUrl = "img/starwars.png";
-		var imageWidth = 100;
-		var imageHeight = 100;	
-		var captionText = "Caption Text";
-				
-		// Append the image element to the SVG
-		var image = svg.append("image")
-			.attr("xlink:href", imageUrl)
-			.attr("width", imageWidth)
-			.attr("height", imageHeight)
-			.attr("class", "hidden-image") // Apply a class for styling		
-
-		var backgroundRect = svg.append("rect")
-			.attr("class", "highlight-rect")
-			.attr("width", 100)  // Set the width of the background rectangle
-			.attr("height", 20)  // Set the height of the background rectangle
-			.style("fill", "white")  // Set the fill color to white
-			.style("opacity", 0);  // Initially hide the background rectangle			
-
-		var caption = svg.append("text")
-			.text(captionText)
-			.attr("class", "hidden-caption")
-			.style("font-size", "12px")
-			.style("font-family", "Lato")
-			// .style("font-weight", 900)
-			// .style("fill", "black")  // Set the text fill color
-			// .style("stroke", "white")  // Set the text stroke color
-			// .style("stroke-width", "1px");  // Set the text stroke width
-		
+			.style("font-family", "Lato")	
 
 		// Add CSS style for hiding the image initially
 		d3.select("head").append("style").text(
-			".hidden-image, .hidden-caption { display: none; }"
+			".hidden-image, .hidden-border, .hidden-caption { display: none; }"
 		);		
 
 		function createText(year, label, url, textContent, breakIndex = 43, yOffset = (szh / 12), opacity = 1, labelAppend = false) {
@@ -779,27 +749,31 @@ function loadTimeline(choices, filter) {
 					// Get the position of the hovered label
 					var labelX = parseFloat(d3.select(this).attr("x"));
 					var labelY = parseFloat(d3.select(this).attr("y"));
-				
+
+					borderRect.attr("x", labelX + 99) // Adjust as needed for border position
+						 .attr("y", labelY - imageHeight/3 - 1) // Adjust as needed for border position						 
+
 					// Position the image near the label
-					image.attr("x", labelX + 10) // Adjust as needed
-						 .attr("y", labelY - 50) // Adjust as needed
+					image.attr("x", labelX + 100) // Adjust as needed
+						 .attr("y", labelY - imageHeight/3) // Adjust as needed						 
+					// // // Position and show the background rectangle
+					// backgroundRect.attr("x", labelX)  // Adjust position as needed
+					// 			.attr("y", labelY - imageHeight/3) // Adjust as needed
+					// 			.style("opacity", 1);						 
 
-					// Position and show the background rectangle
-					backgroundRect.attr("x", labelX + 10)  // Adjust position as needed
-								.attr("y", labelY - 35)   // Adjust position as needed
-								.style("opacity", 1);						 
-
-					caption.attr("x", labelX + 10) // Adjust as needed
-						.attr("y", labelY - 20); // Adjust as needed
+					caption.attr("x", labelX + 95) // Adjust as needed
+						.attr("y", labelY - imageHeight/3 + 10); // Adjust as needed
 			  
 					// Show the image and caption
 					image.style("display", "block");
+					borderRect.style("display", "block");
 					caption.style("display", "block");						 
 				})
 				.on("mouseout", function() {
 					// Hide the image on mouseout
 					image.style("display", "none");
-					backgroundRect.style("opacity", 0);
+					borderRect.style("display", "none");
+					// backgroundRect.style("opacity", 0);
 					caption.style("display", "none");
 				});								
 			//   .style("cursor", "pointer")				  
@@ -894,6 +868,43 @@ function loadTimeline(choices, filter) {
 		createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43, undefined, undefined, "New");
 		createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47, undefined, undefined, "Popular");
 		createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5);
+
+		var imageUrl = "img/stylesense_screenshot.png";
+		var imageWidth = 190;
+		var imageHeight = 100;	
+		var captionText = "screenshot";
+				
+		// Add a rectangle for the black border
+		var borderRect = svg.append("rect")
+			.attr("class", "image-border")
+			.attr("width", imageWidth + 2) // Adjust the border width as needed
+			.attr("height", imageHeight + 2) // Adjust the border height as needed
+			.style("fill", "none") // Set fill to none to make it transparent
+			.style("stroke", "black") // Set the border color to black
+			.style("stroke-width", "1px") // Set the border width		
+			.attr("class", "hidden-border") // Apply a class for styling	
+			
+		// Append the image element to the SVG
+		var image = svg.append("image")
+			.attr("xlink:href", imageUrl)
+			.attr("width", imageWidth)
+			.attr("height", imageHeight)
+			.attr("class", "hidden-image") // Apply a class for styling		
+			
+
+		var backgroundRect = svg.append("rect")
+			.attr("class", "highlight-rect")
+			.attr("width", 100)  // Set the width of the background rectangle
+			.attr("height", 20)  // Set the height of the background rectangle
+			.style("fill", "white")  // Set the fill color to white
+			.style("opacity", 0);  // Initially hide the background rectangle			
+
+		var caption = svg.append("text")
+			.text(captionText)
+			.attr("class", "hidden-caption")
+			.style("font-size", "10px")
+			.style("font-family", "Lato")
+			.attr("text-anchor", "end")
 
 		svg.append("text")
 			.text("PROFESSIONAL")
