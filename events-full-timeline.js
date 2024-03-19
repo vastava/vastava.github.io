@@ -112,7 +112,7 @@ function loadTimeline(choices, filter) {
 
 		data = data.sort(function(a,b) {return a.yr_cleaned - b.yr_cleaned});
 		var years = d3.set(data.map(function(d) {return d.yr_cleaned})).values();
-		// years.push(2024)
+		years.push(2024)
 		years.sort(function(a, b) {
 			return b - a;
 		});			
@@ -120,8 +120,8 @@ function loadTimeline(choices, filter) {
 		//append 2024 to years
 		// years.push(2024)
 		// var sz = (fullHeight - fullMargin.bottom - fullMargin.top)/years.length;        
-        var sz = (fullWidth - fullMargin.left - fullMargin.right)/years.length;
-		var szh = (fullHeight - fullMargin.bottom - fullMargin.top)/years.length;
+        var sz = (fullWidth - fullMargin.left - fullMargin.right)/(years.length-1);
+		var szh = (fullHeight - fullMargin.bottom - fullMargin.top)/(years.length-1);
         console.log(sz)
         var spacing = 1.8;
 		//master color scheme for eras
@@ -171,38 +171,6 @@ function loadTimeline(choices, filter) {
 		var w_axis = x(endDate)-x(yr_cleanedDate)
 
 
-	    // var movieData = []
-
-	    // movieData[0] = {"yr_cleaned": -32, "end": -19, "section": 2, "text": "Prequel Trilogy", "text_x": -25}
-	    // movieData[1] = {"yr_cleaned": 0, "end": 4, "section": 3, "text": "Original Trilogy", "text_x": 0}
-	    // movieData[2] = {"yr_cleaned": 34, "end": 35, "section": 3, "text": "Sequel Trilogy", "text_x": 34}	
-	    
-	    // svg.selectAll(".myRects")
-	    // 	.data(movieData)
-	    // 	.enter()
-	    // 	.append("rect")
-	    // 	.attr("class", "movie-rect")
-	    // 	.attr("x", 0)
-	    // 	.attr("y", function(d) {return y(d.yr_cleaned)})		
-	    // 	.attr("width", fullWidth)
-	    // 	.attr("height", function(d) {return y(d.end) - y(d.yr_cleaned)})
-	    // 	.style("fill", function(d) {
-	    // 		if (d.text != "Sequel Trilogy") {
-	    // 			return media_color(d.text);
-	    // 		}
-	    // 		return "yellow";
-	    // 	})
-	    // 	.style("fill-opacity", 0.33)
-
-	    // svg.selectAll(".myLabels")
-	    // 	.data(movieData)
-	    // 	.enter()
-	    // 	.append("text")
-	    // 	.attr("class", "movie-rect")
-	    // 	.attr("x", 0+5)
-	    // 	.attr("y", function(d) {return y(d.yr_cleaned)-5})		
-	    // 	.text(function(d) {return d.text});
-
 		var yrs = []
 		var events = ["okokok", "lalala", "hahahah"]	
 
@@ -213,11 +181,6 @@ function loadTimeline(choices, filter) {
 
 		yrs_canon = yrs_canon.map( function(x, i) { return {"year": x, "event": events_canon[i]}});
 
-		console.log(years)
-		console.log(yrs)
-		console.log(yrs.filter(function(d) {return years.includes(d.year.toString())}))
-
-		//Canon annotations 	
 
 		svg.selectAll(".annotation")
 			.data(yrs.filter(function(d) {return years.includes(d.year.toString())}))
@@ -496,7 +459,7 @@ function loadTimeline(choices, filter) {
 		  .attr("id", "vline-dotted")
 		   .attr("x1", x(0))
 		   .attr("x2", x(0))  
-		   .attr("y1", y(2023))
+		   .attr("y1", y(2024))
 		   .attr("y2", y(2020) + szh/4) 
 		   .attr("stroke", "black")
 		   .attr("stroke-width", 1)	
@@ -512,7 +475,7 @@ function loadTimeline(choices, filter) {
 			.attr("stroke-width", 1)	
 			.style("stroke-dasharray", ("1, 3"))	
 
-		var circleData = [{"year": 2021, "y_adjust": 5*szh/12, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2023, "y_adjust": 0, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "#818cf8"}, {"year": 2019, "y_adjust": 0, "color": "#f59e0b"}, {"year": 2019, "y_adjust": szh*7/12, "color": "#2563eb"}]
+		var circleData = [{"year": 2021, "y_adjust": 5*szh/12, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2024, "y_adjust": 0, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "#818cf8"}, {"year": 2019, "y_adjust": 0, "color": "#f59e0b"}, {"year": 2019, "y_adjust": szh*7/12, "color": "#2563eb"}]
 		svg.selectAll("mycircle")
 			 .data(circleData)
 			 .enter()
@@ -889,21 +852,24 @@ function loadTimeline(choices, filter) {
 		svg.append("text")
 			.text("PROFESSIONAL")
 			.attr("class", "svg-label")
-			.style("font-family", "trajan-pro-3")
+			.attr("text-anchor", "end")
+			.style("font-family", "Libre Baskerville")
 			.style("font-size", "30px")
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
-			.attr("transform", "translate(" + fullMargin.left*2 + ",350) rotate(270)")
+			.attr("transform", "translate(" + (fullWidth/2 - fullMargin.left*3) + ",10)")
+			// .attr("transform", "translate(" + fullMargin.left*2 + ",350) rotate(270)")
 
 		svg.append("text")
-			.text("PERSONAL PROJECTS")
+			.text("PERSONAL")
 			.attr("class", "svg-label")
-			.attr("text-anchor", "middle")
-			.style("font-family", "trajan-pro-3")
+			.attr("text-anchor", "start")
+			.style("font-family", "Libre Baskerville")
 			.style("font-size", "30px")
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
-			.attr("transform", "translate(" + (fullWidth - fullMargin.right*2) + ",200) rotate(90)")
+			.attr("transform", "translate(" + (fullWidth/2 + fullMargin.right*3) + ",10)")
+			// .attr("transform", "translate(" + (fullWidth - fullMargin.right*2) + ",200) rotate(90)")
 
 			// svg.append("text")
 			// .text("boundary")
