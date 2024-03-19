@@ -704,6 +704,7 @@ function loadTimeline(choices, filter) {
 				.attr("alignment-baseline", "middle")
 				.style("font-size", "15px")
 				.style("font-family", "Lato")
+				.style("font-weight", 500)
 				.style("opacity", opacity)
 				.each(function () {
 					// Check if opacity is equal to 1 before setting cursor and attaching click event
