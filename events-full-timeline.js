@@ -722,8 +722,9 @@ function loadTimeline(choices, filter) {
 			".hidden-image, .hidden-border, .hidden-caption { display: none; }"
 		);		
 
-		function createText(year, label, url, textContent, breakIndex = 43, yOffset = (szh / 12), opacity = 1, labelAppend = false) {
+		function createText(year, label, url, textContent, breakIndex = 43, yOffset = (szh / 12), opacity = 1, labelAppend = false, imageUrl="img/stylesense_screenshot.png") {
 			console.log(textContent, yOffset, opacity, labelAppend)
+			// image.attr("xlink:href", imageUrl)
 			// Append main text
 			var textlabel = svg.append("text")
 				.text(label)
@@ -755,7 +756,8 @@ function loadTimeline(choices, filter) {
 
 					// Position the image near the label
 					image.attr("x", labelX + 100) // Adjust as needed
-						 .attr("y", labelY - imageHeight/3) // Adjust as needed						 
+						 .attr("y", labelY - imageHeight/3) // Adjust as needed	'
+						 .attr("xlink:href", imageUrl)					 
 					// // // Position and show the background rectangle
 					// backgroundRect.attr("x", labelX)  // Adjust position as needed
 					// 			.attr("y", labelY - imageHeight/3) // Adjust as needed
@@ -867,7 +869,7 @@ function loadTimeline(choices, filter) {
 		// Example usage:
 		createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43, undefined, undefined, "New");
 		createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47, undefined, undefined, "Popular");
-		createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5);
+		createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5, undefined, "img/plantpedia_screenshot.png");
 
 		var imageUrl = "img/stylesense_screenshot.png";
 		var imageWidth = 190;
