@@ -392,41 +392,6 @@ function loadTimeline(choices, filter) {
 		 })
 		svg.call(tip)	  
 
-		// svg.selectAll(".svgRect")
-		//  .data(data)
-		//  .enter()
-		//  .append("rect")
-		//  .attr("class", "rect-event")
-		//  .attr("x", function(d, i) {
-		// 		let w = sz/(spacing*4);
-		// 		if (+d["anno_flag"] == 1) {
-		// 			w -= sz/2;
-		// 		}
-		// 		if (+d["sub-key"] <= 0) {	 			
-        //             return x(Math.floor((+d["sub-key"]))) + w;
-		//  		}
-		//  		else {
-		//  			return x(Math.floor((+d["sub-key"]))) - w;
-		//  		}
-		//  })
-		//  .attr("y", function(d, i) {
-		//  		return y(d["yr_cleaned"])
-		//  })
-		//  .attr("width", sz/spacing)
-		//  .attr("height", sz/spacing)
-		//  .attr("z-index", 10)
-		//  // .attr("height", y.bandwidth()*.8)
-		//  .style("fill", function(d) {
-		//  	if (false) {		
-        //         //put code here? 		
-		//  		// return color(d.era)
-        //          return "url(#pattern-" + "/img/allergies.png" + ")";
-		//  	}
-		//  	else {
-		//  		return "white"
-		//  	}
-		//  })
-
 		var containers = container.selectAll(".divContainers")
 		 .data(data)
 		 .enter()
@@ -469,13 +434,20 @@ function loadTimeline(choices, filter) {
 		   .attr("id", "vline-dotted-2")
 			.attr("x1", x(0) + sz/spacing)
 			.attr("x2", x(0) + sz/spacing)
-			.attr("y1", y(2023)+szh/12)
+			.attr("y1", y(2024)+9*szh/12)
 			.attr("y2", y(2020) + szh/4) 
 			.attr("stroke", "black")
 			.attr("stroke-width", 1)	
 			.style("stroke-dasharray", ("1, 3"))	
 
-		var circleData = [{"year": 2021, "y_adjust": 5*szh/12, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2024, "y_adjust": 0, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "#818cf8"}, {"year": 2019, "y_adjust": 0, "color": "#f59e0b"}, {"year": 2019, "y_adjust": szh*7/12, "color": "#2563eb"}]
+		var circleData = [
+			{ year: 2024, y_adjust: 0, color: "#800035" },			
+			{ year: 2022, y_adjust: (szh * 5) / 12, color: "#800035" },		
+			{ year: 2021, y_adjust: (5 * szh) / 12, color: "#4C4082" },	
+			{ year: 2020, y_adjust: szh / 4, color: "#818cf8" },
+			{ year: 2019, y_adjust: 0, color: "#f59e0b" },
+			{ year: 2019, y_adjust: (szh * 7) / 12, color: "#2563eb" },
+		];
 		svg.selectAll("mycircle")
 			 .data(circleData)
 			 .enter()
@@ -485,15 +457,23 @@ function loadTimeline(choices, filter) {
 			   .attr("r", "6")
 			   .style("fill", function(d) { return d.color; })	
 			   
-			   var circleData2 = [{"year": 2023, "y_adjust": szh/12, "color": "#27f727"}, {"year": 2022, "y_adjust": szh/12, "color": "#FEBFBF"}, {"year": 2022, "y_adjust": szh, "color": "#267368"}, {"year": 2021, "y_adjust": sz/2, "color": "gold"}, {"year": 2020, "y_adjust": szh/4, "color": "#7dd3fc"}, {"year": 2020, "y_adjust": szh*9/12, "color": "#7dd3fc"}]
-			   svg.selectAll("mycircle")
-					.data(circleData2)
-					.enter()
-					.append("circle")
-					  .attr("cx", function(d) { return x(0) + sz/spacing; })
-					  .attr("cy", function(d) { return y(d.year) + d.y_adjust; })
-					  .attr("r", "6")
-					  .style("fill", function(d) { return d.color; })			   
+		var circleData2 = [
+			{ year: 2024, y_adjust: 9*szh / 12, color: "orange" },
+			{ year: 2023, y_adjust: 3*szh / 12, color: "#27f727" },
+			{ year: 2022, y_adjust: szh / 12, color: "#FEBFBF" },
+			{ year: 2022, y_adjust: szh, color: "#267368" },
+			{ year: 2021, y_adjust: sz / 2, color: "gold" },
+			{ year: 2020, y_adjust: szh / 4, color: "#7dd3fc" },
+			{ year: 2020, y_adjust: (szh * 9) / 12, color: "#7dd3fc" },
+		];
+		svg.selectAll("mycircle")
+			.data(circleData2)
+			.enter()
+			.append("circle")
+				.attr("cx", function(d) { return x(0) + sz/spacing; })
+				.attr("cy", function(d) { return y(d.year) + d.y_adjust; })
+				.attr("r", "6")
+				.style("fill", function(d) { return d.color; })			   
 			//    .style("opacity", 0.75)	
 
 		var firefly = container.append("div")
@@ -551,8 +531,6 @@ function loadTimeline(choices, filter) {
 	  "I start learning d3.js and web development — see my data visualization portfolio <a href='" + "https://vastava.github.io/work.html" + "' style='text-decoration: none; color: #7dd3fc;'>here</a>" +
 	  "</p>" +
 	"</div>";	  
-	//   "<p style='font-weight: normal; font-family: Lato; margin-bottom: 10px; width: 100%;'>August 2023</p>" +
-
 	
 		svg.append("text")
 			.text("Joined Adobe")
@@ -575,16 +553,6 @@ function loadTimeline(choices, filter) {
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
 			.style("font-weight", 300)	
-			// svg.append("text")
-			// .text("July 2022 - present")
-			// .attr("class", "svg-label")
-			// .attr("x", x(0) - 10)
-			// .attr("y", y(2022) + szh*5/12 + 38)
-			// .attr("text-anchor", "end")
-			// .attr("alignment-baseline", "middle")
-			// .style("font-size", "12px")
-			// .style("font-family", "Lato")	
-			// .style("font-weight", 399)				
 
 		svg.append("text")
 			.text("Joined ThermoFisher Scientific")
@@ -676,15 +644,33 @@ function loadTimeline(choices, filter) {
 			.style("font-weight", 300)	
 			
 			svg.append("text")
-			.text("Graduated!")
+			.text("graduated!")
 			.attr("class", "svg-label")
 			.attr("x", x(0) + sz / spacing + 10)
 			.attr("y", y(2021) + sz/2 + 2)
 			.attr("text-anchor", "start")
 			.attr("alignment-baseline", "middle")
-			.style("font-size", "15px")
+			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)	
+			.style("font-weight", 300)	
+
+			svg.append("text")
+			.text("started blog!")
+			.attr("class", "svg-label")
+			.attr("x", x(0) + sz / spacing + 10)
+			.attr("y", y(2024) + 9*szh/12 + 2)
+			.attr("text-anchor", "start")
+			.attr("alignment-baseline", "middle")
+			.style("font-size", "12px")
+			.style("font-family", "Lato")	
+			.style("font-weight", 300)	
+			.each(function() {
+				d3.select(this)
+				.style("cursor", "pointer")
+				.on("click", function() {
+					window.open('https://medium.com/@vastava', "_blank");
+				});				
+			});			
 
 			function createText(year, label, url, textContent, breakIndex=43, yOffset=(szh/12), opacity=1, labelAppend=false) {
 				console.log(textContent, yOffset, opacity, labelAppend)
@@ -799,62 +785,9 @@ function loadTimeline(choices, filter) {
 			  }
 			  
 			  // Example usage:
-			  createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43, undefined, undefined, "New");
+			  createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43, 3*szh/12, undefined, "New");
 			  createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47, undefined, undefined, "Popular");
-			  createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5);
-			  
-// 			svg.append("text")
-// 			.text("GlitchBooth")
-// 			.attr("class", "svg-label")
-// 			.attr("x", x(0) + sz/spacing + 10)
-// 			.attr("y", y(2023) + szh/12 + 2)
-// 			.attr("text-anchor", "start")
-// 			.attr("alignment-baseline", "middle")
-// 			.style("font-size", "15px")
-// 			.style("font-family", "Lato")
-// 			.style("cursor", "pointer")
-// 			.on("click", function() {
-// 			  window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
-// 			})
-// // Original text content
-// var textContent = "Photo Booth style web app for glitch video effects, built with three.js.";
-
-// // Manually split text
-// var breakIndex = 43; // You can adjust this index based on your desired break point
-// var firstPart = textContent.slice(0, breakIndex);
-// var secondPart = textContent.slice(breakIndex);
-
-// // Append first part of the text
-// svg.append("text")
-//   .attr("class", "svg-label")
-//   .attr("x", x(0) + sz / spacing + 10)
-//   .attr("y", y(2023) + szh / 12 + 22)
-//   .attr("text-anchor", "start")
-//   .attr("alignment-baseline", "middle")
-//   .style("font-size", "12px")
-//   .style("font-family", "Lato")
-//   .style("font-weight", 399)
-//   .text(firstPart)
-//   .style("cursor", "pointer")
-//   .on("click", function() {
-// 	window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
-//   })  ;
-
-// // Append second part of the text
-// svg.append("text")
-//   .attr("class", "svg-label")
-//   .attr("x", x(0) + sz / spacing + 10)
-//   .attr("y", y(2023) + szh / 12 + 36) // Adjust the y-coordinate for spacing
-//   .attr("text-anchor", "start")
-//   .attr("alignment-baseline", "middle")
-//   .style("font-size", "12px")
-//   .style("font-family", "Lato")
-//   .style("font-weight", 399)
-//   .text(secondPart)
-//   .style("cursor", "pointer")
-//   .on("click", function() {
-// 	window.open("https://glitchbooth.vercel.app/", "_blank"); // Open link in a new tab/window
-//   })  ;
+			  createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5);			  
 
 		svg.append("text")
 			.text("PROFESSIONAL")
@@ -876,18 +809,6 @@ function loadTimeline(choices, filter) {
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
 			.attr("transform", "translate(" + (fullWidth/2 + fullMargin.right*3) + ",10)")
-			// .attr("transform", "translate(" + (fullWidth - fullMargin.right*2) + ",200) rotate(90)")
-
-			// svg.append("text")
-			// .text("boundary")
-			// .attr("class", "svg-label")
-			// .attr("text-anchor", "middle")
-			// .style("font-family", "trajan-pro-3")
-			// .style("font-size", "30px")
-			// .style("opacity", 0.7)
-			// .style("font-weight", 199)
-			// .attr("transform", "translate(" + (fullWidth) + ",200) rotate(90)")			
-		 // .on("mouseover", etc.)
 	})
 
  // Parse the Data
