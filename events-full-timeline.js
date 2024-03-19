@@ -344,14 +344,10 @@ function loadTimeline(choices, filter) {
 			.append("rect")
 			.attr("class", "svg-label")
 			.attr("x", x(0) + 30)	
-			// .attr("y", function(d) {return y(d) + sz/(spacing*2) - 15})
 			.attr("y", function(d) {return y(d) + szh/2 - 17})
 			.attr("width", "30px")
 			.attr("height", "23px")
-			// .style("font-weight", "lighter")
 			.style("fill", "white")
-			// .style("stroke", "white") 
-			// .style("stroke-width", "0.5px")		
 			.style("z-index", 20)				  
 
 		svg.selectAll(".label")
@@ -424,7 +420,7 @@ function loadTimeline(choices, filter) {
 		  .attr("id", "vline-dotted")
 		   .attr("x1", x(0))
 		   .attr("x2", x(0))  
-		   .attr("y1", y(2024))
+		   .attr("y1", y(2024)+9*szh/12)
 		   .attr("y2", y(2020) + szh/4) 
 		   .attr("stroke", "black")
 		   .attr("stroke-width", 1)	
@@ -441,7 +437,7 @@ function loadTimeline(choices, filter) {
 			.style("stroke-dasharray", ("1, 3"))	
 
 		var circleData = [
-			{ year: 2024, y_adjust: 0, color: "#800035" },			
+			{ year: 2024, y_adjust: (9*szh)/12, color: "#800035" },			
 			{ year: 2022, y_adjust: (szh * 5) / 12, color: "#800035" },		
 			{ year: 2021, y_adjust: (5 * szh) / 12, color: "#4C4082" },	
 			{ year: 2020, y_adjust: szh / 4, color: "#818cf8" },
@@ -531,7 +527,27 @@ function loadTimeline(choices, filter) {
 	  "I start learning d3.js and web development — see my data visualization portfolio <a href='" + "https://vastava.github.io/work.html" + "' style='text-decoration: none; color: #7dd3fc;'>here</a>" +
 	  "</p>" +
 	"</div>";	  
-	
+
+		svg.append("rect")
+			.attr("class", "svg-label")
+			.attr("x", x(0) + 30)	
+			.attr("y", y(2024) + 9*szh/12 - 8)
+			.attr("width", "30px")
+			.attr("height", "16px")
+			.style("fill", "white")
+			.style("z-index", 20)	
+		
+		svg.append("text")
+			.text("present")
+			.attr("class", "svg-label")
+			.attr("x", x(0) + sz/(spacing*2))
+			.attr("y", y(2024) + szh*9/12)
+			.attr("text-anchor", "middle")
+			.attr("alignment-baseline", "middle")
+			.style("font-size", "12px")
+			.style("font-family", "Lato")
+			.style("font-weight", 300)
+
 		svg.append("text")
 			.text("Joined Adobe")
 			.attr("class", "svg-label")
@@ -543,7 +559,7 @@ function loadTimeline(choices, filter) {
 			.style("font-family", "Lato")
 			.style("font-weight", 500)
 
-			svg.append("text")
+		svg.append("text")
 			.text("Growth Data Scientist, Monetization")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
@@ -566,7 +582,7 @@ function loadTimeline(choices, filter) {
 			.style("font-weight", 500)		
 
 			
-			svg.append("text")
+		svg.append("text")
 			.text("Data Scientist, eCommerce")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
@@ -577,7 +593,7 @@ function loadTimeline(choices, filter) {
 			.style("font-family", "Lato")	
 			.style("font-weight", 300)				
 
-			svg.append("text")
+		svg.append("text")
 			.text("Joined HiGeorge")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - 10)
