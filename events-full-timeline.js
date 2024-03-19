@@ -563,6 +563,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")
+			.style("font-weight", 500)
 
 			svg.append("text")
 			.text("Growth Data Scientist, Monetization")
@@ -573,8 +574,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 399)		
-
+			.style("font-weight", 300)	
 			// svg.append("text")
 			// .text("July 2022 - present")
 			// .attr("class", "svg-label")
@@ -594,7 +594,9 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")			
+			.style("font-family", "Lato")	
+			.style("font-weight", 500)		
+
 			
 			svg.append("text")
 			.text("Data Scientist, eCommerce")
@@ -605,7 +607,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 399)	
+			.style("font-weight", 300)				
 
 			svg.append("text")
 			.text("Joined HiGeorge")
@@ -615,7 +617,8 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")		
+			.style("font-family", "Lato")	
+			.style("font-weight", 500)		
 			
 			svg.append("text")
 			.text("Data Visualization Engineer")
@@ -626,7 +629,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 399)		
+			.style("font-weight", 300)	
 			
 			svg.append("text")
 			.text("Interned at elin.ai")
@@ -636,7 +639,8 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")			
+			.style("font-family", "Lato")	
+			.style("font-weight", 500)			
 			
 			svg.append("text")
 			.text("Data Science Intern")
@@ -647,7 +651,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 399)	
+			.style("font-weight", 300)	
 
 			svg.append("text")
 			.text("Interned at Intuit")
@@ -657,7 +661,8 @@ function loadTimeline(choices, filter) {
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
-			.style("font-family", "Lato")			
+			.style("font-family", "Lato")	
+			.style("font-weight", 500)			
 			
 			svg.append("text")
 			.text("Business Systems Analyst Intern")
@@ -668,7 +673,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 399)				
+			.style("font-weight", 300)	
 			
 			svg.append("text")
 			.text("Graduated!")
@@ -679,6 +684,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
+			.style("font-weight", 500)	
 
 			function createText(year, label, url, textContent, breakIndex=43, yOffset=(szh/12), opacity=1, labelAppend=false) {
 				console.log(textContent, yOffset, opacity, labelAppend)
@@ -692,6 +698,7 @@ function loadTimeline(choices, filter) {
 				  .attr("alignment-baseline", "middle")
 				  .style("font-size", "15px")
 				  .style("font-family", "Lato")
+				  .style("font-weight", 500)
 				  .style("opacity", opacity)
 				  .each(function() {
 					// Check if opacity is equal to 1 before setting cursor and attaching click event
