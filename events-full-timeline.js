@@ -41,64 +41,15 @@ var media_color = d3.scaleOrdinal()
 		 .domain(filter_list)
 		 .range(swcolors_media)
 
-// d3.select("#filter")
-//     .selectAll("input")
-//     .data(filter_list)
-//     .enter()
-//     .append("label")
-//     .attr("class", "switch")
-//     .append("input")
-//     .attr("type", "checkbox")
-//     .attr("class", "filter-check")
-//     .property("checked", true)
-//     .attr("value", function (d) {
-//         return d
-//     })
-//     .attr("id", function (d) {
-//         return d
-//     });
+var font_weight_bold = 500;
+var font_weight_light = 300;
+var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+if (screenWidth <= 768) {
+  font_weight_bold = 600;
+  font_weight_light = 399;
+}
 
-// var spans = d3.selectAll("label")
-//     .data(filter_list)
-//     // .attr("class", "checkbox")	    	    
-//     .append("span")
-//     .attr("class", "saber-switch")
-//     .attr("id", function(d, i) { return d.split(' ').join('_') +"sabers"; })
-//     // .data([1,2])
-//     // .enter()
-//     // .append("span")
-//     // .attr("class", "bar")
-
-// spans.append("span")
-// 	.attr("class", "bar")
-// 	.style("border-right-color", function(d) {
-// 		return media_color(d);
-// 	})
-// 	.style("box-shadow", function(d) {
-// 		return "0.4em 0 0.6em 0.1em " + media_color(d);
-// 	})
-
-// spans.append("span")
-// 	.attr("class", "bar")
-// 	.style("border-right-color", function(d) {
-// 		return media_color(d);
-// 	})
-// 	.style("box-shadow", function(d) {
-// 		return "0.4em 0 0.6em 0.1em " + media_color(d);
-// 	})
-
-// d3.selectAll("label")
-//     .data(filter_list)
-//     // .attr("class", "checkbox")	    	    
-//     .append("text")
-//     .attr("class", "text-label")
-//     .text(function (d) {
-//         return d
-//     })
-//     .style('color', function(d) {
-//     	return media_color(d)
-//     })
-    // .style('color', "black")    
+console.log(screenWidth, font_weight_bold, font_weight_light)
 
 var formatDate = d=> d < 0 ? `${d3.format(",")(-d)} BBY` : `${d}`
 //unnecessary
@@ -215,11 +166,9 @@ function loadTimeline(choices, filter) {
 			.attr("class", "svg-label")
 		 	.attr("x", x(0) - sz/(spacing*2) + sz*2)
 		 	.attr("x", x(0) - sz/(spacing*2) + 300)  
-		 	// .attr("y", y(-13000000000)+sz*spacing/4 - 5)
 		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4 - 5})
 		 	.text(function(d) {return formatDate(d.year)})
 		 	.attr("text-anchor", "end") 
-		 	// .attr("alignment-baseline", "hanging")	
 		 	.style("font-weight", "lighter")
 		svg.selectAll(".annotation")
 			.data(yrs_canon.filter(function(d) {return years.includes(d.year.toString())}))
@@ -228,9 +177,7 @@ function loadTimeline(choices, filter) {
 			.attr("class", "svg-label")
 		 	.attr("x1", x(0) - sz/(spacing*2) - sz*2)
 		 	.attr("x2", x(0) - sz/(spacing*2) - 300)  
-		 	// .attr("y1", y(-13000000000)+sz*spacing/4)
 		 	.attr("y1", function(d) {return y(d.year) + sz*spacing/4})
-		 	// .attr("y2", y(-13000000000)+sz*spacing/4)
 		 	.attr("y2", function(d) {return y(d.year) + sz*spacing/4})
 		 	.attr("stroke", "black")
 		 	.attr("stroke-width", 1)
@@ -242,7 +189,6 @@ function loadTimeline(choices, filter) {
 			.attr("class", "svg-label")
 		 	.attr("x", x(0) - sz/(spacing*2) - sz*2)
 		 	.attr("x", x(0) - sz/(spacing*2) - 300)  
-		 	// .attr("y", y(-13000000000)+sz*spacing/4)
 		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4})
 		 	.text(function(d) {return d.event})	
 		 	.attr("text-anchor", "yr_cleaned") 
@@ -256,7 +202,6 @@ function loadTimeline(choices, filter) {
 			.attr("class", "svg-label")
 		 	.attr("x", x(0) - sz/(spacing*2) - sz*2)
 		 	.attr("x", x(0) - sz/(spacing*2) - 300)  
-		 	// .attr("y", y(-13000000000)+sz*spacing/4 - 5)
 		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4 - 5})
 		 	.text(function(d) {return formatDate(d.year)})
 		 	.attr("text-anchor", "yr_cleaned") 
@@ -546,7 +491,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")
-			.style("font-weight", 300)
+			.style("font-weight", font_weight_light)
 
 		svg.append("text")
 			.text("Joined Adobe")
@@ -557,7 +502,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")
-			.style("font-weight", 500)
+			.style("font-weight", font_weight_bold)
 
 		svg.append("text")
 			.text("Growth Data Scientist, Monetization")
@@ -568,7 +513,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
+			.style("font-weight", font_weight_light)	
 
 		svg.append("text")
 			.text("Joined ThermoFisher Scientific")
@@ -579,7 +524,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)		
+			.style("font-weight", font_weight_bold)		
 
 			
 		svg.append("text")
@@ -591,7 +536,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)				
+			.style("font-weight", font_weight_light)				
 
 		svg.append("text")
 			.text("Joined HiGeorge")
@@ -602,7 +547,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)		
+			.style("font-weight", font_weight_bold)		
 			
 			svg.append("text")
 			.text("Data Visualization Engineer")
@@ -613,7 +558,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
+			.style("font-weight", font_weight_light)	
 			
 			svg.append("text")
 			.text("Interned at elin.ai")
@@ -624,7 +569,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)			
+			.style("font-weight", font_weight_bold)			
 			
 			svg.append("text")
 			.text("Data Science Intern")
@@ -635,7 +580,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
+			.style("font-weight", font_weight_light)	
 
 			svg.append("text")
 			.text("Interned at Intuit")
@@ -646,7 +591,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)			
+			.style("font-weight", font_weight_bold)			
 			
 			svg.append("text")
 			.text("Business Systems Analyst Intern")
@@ -657,7 +602,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
+			.style("font-weight", font_weight_light)	
 			
 			svg.append("text")
 			.text("graduated!")
@@ -668,7 +613,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
+			.style("font-weight", font_weight_light)	
 
 			svg.append("text")
 			.text("started blog!")
@@ -679,7 +624,7 @@ function loadTimeline(choices, filter) {
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
+			.style("font-weight", font_weight_light)	
 			.each(function() {
 				d3.select(this)
 				.style("cursor", "pointer")
@@ -700,7 +645,7 @@ function loadTimeline(choices, filter) {
 				  .attr("alignment-baseline", "middle")
 				  .style("font-size", "15px")
 				  .style("font-family", "Lato")
-				  .style("font-weight", 500)
+				  .style("font-weight", font_weight_bold)
 				  .style("opacity", opacity)
 				  .each(function() {
 					// Check if opacity is equal to 1 before setting cursor and attaching click event
