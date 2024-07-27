@@ -400,7 +400,7 @@ function loadTimeline(choices, filter) {
 		  .attr("id", "vline-dotted")
 		   .attr("x1", x(0) - sz/(spacing*2))
 		   .attr("x2", x(0) - sz/(spacing*2))  
-		   .attr("y1", y(2024)+9*szh/12)
+		   .attr("y1", y(2024)+3*szh/12) //edit present
 		   .attr("y2", y(2020) + szh/4) 
 		   .attr("stroke", "black")
 		   .attr("stroke-width", 1)	
@@ -417,7 +417,7 @@ function loadTimeline(choices, filter) {
 			.style("stroke-dasharray", ("1, 3"))
 
 		var circleData = [
-			{ year: 2024, y_adjust: (9*szh)/12, color: "#800035" },			
+			{ year: 2024, y_adjust: (3*szh)/12, color: "#800035" }, //edit present	
 			{ year: 2022, y_adjust: (szh * 5) / 12, color: "#800035" },		
 			{ year: 2021, y_adjust: (5 * szh) / 12, color: "#4C4082" },	
 			{ year: 2020, y_adjust: szh / 4, color: "#818cf8" },
@@ -511,7 +511,7 @@ function loadTimeline(choices, filter) {
 		svg.append("rect")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - sz/(spacing*2) + 30)	
-			.attr("y", y(2024) + 9*szh/12 - 8)
+			.attr("y", y(2024) + 3*szh/12 - 8)
 			.attr("width", "30px")
 			.attr("height", "16px")
 			.style("fill", "white")
@@ -521,7 +521,7 @@ function loadTimeline(choices, filter) {
 			.text("present")
 			.attr("class", "svg-label")
 			.attr("x", x(0) - sz/(spacing*2) + sz/(spacing*2))
-			.attr("y", y(2024) + szh*9/12)
+			.attr("y", y(2024) + szh*3/12)
 			.attr("text-anchor", "middle")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
