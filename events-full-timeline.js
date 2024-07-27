@@ -819,7 +819,7 @@ function loadTimeline(choices, filter) {
 		}
 
 		// Example usage:
-		createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43, undefined, undefined, "New");
+		createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43, 3*szh/12, undefined, "New", "img/glitchbooth_screenshot.png");
 		createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47, undefined, undefined, "Popular");
 		createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5, undefined, "img/plantpedia_screenshot.png");
 
