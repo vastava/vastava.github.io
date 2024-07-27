@@ -410,7 +410,7 @@ function loadTimeline(choices, filter) {
 		   .attr("id", "vline-dotted-2")
 			.attr("x1", x(0) - sz/(spacing*2) + sz/spacing)
 			.attr("x2", x(0) - sz/(spacing*2) + sz/spacing)
-			.attr("y1", y(2024)+9*szh/12)
+			.attr("y1", y(2024)+3*szh/12)
 			.attr("y2", y(2020) + szh/4) 
 			.attr("stroke", "black")
 			.attr("stroke-width", 1)
@@ -434,6 +434,7 @@ function loadTimeline(choices, filter) {
 			   .style("fill", function(d) { return d.color; })	
 			   
 		var circleData2 = [
+			{ year: 2024, y_adjust: 3*szh / 12, color: "#062E7E" },
 			{ year: 2024, y_adjust: 9*szh / 12, color: "orange" },
 			{ year: 2023, y_adjust: 3*szh / 12, color: "#27f727" },
 			{ year: 2022, y_adjust: szh / 12, color: "#FEBFBF" },
@@ -819,7 +820,8 @@ function loadTimeline(choices, filter) {
 		}
 
 		// Example usage:
-		createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43, 3*szh/12, undefined, "New", "img/glitchbooth_screenshot.png");
+		createText(2024, "SampleSizeCalc", "https://www.samplesizecalc.com/proportion-metric", "A/B test sample size & estimated duration calculator for multiple MDEs", 42, 3*szh/12, undefined, "New", "img/samplesize_screenshot.png");
+		createText(2023, "GlitchBooth", "https://glitchbooth.vercel.app/", "Photo Booth style web app for glitch video effects, built with three.js and WebGL.", 43, 3*szh/12, undefined,undefined, "img/glitchbooth_screenshot.png");
 		createText(2022, "StyleSense", "https://stylesense.io/", "Personal stylist web app, with facial analysis features, makeup recommendations and more.", 47, undefined, undefined, "Popular");
 		createText(2022, "Plantpedia", "https://vastava.github.io/", "A reskinned Wikipedia dedicated to houseplant care guidance for beginners.", 45, szh, 0.5, undefined, "img/plantpedia_screenshot.png");
 
@@ -868,7 +870,7 @@ function loadTimeline(choices, filter) {
 			.style("font-size", "30px")
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
-			.attr("transform", "translate(" + (fullWidth/2 - fullMargin.left - fullMargin.left*3) + ",10)")
+			.attr("transform", "translate(" + (fullWidth/2 - fullMargin.left - fullMargin.left*3) + ",0)")
 			// .attr("transform", "translate(" + fullMargin.left*2 + ",350) rotate(270)")
 
 		svg.append("text")
@@ -879,7 +881,7 @@ function loadTimeline(choices, filter) {
 			.style("font-size", "30px")
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
-			.attr("transform", "translate(" + (fullWidth/2 - fullMargin.left + fullMargin.left*3) + ",10)")
+			.attr("transform", "translate(" + (fullWidth/2 - fullMargin.left + fullMargin.left*3) + ",0)")
 	})
 
 	// Parse the Data
