@@ -41,64 +41,15 @@ var media_color = d3.scaleOrdinal()
 	.domain(filter_list)
 	.range(swcolors_media)
 
-// d3.select("#filter")
-//     .selectAll("input")
-//     .data(filter_list)
-//     .enter()
-//     .append("label")
-//     .attr("class", "switch")
-//     .append("input")
-//     .attr("type", "checkbox")
-//     .attr("class", "filter-check")
-//     .property("checked", true)
-//     .attr("value", function (d) {
-//         return d
-//     })
-//     .attr("id", function (d) {
-//         return d
-//     });
+var font_weight_bold = 500;
+var font_weight_light = 300;
+var screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+if (screenWidth <= 768) {
+  font_weight_bold = 600;
+  font_weight_light = 399;
+}
 
-// var spans = d3.selectAll("label")
-//     .data(filter_list)
-//     // .attr("class", "checkbox")	    	    
-//     .append("span")
-//     .attr("class", "saber-switch")
-//     .attr("id", function(d, i) { return d.split(' ').join('_') +"sabers"; })
-//     // .data([1,2])
-//     // .enter()
-//     // .append("span")
-//     // .attr("class", "bar")
-
-// spans.append("span")
-// 	.attr("class", "bar")
-// 	.style("border-right-color", function(d) {
-// 		return media_color(d);
-// 	})
-// 	.style("box-shadow", function(d) {
-// 		return "0.4em 0 0.6em 0.1em " + media_color(d);
-// 	})
-
-// spans.append("span")
-// 	.attr("class", "bar")
-// 	.style("border-right-color", function(d) {
-// 		return media_color(d);
-// 	})
-// 	.style("box-shadow", function(d) {
-// 		return "0.4em 0 0.6em 0.1em " + media_color(d);
-// 	})
-
-// d3.selectAll("label")
-//     .data(filter_list)
-//     // .attr("class", "checkbox")	    	    
-//     .append("text")
-//     .attr("class", "text-label")
-//     .text(function (d) {
-//         return d
-//     })
-//     .style('color', function(d) {
-//     	return media_color(d)
-//     })
-// .style('color', "black")    
+console.log(screenWidth, font_weight_bold, font_weight_light)
 
 var formatDate = d => d < 0 ? `${d3.format(",")(-d)} BBY` : `${d}`
 //unnecessary
@@ -187,150 +138,144 @@ function loadTimeline(choices, filter) {
 			.enter()
 			.append("line")
 			.attr("class", "svg-label")
-			.attr("x1", x(0) + sz * 2)
-			.attr("x2", x(0) + 300)
-			.attr("z-index", 0)
-			.attr("y1", function (d) { return y(d.year) + sz * spacing / 4 })
-			.attr("y2", function (d) { return y(d.year) + sz * spacing / 4 })
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
+		 	.attr("x1", x(0) - sz/(spacing*2) + sz*2)
+		 	.attr("x2", x(0) - sz/(spacing*2) + 300)  
+		 	.attr("z-index", 0)
+		 	.attr("y1", function(d) {return y(d.year) + sz*spacing/4})
+		 	.attr("y2", function(d) {return y(d.year) + sz*spacing/4})
+		 	.attr("stroke", "black")
+		 	.attr("stroke-width", 1)
 
 		svg.selectAll(".annotation")
 			.data(yrs.filter(function (d) { return years.includes(d.year.toString()) }))
 			.enter()
 			.append("text")
 			.attr("class", "svg-label")
-			.attr("x", x(0) + sz * 2)
-			.attr("x", x(0) + 300)
-			.attr("y", function (d) { return y(d.year) + sz * spacing / 4 })
-			.text(function (d) { return d.event })
-			.attr("text-anchor", "end")
-			.attr("alignment-baseline", "hanging")
-			.style("font-weight", "lighter")
+		 	.attr("x", x(0) - sz/(spacing*2) + sz*2)
+		 	.attr("x", x(0) - sz/(spacing*2) + 300)  
+		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4})
+		 	.text(function(d) {return d.event})	
+		 	.attr("text-anchor", "end") 
+		 	.attr("alignment-baseline", "hanging")	
+		 	.style("font-weight", "lighter")	
 
 		svg.selectAll(".annotation")
 			.data(yrs.filter(function (d) { return years.includes(d.year.toString()) }))
 			.enter()
 			.append("text")
 			.attr("class", "svg-label")
-			.attr("x", x(0) + sz * 2)
-			.attr("x", x(0) + 300)
-			// .attr("y", y(-13000000000)+sz*spacing/4 - 5)
-			.attr("y", function (d) { return y(d.year) + sz * spacing / 4 - 5 })
-			.text(function (d) { return formatDate(d.year) })
-			.attr("text-anchor", "end")
-			// .attr("alignment-baseline", "hanging")	
-			.style("font-weight", "lighter")
+		 	.attr("x", x(0) - sz/(spacing*2) + sz*2)
+		 	.attr("x", x(0) - sz/(spacing*2) + 300)  
+		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4 - 5})
+		 	.text(function(d) {return formatDate(d.year)})
+		 	.attr("text-anchor", "end") 
+		 	.style("font-weight", "lighter")
 		svg.selectAll(".annotation")
 			.data(yrs_canon.filter(function (d) { return years.includes(d.year.toString()) }))
 			.enter()
 			.append("line")
 			.attr("class", "svg-label")
-			.attr("x1", x(0) - sz * 2)
-			.attr("x2", x(0) - 300)
-			// .attr("y1", y(-13000000000)+sz*spacing/4)
-			.attr("y1", function (d) { return y(d.year) + sz * spacing / 4 })
-			// .attr("y2", y(-13000000000)+sz*spacing/4)
-			.attr("y2", function (d) { return y(d.year) + sz * spacing / 4 })
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
+		 	.attr("x1", x(0) - sz/(spacing*2) - sz*2)
+		 	.attr("x2", x(0) - sz/(spacing*2) - 300)  
+		 	.attr("y1", function(d) {return y(d.year) + sz*spacing/4})
+		 	.attr("y2", function(d) {return y(d.year) + sz*spacing/4})
+		 	.attr("stroke", "black")
+		 	.attr("stroke-width", 1)
 
 		svg.selectAll(".annotation")
 			.data(yrs_canon.filter(function (d) { return years.includes(d.year.toString()) }))
 			.enter()
 			.append("text")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - sz * 2)
-			.attr("x", x(0) - 300)
-			// .attr("y", y(-13000000000)+sz*spacing/4)
-			.attr("y", function (d) { return y(d.year) + sz * spacing / 4 })
-			.text(function (d) { return d.event })
-			.attr("text-anchor", "yr_cleaned")
-			.attr("alignment-baseline", "hanging")
-			.style("font-weight", "lighter")
+		 	.attr("x", x(0) - sz/(spacing*2) - sz*2)
+		 	.attr("x", x(0) - sz/(spacing*2) - 300)  
+		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4})
+		 	.text(function(d) {return d.event})	
+		 	.attr("text-anchor", "yr_cleaned") 
+		 	.attr("alignment-baseline", "hanging")	
+		 	.style("font-weight", "lighter")	
 
 		svg.selectAll(".annotation")
 			.data(yrs_canon.filter(function (d) { return years.includes(d.year.toString()) }))
 			.enter()
 			.append("text")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - sz * 2)
-			.attr("x", x(0) - 300)
-			// .attr("y", y(-13000000000)+sz*spacing/4 - 5)
-			.attr("y", function (d) { return y(d.year) + sz * spacing / 4 - 5 })
-			.text(function (d) { return formatDate(d.year) })
-			.attr("text-anchor", "yr_cleaned")
-			// .attr("alignment-baseline", "hanging")	
-			.style("font-weight", "lighter")
+		 	.attr("x", x(0) - sz/(spacing*2) - sz*2)
+		 	.attr("x", x(0) - sz/(spacing*2) - 300)  
+		 	.attr("y", function(d) {return y(d.year) + sz*spacing/4 - 5})
+		 	.text(function(d) {return formatDate(d.year)})
+		 	.attr("text-anchor", "yr_cleaned") 
+		 	// .attr("alignment-baseline", "hanging")	
+		 	.style("font-weight", "lighter")	
 
 		svg.append("line")
-			.attr("id", "vline")
-			.attr("x1", x(0) + sz / (spacing * 2))
-			.attr("x2", x(0) + sz / (spacing * 2))
-			.attr("y1", 0)
-			.attr("y2", fullHeight - fullMargin.top - fullMargin.bottom)
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
-			.attr("tranform", "translate(" + sz + "," + sz + ")")
+			 .attr("id", "vline")
+			  .attr("x1", x(0) - sz/(spacing*2) + sz/(spacing*2))
+			  .attr("x2", x(0) - sz/(spacing*2) + sz/(spacing*2))  
+			  .attr("y1", 0)
+			  .attr("y2", fullHeight - fullMargin.top - fullMargin.bottom) 
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  .attr("tranform", "translate(" + sz + "," + sz + ")")
+ 
+		 svg.append("line")
+			  .attr("x1", x(0) - sz/(spacing*2) - 30 + sz/(spacing*2))
+			  .attr("x2", x(0) - sz/(spacing*2) + 30 + sz/(spacing*2))  
+			  .attr("y1", 0 - 5)
+			  .attr("y2", 0 - 5) 
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  // .attr("tranform", "translate(" + sz/2 + "," + -sz + ")")		 	
+ 
+ 
+		 svg.append("line")
+			  .attr("x1", x(0) - sz/(spacing*2) - 30 + sz/(spacing*2))
+			  .attr("x2", x(0) - sz/(spacing*2) + 30 + sz/(spacing*2))  
+			  .attr("y1", fullHeight - fullMargin.top - fullMargin.bottom + 5)
+			  .attr("y2", fullHeight - fullMargin.top - fullMargin.bottom + 5)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
 
-		svg.append("line")
-			.attr("x1", x(0) - 30 + sz / (spacing * 2))
-			.attr("x2", x(0) + 30 + sz / (spacing * 2))
-			.attr("y1", 0 - 5)
-			.attr("y2", 0 - 5)
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
-		// .attr("tranform", "translate(" + sz/2 + "," + -sz + ")")		 	
-
-
-		svg.append("line")
-			.attr("x1", x(0) - 30 + sz / (spacing * 2))
-			.attr("x2", x(0) + 30 + sz / (spacing * 2))
-			.attr("y1", fullHeight - fullMargin.top - fullMargin.bottom + 5)
-			.attr("y2", fullHeight - fullMargin.top - fullMargin.bottom + 5)
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
-
-		svg.append("line")
-			.attr("x1", x(0) + sz / (spacing) + 25)
-			.attr("x2", x(0) + sz / (spacing) + 25)
-			.attr("y1", y(2020) + 9 * szh / 12)
-			.attr("y2", y(2020) + szh / 4)
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
-			.attr("stroke-dasharray", ("1, 3"))
+			  svg.append("line")
+			  .attr("x1", x(0) - sz/(spacing*2) + sz/(spacing) + 25)
+			  .attr("x2", x(0) - sz/(spacing*2) + sz/(spacing) + 25)
+			  .attr("y1",y(2020) + 9*szh/12)
+			  .attr("y2",y(2020) + szh/4)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)			
+			  .attr("stroke-dasharray", ("1, 3"))		  
 
 		//horizontal dashed line	  
 		svg.append("line")
-			.attr("x1", x(-1))
-			.attr("x2", x(0))
-			.attr("y1", y(2023) + szh / 3)
-			.attr("y2", y(2023) + szh / 3)
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
-			.attr("stroke-dasharray", ("1, 3"))
-
+			  .attr("x1", x(-1))
+			  .attr("x2", x(0) - sz/(spacing*2))  
+			  .attr("y1",y(2023) + szh/3)
+			  .attr("y2", y(2023) + szh/3)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  .attr("stroke-dasharray", ("1, 3"))			
+			  
 		svg.append("line")
-			.attr("x1", x(0) + sz / (spacing) + 25)
-			.attr("x2", x(3))
-			.attr("y1", y(2020) + szh / 2)
-			.attr("y2", y(2020) + szh / 2)
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
-			.attr("stroke-dasharray", ("1, 3"))
-
-		svg.append("line")
-			.attr("x1", x(0) + sz / (spacing))
-			.attr("x2", x(0) + sz / (spacing) + 25)
-			.attr("y1", y(2020) + 9 * szh / 12)
-			.attr("y2", y(2020) + 9 * szh / 12)
-			.attr("stroke", "black")
-			.attr("stroke-width", 1)
-			.attr("stroke-dasharray", ("1, 3"))
-
-		svg.append("line")
-			.attr("x1", x(0) + sz / (spacing))
-			.attr("x2", x(0) + sz / (spacing) + 25)
+			  .attr("x1", x(0) - sz/(spacing*2) + sz/(spacing) + 25)
+			  .attr("x2", x(3))  
+			  .attr("y1",y(2020) + szh/2)
+			  .attr("y2", y(2020) + szh/2)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  .attr("stroke-dasharray", ("1, 3"))			
+			  
+			svg.append("line")
+			  .attr("x1", x(0) - sz/(spacing*2) + sz/(spacing))
+			  .attr("x2", x(0) - sz/(spacing*2) + sz/(spacing) + 25)
+			  .attr("y1",y(2020) + 9*szh/12)
+			  .attr("y2",y(2020) + 9*szh/12)
+			  .attr("stroke", "black")
+			  .attr("stroke-width", 1)	
+			  .attr("stroke-dasharray", ("1, 3"))	
+			  
+			svg.append("line")
+			  .attr("x1", x(0) - sz/(spacing*2) + sz/(spacing))
+			  .attr("x2", x(0) - sz/(spacing*2) + sz/(spacing) + 25)
 			//   .attr("x2", x(3))  
 			.attr("y1", y(2020) + szh / 4)
 			.attr("y2", y(2020) + szh / 4)
@@ -343,15 +288,11 @@ function loadTimeline(choices, filter) {
 			.enter()
 			.append("rect")
 			.attr("class", "svg-label")
-			.attr("x", x(0) + 30)
-			// .attr("y", function(d) {return y(d) + sz/(spacing*2) - 15})
-			.attr("y", function (d) { return y(d) + szh / 2 - 17 })
+			.attr("x", x(0) - sz/(spacing*2) + 30)	
+			.attr("y", function(d) {return y(d) + szh/2 - 17})
 			.attr("width", "30px")
 			.attr("height", "23px")
-			// .style("font-weight", "lighter")
 			.style("fill", "white")
-			// .style("stroke", "white") 
-			// .style("stroke-width", "0.5px")		
 			.style("z-index", 20)
 
 		svg.selectAll(".label")
@@ -359,7 +300,7 @@ function loadTimeline(choices, filter) {
 			.enter()
 			.append("text")
 			.attr("class", "svg-label")
-			.attr("x", x(0) + 30)
+			.attr("x", x(0) - sz/(spacing*2) + 30)
 			// .attr("y", function(d) {return y(d) + sz/(spacing*2)})
 			.attr("y", function (d) { return y(d) + szh / 2 })
 			.text(function (d) { return formatDate(d) })
@@ -457,56 +398,71 @@ function loadTimeline(choices, filter) {
 
 		svg.append("line")
 		  .attr("id", "vline-dotted")
-		   .attr("x1", x(0))
-		   .attr("x2", x(0))  
-		   .attr("y1", y(2024))
+		   .attr("x1", x(0) - sz/(spacing*2))
+		   .attr("x2", x(0) - sz/(spacing*2))  
+		   .attr("y1", y(2024)+9*szh/12)
 		   .attr("y2", y(2020) + szh/4) 
 		   .attr("stroke", "black")
 		   .attr("stroke-width", 1)	
 		   .style("stroke-dasharray", ("1, 3"))
 
-		svg.append("line")
-			.attr("id", "vline-dotted-2")
-			.attr("x1", x(0) + sz / spacing)
-			.attr("x2", x(0) + sz / spacing)
-			.attr("y1", y(2023) + szh / 12)
-			.attr("y2", y(2020) + szh / 4)
+		   svg.append("line")
+		   .attr("id", "vline-dotted-2")
+			.attr("x1", x(0) - sz/(spacing*2) + sz/spacing)
+			.attr("x2", x(0) - sz/(spacing*2) + sz/spacing)
+			.attr("y1", y(2024)+9*szh/12)
+			.attr("y2", y(2020) + szh/4) 
 			.attr("stroke", "black")
 			.attr("stroke-width", 1)
 			.style("stroke-dasharray", ("1, 3"))
 
-		var circleData = [{"year": 2021, "y_adjust": 5*szh/12, "color": "#4C4082"}, {"year": 2022, "y_adjust": szh*5/12, "color": "#800035"}, {"year": 2024, "y_adjust": 0, "color": "#800035"}, {"year": 2020, "y_adjust": szh/4, "color": "#818cf8"}, {"year": 2019, "y_adjust": 0, "color": "#f59e0b"}, {"year": 2019, "y_adjust": szh*7/12, "color": "#2563eb"}]
+		var circleData = [
+			{ year: 2024, y_adjust: (9*szh)/12, color: "#800035" },			
+			{ year: 2022, y_adjust: (szh * 5) / 12, color: "#800035" },		
+			{ year: 2021, y_adjust: (5 * szh) / 12, color: "#4C4082" },	
+			{ year: 2020, y_adjust: szh / 4, color: "#818cf8" },
+			{ year: 2019, y_adjust: 0, color: "#f59e0b" },
+			{ year: 2019, y_adjust: (szh * 7) / 12, color: "#2563eb" },
+		];
 		svg.selectAll("mycircle")
-			.data(circleData)
-			.enter()
-			.append("circle")
-			.attr("cx", function (d) { return x(0); })
-			.attr("cy", function (d) { return y(d.year) + d.y_adjust; })
-			.attr("r", "6")
-			.style("fill", function (d) { return d.color; })
-
-		var circleData2 = [{ "year": 2023, "y_adjust": szh / 12, "color": "#27f727" }, { "year": 2022, "y_adjust": szh / 12, "color": "#FEBFBF" }, { "year": 2022, "y_adjust": szh, "color": "#267368" }, { "year": 2021, "y_adjust": sz / 2, "color": "gold" }, { "year": 2020, "y_adjust": szh / 4, "color": "#7dd3fc" }, { "year": 2020, "y_adjust": szh * 9 / 12, "color": "#7dd3fc" }]
+			 .data(circleData)
+			 .enter()
+			 .append("circle")
+			   .attr("cx", function(d) { return x(0) - sz/(spacing*2); })
+			   .attr("cy", function(d) { return y(d.year) + d.y_adjust; })
+			   .attr("r", "6")
+			   .style("fill", function(d) { return d.color; })	
+			   
+		var circleData2 = [
+			{ year: 2024, y_adjust: 9*szh / 12, color: "orange" },
+			{ year: 2023, y_adjust: 3*szh / 12, color: "#27f727" },
+			{ year: 2022, y_adjust: szh / 12, color: "#FEBFBF" },
+			{ year: 2022, y_adjust: szh, color: "#267368" },
+			{ year: 2021, y_adjust: sz / 2, color: "gold" },
+			{ year: 2020, y_adjust: szh / 4, color: "#7dd3fc" },
+			{ year: 2020, y_adjust: (szh * 9) / 12, color: "#7dd3fc" },
+		];
 		svg.selectAll("mycircle")
 			.data(circleData2)
 			.enter()
 			.append("circle")
-			.attr("cx", function (d) { return x(0) + sz / spacing; })
-			.attr("cy", function (d) { return y(d.year) + d.y_adjust; })
-			.attr("r", "6")
-			.style("fill", function (d) { return d.color; })
-		//    .style("opacity", 0.75)	
+				.attr("cx", function(d) { return x(0) - sz/(spacing*2) + sz/spacing; })
+				.attr("cy", function(d) { return y(d.year) + d.y_adjust; })
+				.attr("r", "6")
+				.style("fill", function(d) { return d.color; })			   
+			//    .style("opacity", 0.75)	
 
 		var firefly = container.append("div")
-			.attr("class", "container-annotation")
-			.style("position", "absolute")
-			.style("left", x(0) - sz * 1.4 + 'px')
-			.style("top", y(2023) + 'px')
+		.attr("class", "container-annotation")
+		.style("position", "absolute")
+		.style("left", x(0) - sz/(spacing*2) - sz*1.4 + 'px')
+		.style("top", y(2023) + 'px')	
 
 		var dataviz = container.append("div")
-			.attr("class", "container-annotation")
-			.style("position", "absolute")
-			.style("left", x(0) + sz * 1 + 'px')
-			.style("top", y(2020) + szh / 12 + 'px')
+		.attr("class", "container-annotation")
+		.style("position", "absolute")
+		.style("left", x(0) - sz/(spacing*2) + sz*1 + 'px')
+		.style("top", y(2020) + szh/12 + 'px')		
 
 		var hyperlinkURL = "https://www.redsharknews.com/adobe-express-with-firefly-moves-out-of-beta"
 
@@ -534,157 +490,183 @@ function loadTimeline(choices, filter) {
 			"<div style='display: flex; align-items: center; flex-grow: 1;'>" +
 			"<span style='flex: 1; text-align: right; margin-right: 10px; border-right: 1px solid black; padding-right: 10px; height: " + sz / 3 + "px; width: " + sz / 2.8 + "px; overflow: hidden;'> " +
 			"<p style='text-align: right; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: normal; width: 100%;'>March to June 2020</p>" +
-			"</span>" +
-			"<a href='https://vastava.github.io/allergies/'>" +
-			"<img src='img/allergies.png' alt='Express Image' style='width:" + sz / 3 + "px; height:" + sz / 3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
-			"</a>" +
-			"<span style='margin: 0 10px;'>+</span>" +
-			"<a href='https://vastava.github.io/starwars-timeline/'>" +
-			"<img src='img/starwars.png' alt='Firefly Image' style='width:" + sz / 3 + "px; height:" + sz / 3 + "px; border-radius: 10px;'>" +
-			"</a>" +
-			"<span style='margin: 0 10px;'>+</span>" +
-			"<a href='https://vastava.github.io/tiktok-mansions-map/story.html'>" +
-			"<img src='img/tiktok.png' alt='Tiktok Map' style='width:" + sz / 3 + "px; height:" + sz / 3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
-			"</a>" +
-			"</div>" +
-			"<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
-			"I start learning d3.js and web development — see my data visualization portfolio <a href='" + "https://vastava.github.io/work.html" + "' style='text-decoration: none; color: #7dd3fc;'>here</a>" +
-			"</p>" +
-			"</div>";
-		//   "<p style='font-weight: normal; font-family: Lato; margin-bottom: 10px; width: 100%;'>August 2023</p>" +
+		"</span>" +	  
+		"<a href='https://vastava.github.io/allergies/'>" +
+			"<img src='img/allergies.png' alt='Express Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
+	    "</a>" +		
+		"<span style='margin: 0 10px;'>+</span>" +
+		"<a href='https://vastava.github.io/starwars-timeline/'>" +
+			"<img src='img/starwars.png' alt='Firefly Image' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border-radius: 10px;'>" +
+		"</a>" +
+		"<span style='margin: 0 10px;'>+</span>" +
+		"<a href='https://vastava.github.io/tiktok-mansions-map/story.html'>" +
+			"<img src='img/tiktok.png' alt='Tiktok Map' style='width:" + sz/3 + "px; height:" + sz/3 + "px; border: 0.6px solid #000; border-radius: 10px;'>" +
+		"</a>" +
+	  "</div>" +
+	  "<p style='margin-top: 10px; margin-left: 0; margin-right: 0; font-family: Lato; font-weight: 300; width: 100%;'>" +
+	  "I start learning d3.js and web development — see my data visualization portfolio <a href='" + "https://vastava.github.io/work.html" + "' style='text-decoration: none; color: #7dd3fc;'>here</a>" +
+	  "</p>" +
+	"</div>";	  
 
+		svg.append("rect")
+			.attr("class", "svg-label")
+			.attr("x", x(0) - sz/(spacing*2) + 30)	
+			.attr("y", y(2024) + 9*szh/12 - 8)
+			.attr("width", "30px")
+			.attr("height", "16px")
+			.style("fill", "white")
+			.style("z-index", 20)	
+		
+		svg.append("text")
+			.text("present")
+			.attr("class", "svg-label")
+			.attr("x", x(0) - sz/(spacing*2) + sz/(spacing*2))
+			.attr("y", y(2024) + szh*9/12)
+			.attr("text-anchor", "middle")
+			.attr("alignment-baseline", "middle")
+			.style("font-size", "12px")
+			.style("font-family", "Lato")
+			.style("font-weight", font_weight_light)
 
 		svg.append("text")
 			.text("Joined Adobe")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2022) + szh * 5 / 12 + 2)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2022) + szh*5/12 + 2)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")
-			.style("font-weight", 500)
+			.style("font-weight", font_weight_bold)
 
 		svg.append("text")
 			.text("Growth Data Scientist, Monetization")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2022) + szh * 5 / 12 + 22)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2022) + szh*5/12 + 22)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
-			// svg.append("text")
-			// .text("July 2022 - present")
-			// .attr("class", "svg-label")
-			// .attr("x", x(0) - 10)
-			// .attr("y", y(2022) + szh*5/12 + 38)
-			// .attr("text-anchor", "end")
-			// .attr("alignment-baseline", "middle")
-			// .style("font-size", "12px")
-			// .style("font-family", "Lato")	
-			// .style("font-weight", 399)				
+			.style("font-weight", font_weight_light)	
 
 		svg.append("text")
 			.text("Joined ThermoFisher Scientific")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2021) + 5 * szh / 12 + 2)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2021) + 5*szh/12 + 2)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)		
+			.style("font-weight", font_weight_bold)		
 
 			
-			svg.append("text")
+		svg.append("text")
 			.text("Data Scientist, eCommerce")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2021) + 5 * szh / 12 + 22)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2021) + 5*szh/12 + 22)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)				
+			.style("font-weight", font_weight_light)				
 
 		svg.append("text")
 			.text("Joined HiGeorge")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2020) + szh / 4 + 2)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2020) + szh/4 + 2)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)		
+			.style("font-weight", font_weight_bold)		
 			
 			svg.append("text")
 			.text("Data Visualization Engineer")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2020) + szh / 4 + 22)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2020) + szh/4 + 22)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
+			.style("font-weight", font_weight_light)	
 			
 			svg.append("text")
 			.text("Interned at elin.ai")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2019) + 2)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2019) +  2)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)			
+			.style("font-weight", font_weight_bold)			
 			
 			svg.append("text")
 			.text("Data Science Intern")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2019) + 22)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2019)  + 22)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
+			.style("font-weight", font_weight_light)	
 
 		svg.append("text")
 			.text("Interned at Intuit")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2019) + 7 * szh / 12 + 2)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2019) + 7*szh/12 + 2)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "15px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)			
+			.style("font-weight", font_weight_bold)			
 			
 			svg.append("text")
 			.text("Business Systems Analyst Intern")
 			.attr("class", "svg-label")
-			.attr("x", x(0) - 10)
-			.attr("y", y(2019) + 7 * szh / 12 + 22)
+			.attr("x", x(0) - sz/(spacing*2) - 10)
+			.attr("y", y(2019) + 7*szh/12 + 22)
 			.attr("text-anchor", "end")
 			.attr("alignment-baseline", "middle")
 			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 300)	
+			.style("font-weight", font_weight_light)	
 			
 			svg.append("text")
-			.text("Graduated!")
+			.text("graduated!")
 			.attr("class", "svg-label")
-			.attr("x", x(0) + sz / spacing + 10)
-			.attr("y", y(2021) + sz / 2 + 2)
+			.attr("x", x(0) - sz/(spacing*2) + sz / spacing + 10)
+			.attr("y", y(2021) + sz/2 + 2)
 			.attr("text-anchor", "start")
 			.attr("alignment-baseline", "middle")
-			.style("font-size", "15px")
+			.style("font-size", "12px")
 			.style("font-family", "Lato")	
-			.style("font-weight", 500)	
+			.style("font-weight", font_weight_light)	
+
+			svg.append("text")
+			.text("started blog!")
+			.attr("class", "svg-label")
+			.attr("x", x(0) - sz/(spacing*2) + sz / spacing + 10)
+			.attr("y", y(2024) + 9*szh/12 + 2)
+			.attr("text-anchor", "start")
+			.attr("alignment-baseline", "middle")
+			.style("font-size", "12px")
+			.style("font-family", "Lato")	
+			.style("font-weight", font_weight_light)	
+			.each(function() {
+				d3.select(this)
+				.style("cursor", "pointer")
+				.on("click", function() {
+					window.open('https://medium.com/@vastava', "_blank");
+				});				
+			});			
 
 		// Add CSS style for hiding the image initially
 		d3.select("head").append("style").text(
@@ -698,13 +680,13 @@ function loadTimeline(choices, filter) {
 			var textlabel = svg.append("text")
 				.text(label)
 				.attr("class", "svg-label")
-				.attr("x", x(0) + sz / spacing + 10)
+				.attr("x", x(0) - sz/(spacing*2) + sz / spacing + 10)
 				.attr("y", y(year) + yOffset + 2)
 				.attr("text-anchor", "start")
 				.attr("alignment-baseline", "middle")
 				.style("font-size", "15px")
 				.style("font-family", "Lato")
-				.style("font-weight", 500)
+				.style("font-weight", font_weight_bold)
 				.style("opacity", opacity)
 				.each(function () {
 					// Check if opacity is equal to 1 before setting cursor and attaching click event
@@ -775,7 +757,7 @@ function loadTimeline(choices, filter) {
 					// labelWidth = labelWidh/5;
 				}
 				svg.append("rect")
-					.attr("x", x(0) + sz / spacing + 12 + labelWidth) // Adjust the x-coordinate as needed
+					.attr("x", x(0) - sz/(spacing*2) + sz / spacing + 12 + labelWidth) // Adjust the x-coordinate as needed
 					.attr("y", y(year) + yOffset + 2 - 15 / spacing)
 					.attr("width", w) // Set the width of the oval
 					.attr("height", 15) // Set the height of the oval
@@ -786,8 +768,8 @@ function loadTimeline(choices, filter) {
 
 				svg.append("text")
 					.text(textLabelContent)
-					.attr("class", "svg-label")
-					.attr("x", x(0) + sz / spacing + 18 + labelWidth) // Adjust the x-coordinate as needed
+					.attr("class", "svg-label")					
+					.attr("x", x(0) - sz/(spacing*2) + sz / spacing + 18 + labelWidth) // Adjust the x-coordinate as needed
 					.attr("y", y(year) + yOffset + 2)
 					.attr("text-anchor", "start")
 					.attr("alignment-baseline", "middle")
@@ -811,7 +793,7 @@ function loadTimeline(choices, filter) {
 		function appendText(year, text, yOffset, url, opacity) {
 			svg.append("text")
 				.attr("class", "svg-label")
-				.attr("x", x(0) + sz / spacing + 10)
+				.attr("x", x(0) - sz/(spacing*2) + sz / spacing + 10)
 				.attr("y", y(year) + yOffset)
 				.attr("text-anchor", "start")
 				.attr("alignment-baseline", "middle")
@@ -886,7 +868,7 @@ function loadTimeline(choices, filter) {
 			.style("font-size", "30px")
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
-			.attr("transform", "translate(" + (fullWidth/2 - fullMargin.left*3) + ",10)")
+			.attr("transform", "translate(" + (fullWidth/2 - fullMargin.left - fullMargin.left*3) + ",10)")
 			// .attr("transform", "translate(" + fullMargin.left*2 + ",350) rotate(270)")
 
 		svg.append("text")
@@ -897,19 +879,7 @@ function loadTimeline(choices, filter) {
 			.style("font-size", "30px")
 			.style("opacity", 0.7)
 			.style("font-weight", 199)
-			.attr("transform", "translate(" + (fullWidth/2 + fullMargin.right*3) + ",10)")
-			// .attr("transform", "translate(" + (fullWidth - fullMargin.right*2) + ",200) rotate(90)")
-
-		// svg.append("text")
-		// .text("boundary")
-		// .attr("class", "svg-label")
-		// .attr("text-anchor", "middle")
-		// .style("font-family", "trajan-pro-3")
-		// .style("font-size", "30px")
-		// .style("opacity", 0.7)
-		// .style("font-weight", 199)
-		// .attr("transform", "translate(" + (fullWidth) + ",200) rotate(90)")			
-		// .on("mouseover", etc.)
+			.attr("transform", "translate(" + (fullWidth/2 - fullMargin.left + fullMargin.left*3) + ",10)")
 	})
 
 	// Parse the Data
