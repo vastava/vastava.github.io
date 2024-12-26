@@ -753,7 +753,7 @@ function loadTimeline(choices, filter) {
 				else if (labelAppend == "Popular") {
 					rectColor = "#fce7f3";
 					textColor = "#831843";
-					textLabelContent = "1k users/day";
+					textLabelContent = "2k users/day";
 					w = 67
 					// labelWidth = labelWidh/5;
 				}
