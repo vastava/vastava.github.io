@@ -3,11 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
+    <title>Anjali Shrivastava</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            margin-bottom: 1rem;            
+            text-decoration: underline;
+            color: #0033cc;
+            font-size: 1.5rem;
+            transition: color 0.2s;  
+        }
+
+        a:hover {
+            color: orange;
+            cursor: pointer;
+        }        
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        .featured-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-top:2rem;
+            margin-bottom: 2rem;
+        }
+
+        .secondary-link {
+            color: rgb(102, 102, 102);
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .secondary-link:hover {
+            color: rgb(0, 51, 204);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <p>View the old version of this site at <a href="/vintage">/vintage</a></p>
+        <div>
+            <a href="pricing_paradigm.html">A broken pricing paradigm</a>
+        </div>
+        <img src="images/image2.png" alt="Featured content" class="featured-image">
+
+        <p>
+            <a href="/vintage" class="secondary-link">View the old version of this site at /vintage</a>
+        </p>
     </div>
 </body>
 </html>

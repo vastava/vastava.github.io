@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Broken Pricing Paradigm</title>
+    <meta name="description" content="Cursor, Anthropic expose cracks in cost structure and resource allocation">
+    <meta name="keywords" content="AI, pricing, Cursor, Anthropic, tokens, economics, cost structure">
+    <meta name="author" content="Anjali Shrivastava">
+
+    <style>
+        body {
+            margin: 0;
+            transition: opacity 0.2s ease-in;
+        }
+
+        .banner {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .container {
+            max-width: 50rem;
+            font-family: "Helvetica Neue", sans-serif;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .container p {
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 1rem;
+        }
+
+        .title {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            font-family: "Helvetica Neue", sans-serif;
+        }
+
+        .deckhead {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: -1rem;
+            margin-bottom: 2rem;
+            color: #666666;
+        }
+
+        .author {
+            font-family: "Helvetica Neue", sans-serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-contact {
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: rgb(51, 51, 51);
+        }
+
+        .warning {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-left: 3px solid rgb(255, 215, 0);
+            padding: 1rem;
+            margin: 2rem 0;
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 0.9rem;
+            color: rgb(51, 51, 51);
+        }
+
+        .blockquote {
+            /* font-style: italic; */
+            border-left: 6px solid #333;
+            margin-left: 2rem;
+            padding-left: 0.8rem;
+            color: rgb(51, 51, 51);
+            font-family: "Helvetica Neue", sans-serif;
+            color:#666666
+        }
+
+        .subhead {
+            text-align: left;
+            line-height: 1.2;
+            font-family: "Helvetica Neue", sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .chapter-head {
+            text-align: left;
+            line-height: 1.2;
+            font-family: "Georgia", serif;
+            font-weight: 400;
+            font-size: 1.2rem;
+            margin-top: 3rem;
+            /* margin-bottom: 1rem; */
+            color:#666666
+        }        
+
+        .section-head {
+            text-align: left;
+            line-height: 1.2;
+            font-family: "Helvetica Neue", sans-serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            margin-bottom: 1rem;
+            text-decoration: underline;
+            color: rgb(0, 51, 204);
+            /* font-size: 1rem; */
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: orange;
+            cursor: pointer;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 0.5rem 1rem;
+            font-family: "EB Garamond", serif;
+            font-size: 1rem;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            opacity: 0.8;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        #backToTop:hover {
+            opacity: 1;
+        }
+
+        .table-of-contents {
+            margin: 2rem 0;
+            font-family: "EB Garamond", serif;
+        }
+
+        .table-of-contents h3 {
+            font-family: "EB Garamond", serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+            padding-left: 0.5rem;
+            margin: 0;
+        }
+
+        .table-of-contents li {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .table-of-contents a {
+            color: rgb(0, 51, 204);
+            text-decoration: none;
+            font-size: 1rem;
+            font-family: "EB Garamond", serif;
+        }
+
+        .table-of-contents a:hover {
+            color: white;
+            background-color: rgb(0, 51, 204);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .formula {
+            font-family: "Courier New", monospace;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .quote-highlight {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: rgb(51, 51, 51);
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid rgb(102, 0, 204);
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 768px;
+            height: auto;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 0;
+                max-width: 100%;
+            }
+            .title {
+                font-size: 2.5rem;
+            }
+            body {
+                font-size: 1.25rem;
+                line-height: 1.7;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="banner" role="banner" style="text-align: center;">
+  You can always <a href="https://anjalishriva.com/">go home</a>.
+</div>
+
+<div class="container">
+
+<h1 class="title">A broken pricing paradigm</h1>
+
+<h2 class="deckhead">Cursor, Anthropic expose cracks in cost structure and resource allocation</h2>
+
+<!-- <div class="image-container">
+    <img src="images/image2.png" alt="Pricing paradigm illustration" class="hero-image">
+</div> -->
+
+<div class="author">Anjali Shrivastava</div>
+<div class="author-contact">
+    <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> |
+    <a href="https://x.com/anjali_shriva">@anjali_shriva</a>
+</div>
+
+<!-- <p style="text-align: center; font-style: italic; color: rgb(51, 51, 51); margin-bottom: 2rem;">
+    (questions, comments, suggested edits on this doc are welcome!)
+</p> -->
+
+<div class="warning">
+    ⚠️ "AI workloads" refers to open-ended, agentic tasks that can spawn compute via recursive reasoning or tool use. This essay does not cover short-context chat or well-defined workflows where the developer can better bound compute.
+</div>
+
+<h1 class="chapter-head">PART I: High variance in AI demand breaks unit economics and resource allocation at scale</h1>
+
+<p style="font-style: italic; color: rgb(102, 102, 102); margin-bottom: 2rem;">Last updated: 8/23</p>
+
+<p>The Cursor-Anthropic pricing drama earlier this year exposed a flaw in how we price and deliver open-ended AI workloads. The implications go far beyond margin squeeze and outages: it is a paradigmatic problem.</p>
+
+<div class="table-of-contents">
+    <h3>Table of Contents</h3>
+    <ul>
+        <li><a href="#token-not-fixed">A token is not a fixed, atomic unit of cost</a></li>
+        <li><a href="#variance-scales">And variance scales with usage</a></li>
+        <li><a href="#tail-risk">Tail risk compounds at hyperscale</a></li>
+        <li><a href="#margins-collapse">And margins collapse as usage grows</a></li>
+        <li><a href="#saas-economics">High variance kills traditional SaaS unit economics</a></li>
+        <li><a href="#resource-allocation">It's a resource allocation problem</a></li>
+        <li><a href="#solutions">How to sidestep the pitfalls?</a></li>
+    </ul>
+</div>
+
+<p>To recap the facts: the Cursor Pro plan launched as a classic SaaS subscription ($20 for unlimited usage). In mid-June, they <a href="https://techcrunch.com/2025/07/07/cursor-apologizes-for-unclear-pricing-changes-that-upset-users/">reversed</a> course on "unlimited" and charged for usage exceeding the $20 price point. It was later <a href="https://www.wheresyoured.at/anthropic-and-openai-have-begun-the-subprime-ai-crisis/">revealed</a> that Anthropic had raised their prices before, and many concluded this to be the root cause.</p>
+
+<p>Cursor's own explanation: "the hardest requests cost an order of magnitude more than simple ones." Their fix was to pass the heavy-tailed cost to users at retail token price from the cloud APIs.</p>
+
+<p>Anthropic's subsequent <a href="https://techcrunch.com/2025/07/28/anthropic-unveils-new-rate-limits-to-curb-claude-code-power-users/">rate limits</a> are more revealing though, because they control the whole stack. The limits appear motivated by the same magnitude in demand: some Claude Code users <a href="https://www.linkedin.com/posts/chrisparsons_after-burning-332-worth-of-compute-i-discovered-activity-7351213366683598850-Xf3a/">reported</a> burning $400+ worth of tokens on a $20 monthly subscription, based on the per token cost that Anthropic themselves publish.</p>
+
+<p>But the limits Anthropic imposed were not token based, but "usage" based. Instead of a transparent "X tokens per week," users simply hit an unlabeled weekly cap and an equally opaque session-based hourly cap.</p>
+
+<div class="image-container">
+    <img src="images/image2.png" alt="Token usage patterns">
+</div>
+
+<p><strong>This reveals something important: Anthropic's session-based usage limits and weekly limits are a tacit admission that the token is not a stable unit of cost, nor compute.</strong></p>
+
+<h1 id="token-not-fixed" class="section-head">A token is not a fixed, atomic unit of cost</h1>
+
+<p>AI usage is inherently heterogeneous, and introduces high variance that make costs unpredictable. Variance exists in task complexity that users request from AI, and the volume of tasks per user.</p>
+
+<p>But once you see that a token is variable itself, things start to make sense.</p>
+
+<p>We only consider token count as the atomic, static meter because we inherited the logic from cloud APIs. But, consider the difference between "Describe a cat" and "Describe a cataclysm."</p>
+
+<p>There is indirect evidence that the true cost per token can explode:</p>
+
+<ol>
+<li><strong>Attention is quadratic</strong> with respect to current context size. Which means inference APIs are linearly pricing fresh tokens whose true compute cost scales quadratically.</li>
+
+<li><strong>Reasoning loops and tool calls</strong> are triggered by token semantics, not length or count. Changing a single word ("sort" → "optimize") can trigger a longer chain-of-thought loop that continues adding tokens up to the context limit.</li>
+
+<li><strong>Mixture of Expert models</strong> may unexpectedly route each token through a variable number of experts up to the expert limit.</li>
+</ol>
+
+<p>The quadratic attention cost is a lower bound on the compute time required to generate each additional token. The semantic loops and MoE routing are multipliers on top of that floor.</p>
+
+<p>To be clear: there is no public trace of a model provider indicating that one token can trigger unbounded compute (and therefore cost). But what is documented is that Anthropic chose to impose request-level caps rather than trust the token meter, indicating one request can explode irrespective of token count. Their hedge is to sell a bigger pile of them and hope the tail stays inside that pile.</p>
+
+<div class="image-container">
+    <img src="images/image1.png" alt="Cost per token variance">
+</div>
+
+<h1 id="variance-scales" class="section-head">And variance scales with usage</h1>
+
+<p>Cost per user is a composite function of many moving variables. Notably, task volume per user, token volume per task, input token cost and output token cost.</p>
+
+<p>We have established that per token costs for inputs and outputs are variable. But we now have real data points indicating the other cost inputs are highly varied.</p>
+
+<p>When Cursor made its price change, some users hit the cap within 3-5 prompts: a clear sign of variance in task complexity and cost per task.</p>
+
+<p>When Anthropic's usage limits were introduced, some engineers hit it within 8 days. Some run 8 parallel instances of Claude Code. Anthropic themselves said one user consumed "tens of thousands" on a $200 plan. These are clear signs of user heterogeneity and variance in task volume per user.</p>
+
+<p><strong>The underlined variables in our formula likely have fat tails — so it's all of them.</strong></p>
+
+<p>Traditional SaaS has variable costs too (like hosting, customer support and third-party service costs). But these costs follow the law of large numbers, and are normally distributed at scale. You can set a single subscription price that covers this average cost, plus a comfortable margin to absorb tail risk.</p>
+
+<p>In the case of AI software, aggregate daily cost is a composite of fat tailed moving variables. The law of large numbers assumes finite mean and i.i.d. samples, but AI software has at least one dimension with infinite first moment and non-stationary tails. The sample mean keeps wandering instead of converging.</p>
+
+<h1 id="tail-risk" class="section-head">Tail risk compounds at hyperscale</h1>
+
+<p>SF Compute's pricing section is the first vendor statement I've seen that acknowledges the token is not a fixed unit of cost. Their market-based prices expose the real cost drivers of inference (spot GPU supply, cache pressure etc), in order to offer cheaper prices to developers.</p>
+
+<p>As usage grows, though, the narrative flips from "cheaper on average" to "probable insolvency." Each layer of the aggregate cost curve is highly variable, and the more you scale, the higher the probability that these tail risks can compound.</p>
+
+<div class="formula">
+<strong>Formalization</strong><br><br>
+Think of every task as a coin-flip whose "size" is how many tokens it costs (X). Most tasks are small (X is a few hundred tokens), but a rare few are huge (tens of thousands).<br><br>
+X is a random variable because it's impossible to know the number of output tokens a task will consume when it's submitted. It's bounded by the context window limit, but the shape of the distribution leading up to that bound is still fat-tailed.<br><br>
+Mathematically:<br><br>
+Let C be the context window limit, and X be the token count for a single task (so 0 ≤ X ≤ C).<br><br>
+P(X > x) ~ k / x^α, where 1 < α < 2.<br><br>
+Let m be the total number of users and n be the total number of tasks. The aggregate token count is<br><br>
+S(m,n) = ∑(i=1 to mn) Xi (independent draws of X).<br><br>
+Consider B as the "break-even token count" (i.e., Total Revenue ÷ Price Per Token). B is the budget — when S(m,n) > B, the token seller loses money.
+</div>
+
+<div class="image-container">
+    <img src="images/image5.png" alt="Mathematical model of tail risk">
+</div>
+<p>As <a href="https://hypersoren.xyz/">Soren Larson</a> put it:</p>
+<div class="blockquote">
+"Traditionally we expect that when we increase the number of users we get diversification reducing risk. But in the fat-tailed case, there's no diversification - every marginal user is an independent lottery ticket for exploding costs."<br>
+</div>
+
+<p>There is a reason Cursor and Anthropic are the first to run into these issues publicly: code is instantly verifiable, and its feedback loop is addictive. There are engineers setting alarms for when their limits reset. Some have built dashboards to optimize their burn rate. Codegen is the first domain in AI-native software to reach hyperscale and outrun the underlying GPU supply.</p>
+
+<p>Demand elasticity for code generation follows Jevons' paradox (i.e. for each efficiency gain, overall token consumption rises). We can see this clearly, as Cursor and Github comprise 45% of Anthropic's inference business.</p>
+
+<div class="image-container">
+    <img src="images/image3.png" alt="Demand elasticity and code generation usage">
+</div>
+
+<p><strong>There is a structural problem here: with elastic and nearly infinite demand, risk compounds. PMF becomes a liability.</strong></p>
+
+<h1 id="margins-collapse" class="section-head">And margins collapse as usage grows</h1>
+
+<p>Margin collapse is the first and most obvious symptom of the problem. Cursor's repricing exposed poor margins, and we also learned that Replit's margins are volatile. And there is ample evidence that Anthropic is losing money on its subscriptions.</p>
+
+<p>The narrative that "Cursor raised prices because Anthropic raised theirs" gets the causality backwards. Cursor's users generated the extreme cost tail, because they had no usage limits in place; Anthropic's response was a downstream response, and Cursor's price hikes were forced re-pricings of the tail risk.</p>
+
+<p>Each movement is a pressurizing force. The model providers can either absorb the cost shock, or pass it downstream to integrators. The integrators have the same choice (albeit with less freedom).</p>
+
+<p><strong>Both get squeezed.</strong></p>
+
+<p>The dynamic is especially concerning for startups who face fat tail risk, and have no margin buffer to absorb it.</p>
+
+<h1 id="saas-economics" class="section-head">High variance kills traditional SaaS unit economics</h1>
+
+<p>Subscriptions misprice intelligence, and much of the industry recognizes this, but now we can rigorously explain why.</p>
+
+<p>Traditional SaaS pricing mirrors the physics of stable software, but AI introduces high variance that breaks each of these laws.</p>
+
+<div class="image-container">
+    <img src="images/image6.png" alt="Traditional SaaS vs AI pricing models comparison">
+</div>
+
+<h1 id="resource-allocation" class="section-head">It's a resource allocation problem</h1>
+
+<p>Anthropic endured constant outages and service interruptions, even after enforcing rate limits. This is inextricable from the fact that a token is not an atomic unit of cost.</p>
+
+<p><strong>Because a token is also not an atomic unit of compute.</strong></p>
+
+<p>Similar to how pricing structures treat a token as a fixed unit of cost, product interfaces treat the prompt and context as a static artifact whose size we can measure. But the inputs are more algorithmic than declarative; they dictate how much compute should be allocated to a given task.</p>
+
+<p>The most straightforward way to lift margin and/or prevent outages is to silently dial down "intelligence": shorter chains, lower-quality responses, cheaper sampling. This is starting to sound like a market for lemons, where quality is unobservable, and price competition drives average quality to the floor.</p>
+
+<p>The problem is that this degradation of service is hidden from users, so they have no incentive to optimize their requests to minimize compute. Reddit threads abound with complaints about perceived lower performance, and limits coming out of nowhere. "Just show a dashboard with remaining weekly & Opus—stop making us guess."</p>
+
+<p><strong>It's invisible until the moment the system crashes without warning, leaving users frustrated and providers blindsided by the bill.</strong></p>
+
+<div class="image-container">
+    <img src="images/image4.png" alt="Resource allocation and system performance">
+</div>
+
+<h1 id="solutions" class="section-head">How to sidestep the pitfalls?</h1>
+
+<p>That indulgently long intro gets us to the question: how do you design a pricing model that survives margin squeeze, fat-tailed costs and doesn't lead to surprise service degradation?</p>
+
+<p>To safely cushion from unbounded costs, it must price in the variance or be well above the true cost on average. Ideally by anchoring price to value delivered instead of token cost; but value delivered also happens to be highly variable.</p>
+
+<p>A lot of this sounds dire, but I'm certain there are solutions to the pricing and resource allocation problems beyond usage caps or quietly throttling performance. The following are necessary:</p>
+
+<ol>
+<li><strong>We need affordances for users to better describe the problem at hand</strong> such that the system can appropriately allocate resources. Language alone is insufficient.</li>
+
+<li><strong>We need a verification signal</strong> if price becomes task-dependent rather than static. Customers are otherwise incentivized to underreport success, so they can avoid paying.</li>
+
+<li><strong>We need to capture upside to protect against potential infinite downside.</strong> But value realization is often delayed and probabilistic, so we need prediction infrastructure.</li>
+</ol>
+
+<p>This might sound out there, but I see a line of sight towards all of these solutions, and will elaborate why and how in future installments. If you're working towards solving any of these problems, please DM or email me. I'd love to stress test my intuition and proposed solutions in these areas.</p>
+
+<hr style="margin: 3rem 0; border: none; border-top: 1px solid #ccc;">
+
+<p style="font-style: italic; text-align: center; color: rgb(102, 102, 102);">
+    Soren Larson, @trickylabyrinth and Judah contributed significantly to this piece.
+</p>
+
+<p style="font-style: italic; text-align: center; color: rgb(102, 102, 102); font-size: 0.9rem;">
+    Thank you to @hypersoren, @trickylabyrinth and Judah for their work, and to Jason Harrison, Anthony Crognale, Suraj Srivats, Ade Oshineye and Alex Komoroske for offering feedback on early versions of this. And to Analogue Group, for the push to set out on this expedition.
+</p>
+
+</div>
+
+<footer>
+  <p style="font-size: 0.9rem; text-align: center; color: rgba(0, 0, 0, 0.6); margin: 4rem 0;">
+    It's never too late to
+    <span id="scrollLink" style="opacity: 1; color: #0033cc; text-decoration: underline; cursor: pointer;">
+      start over</span>.
+  </p>
+</footer>
+
+<button id="backToTop" style="display: block;">↑ Top</button>
+
+<script>
+// Scroll to top functionality
+document.getElementById('backToTop').addEventListener('click', function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+document.getElementById('scrollLink').addEventListener('click', function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+// Show/hide back to top button
+window.addEventListener('scroll', function() {
+    const backToTop = document.getElementById('backToTop');
+    if (window.pageYOffset > 300) {
+        backToTop.style.display = 'block';
+    } else {
+        backToTop.style.display = 'none';
+    }
+});
+</script>
+
+</body>
+</html>
