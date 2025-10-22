@@ -132,6 +132,19 @@
             cursor: pointer;
         }
 
+        .secondary a {
+            margin-bottom: 1rem;
+            text-decoration: underline;
+            color: rgb(102, 102, 102);
+            /* font-size: 1rem; */
+            transition: color 0.2s;
+        }
+
+        .secondary a:hover {
+            color: orange;
+            cursor: pointer;
+        }        
+
         #backToTop {
             position: fixed;
             bottom: 2rem;
@@ -152,6 +165,10 @@
         #backToTop:hover {
             opacity: 1;
         }
+
+        #scrollLink:hover { 
+            color: orange !important; 
+        }        
 
         .table-of-contents {
             margin: 2rem 0;
@@ -265,7 +282,14 @@
 <div class="author-contact">
     <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> |
     <a href="https://x.com/anjali_shriva">@anjali_shriva</a>
+    <p style="color: rgb(102, 102, 102); margin: 0rem;" class="secondary">
+    Published: 8/23 | Last updated: 10/22 | <a  href="https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing">Original doc</a>
+    <!-- <a style="color: #999999; margin-bottom: 2rem;" href="https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing">View original draft with community comments and research notes</a>  -->
+</p>
 </div>
+
+
+
 
 <!-- <p style="text-align: center; font-style: italic; color: rgb(51, 51, 51); margin-bottom: 2rem;">
     (questions, comments, suggested edits on this doc are welcome!)
@@ -276,8 +300,6 @@
 </div>
 
 <h1 class="chapter-head">PART I: High variance in AI demand breaks unit economics and resource allocation at scale</h1>
-
-<p style="font-style: italic; color: rgb(102, 102, 102); margin-bottom: 2rem;">Last updated: 8/23</p>
 
 <p>The Cursor-Anthropic pricing drama earlier this year exposed a flaw in how we price and deliver open-ended AI workloads. The implications go far beyond margin squeeze and outages: it is a paradigmatic problem.</p>
 
@@ -479,6 +501,7 @@ Consider B as the "break-even token count" (i.e., Total Revenue ÷ Price Per Tok
     Thank you to <a href="https://x.com/hypersoren">@hypersoren</a>, <a href="https://x.com/trickylabyrinth">@trickylabyrinth</a> and <a href="https://joodaloop.com/">Judah</a> for their work, and to Jason Harrison, Anthony Crognale, Suraj Srivats, Ade Oshineye and Alex Komoroske for offering feedback on early versions of this. And to Analogue Group, for the push to set out on this expedition.
 </p>
 
+<p style="font-style: italic; text-align: center; color: rgb(102, 102, 102); font-size: 0.9rem;">View <a href="https://docs.google.comm/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing">original draft</a> with community comments and research notes.</p> 
 </div>
 
 <footer>
