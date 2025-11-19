@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A broken pricing paradigm</title>
+    <meta name="description" content="Cursor, Anthropic expose cracks in cost structure and resource allocation">
+    <meta name="keywords" content="AI, pricing, Cursor, Anthropic, tokens, economics, cost structure">
+    <meta name="author" content="Anjali Shrivastava">
+    <link href="./output.css" rel="stylesheet">
+</head>
+<style>
+
+        .banner {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+
+    .title {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        font-family: "Helvetica Neue", sans-serif;
+    }
+
+    .deckhead {
+        font-family: Georgia, serif;
+        font-style: italic;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+        color: #666666;
+    }
+
+    .container {
+        line-height: 1.6;
+    }
+
+    .container p {
+        font-family: "Helvetica Neue", sans-serif;
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+
+    .article-contents a {
+        margin-bottom: 1rem;
+        text-decoration: underline;
+        color: rgb(0, 51, 204);
+        /* font-size: 1rem; */
+        transition: color 0.2s;
+    }
+
+    .article-contents a:hover {
+        color: orange;
+        cursor: pointer;
+    }
+
+    .banner a {
+        margin-bottom: 1rem;
+        text-decoration: underline;
+        color: rgb(0, 51, 204);
+        /* font-size: 1rem; */
+        transition: color 0.2s;
+    }
+
+    .banner a:hover {
+        color: orange;
+        cursor: pointer;
+    }    
+
+        .table-of-contents {
+            /* margin: 2rem 0; */
+            font-family: "EB Garamond", serif;
+        }
+
+        .table-of-contents h3 {
+            font-family: "EB Garamond", serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+            padding-left: 0.5rem;
+            margin: 0;
+        }
+
+        .table-of-contents li {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .table-of-contents a {
+            color: rgb(0, 51, 204);
+            text-decoration: none;
+            font-size: 1rem;
+            font-family: "EB Garamond", serif;
+        }
+
+        .table-of-contents a:hover {
+            color: white;
+            background-color: rgb(0, 51, 204);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }    
+
+        .article-metadata {
+            font-family: "EB Garamond", serif;
+        }        
+
+        .section-head {
+            text-align: left;
+            line-height: 1.2;
+            font-family: "Helvetica Neue", sans-serif;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }        
+</style>
+
+<body>
+    <div class="mx-auto max-w-[1200px]">
+<div class="banner" role="banner" style="text-align: center;">
+  You can always <a href="https://anjalishriva.com/">go home</a>.
+</div>
+
+        <div class="container max-w-[1100px] mx-auto mt-8 px-4 xl:max-w-[1125px]">
+        <div class="w-fit text-center mx-auto">
+            <h1 class="title">A broken pricing paradigm</h1>
+            <h2 class="deckhead">Cursor, Anthropic expose cracks in cost structure and resource allocation</h2>
+        </div>
+            <div class="md:flex">
+                <div class="max-w-[190px] flex-grow-0 flex-shrink-0 hidden md:block">
+                    <div
+                        class="article-metadata leading-normal tracking-tighter sticky text-center text-proseBody top-5 dark:text-proseInvertBody">
+                        <div class="border-b px-4 pb-4 dark:border-slate-700">
+                            <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Article</div>
+                            <div>
+                                <a href="https://anjalishriva.com/pricing_paradigm">
+                                    A broken pricing paradigm
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="border-b flex items-stretch text-center dark:border-slate-700">
+                            <div class="flex-grow dark:border-slate-700">
+                                <div class="flex h-full items-center">
+                                    <div class="px-4 py-4 border-r w-[50%]">
+                                        <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">
+                                            Published
+                                        </div>
+                                        <div class="leading-tight">August 23, 2025</div>
+                                    </div>
+                                            
+                                    <div class="px-4 py-4 w-[50%]">
+                                        <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">
+                                            Revision
+                                        </div>
+                                        <div class="leading-tight">November 16, 2025</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="flex-grow h-full min-w-0">
+                                <div class="flex items-center">
+                                    <div class="px-4 py-4">
+                                        <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">
+                                            Revision
+                                        </div>
+                                        <div class="leading-tight">November 16, 2025</div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+
+                        <div class="border-b px-4 py-4 dark:border-slate-700">
+                            See comments and original drafts <strong><a
+                                    href="https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing"
+                                    class="text-proseLinks dark:text-proseInvertLinks">on Google Docs</a></strong>.
+                        </div>
+
+
+                        <div class="italic px-4 py-4">
+                            <p class="mb-2">I'm on X/Twitter at <a href="https://twitter.com/anjali_shriva"
+                                    class="font-bold text-proseLinks dark:text-proseInvertLinks">@anjali_shriva</a>.</p>
+                            <p>Email at <a href="mailto:anjali.shrivastava99@gmail.com"
+                                    class="font-bold text-proseLinks dark:text-proseInvertLinks">anjali.shrivastava99<br>@gmail.com</a>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-bold my-1 text-proseLinks text-sm dark:text-proseInvertLinks md:hidden">
+                    May&nbsp;6,&nbsp;2024</div>
+
+                <div class="pb-8 md:border-l md:flex-grow md:min-w-0 dark:border-slate-700 md:pl-8 xl:pr-8">
+        
+                    <div class="hyphens-auto
+                max-w-none
+                prose prose-lg dark:prose-invert
+                prose-a:border-b prose-a:border-slate-500 prose-a:font-sans prose-a:no-underline
+                prose-blockquote:font-normal prose-blockquote:text-slate-800 dark:prose-blockquote:text-slate-300
+                hover:prose-a:border-b-slate-200
+                prose-code:prose-a:text-sm prose-code:prose-p:text-sm
+                prose-img:w-full
+                prose-h1:font-bold prose-h1:text-base
+                prose-h2:text-base prose-h2:mb-1 prose-a:prose-h2:border-b-0 prose-a:prose-h2:font-bold
+                prose-h3:text-sm prose-h3:mb-1 prose-a:prose-h3:border-b-0 prose-a:prose-h3:font-bold
+                prose-h4:text-sm prose-h4:mb-1 prose-a:prose-h4:border-b-0 prose-a:prose-h4:font-bold
+                prose-hr:my-10 prose-hr:md:-mx-[2rem] prose-hr:md:w-[calc(100%+4rem)] dark:prose-hr:border-slate-700
+                prose-p:font-serif
+                prose-p:prose-blockquote:font-sans
+                prose-pre:leading-[1.15rem] prose-pre:text-[0.9rem]
+                prose-strong:font-sans dark:prose-strong:text-slate-100
+                prose-ol:font-serif
+                prose-ul:font-serif
+                article-contents
+                ">
+
+                        <p>
+                            To recap the facts: the Cursor Pro plan launched as a classic SaaS subscription ($20 for
+                            unlimited usage). In mid-June, they <a
+                                href="https://techcrunch.com/2025/07/07/cursor-apologizes-for-unclear-pricing-changes-that-upset-users/">reversed</a>
+                            course on "unlimited" and charged for usage exceeding the $20 price point. It was later <a
+                                href="https://www.wheresyoured.at/anthropic-and-openai-have-begun-the-subprime-ai-crisis/">revealed</a>
+                            that Anthropic had raised their prices before, and many concluded this to be the root cause.
+                        </p>
+
+                        <p>Cursor's own explanation: "the hardest requests cost an order of magnitude more than simple
+                            ones." Their fix was to pass the heavy-tailed cost to users at retail token price from the
+                            cloud APIs.</p>
+
+                        <p>Anthropic's subsequent <a
+                                href="https://techcrunch.com/2025/07/28/anthropic-unveils-new-rate-limits-to-curb-claude-code-power-users/">rate
+                                limits</a> are more revealing though, because they control the whole stack. The limits
+                            appear motivated by the same magnitude in demand: some Claude Code users <a
+                                href="https://www.linkedin.com/posts/chrisparsons_after-burning-332-worth-of-compute-i-discovered-activity-7351213366683598850-Xf3a/">reported</a>
+                            burning $400+ worth of tokens on a $20 monthly subscription, based on the per token cost
+                            that Anthropic themselves publish.</p>
+
+                        <p>But the limits Anthropic imposed were not token based, but "usage" based. Instead of a
+                            transparent "X tokens per week," users simply hit an unlabeled weekly cap and an equally
+                            opaque session-based hourly cap.</p>
+<div class="image-container">
+    <img src="images/image2.png" alt="Token usage patterns">
+</div>
+<p>This reveals something important: Anthropic's session-based usage limits and weekly limits are a tacit admission that <strong>the token is not a stable unit of cost, nor compute.</strong></p>
+
+<h1 id="token-not-fixed" class="section-head">A token is not a fixed, atomic unit of cost</h1>
+
+<!-- <p>AI usage is inherently heterogeneous, and introduces high variance that make costs unpredictable. Variance exists in task complexity that users request from AI, and the volume of tasks per user.</p> -->
+
+<!-- <p>But once you see that a token is variable itself, things start to make sense.</p> -->
+
+<p>We only consider token count as the static linear meter because we inherited the logic from inference APIs. But, 
+    a token does not represent a fixed unit of work.
+</p>
+
+<p>
+    This is obvious to anyone who works in inference, but if you’re used to calculating compute budgets based on linear API rates, it takes a second to sink in.
+</p>
+
+<p>The intuition is grounded in the autoregressive nature of the transformer: 
+    Attention is quadratic with respect to current context size. (via <a href="https://x.com/trickylabyrinth/status/1957731651645038765">@trickylabyrinth</a> on X).
+</p>
+
+<p>
+    In layman&apos;s terms, the language model is looking at every previous token in the context window before generating a new token, which means inference APIs are linearly pricing fresh tokens whose compute cost scales quadratically.
+</p>
+
+<p>
+    The scaling law for compute is likely not purely quadratic, given optimizations like caching and compacting context. But no matter what, the underlying compute cost per token grows with context length. The Nth token in a conversation is an order of magnitude more expensive than the first.
+</p>
+
+<p>There's signs that per-token pricing breaks down at scale: both Anthropic and Google charge different rates based on prompt length.</p>
+
+<div class="image-container">
+    <img src="images/image7.png" alt="API pricing breakdown">
+</div>
+
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="max-w-[190px] border-l flex-grow-0 flex-shrink-0 hidden dark:border-slate-700 xl:block">
+
+                    <div class="
+                    mb-3
+                    pl-3
+                    pb-5
+                    prose prose-sm dark:prose-invert
+                    prose-li:my-2
+
+                    prose-ol:prose-li:list-[lower-alpha] prose-ol:prose-li:my-2
+                    prose-a:prose-li:prose-li:font-normal prose-li:prose-li:my-1 prose-li:prose-li:text-[0.65rem]
+
+                    prose-ol:prose-li:prose-li:list-[lower-roman]
+                    prose-li:prose-li:prose-li:text-[0.6rem]
+
+                    sticky top-5
+                    text-xs
+                ">
+                <div class="table-of-contents">
+    <h3>Table of Contents</h3>
+                        <ol>
+        <li><a href="#token-not-fixed">A token is not a fixed, atomic unit of cost</a></li>
+        <li><a href="#variance-scales">And variance scales with usage</a></li>
+        <li><a href="#tail-risk">Tail risk compounds at hyperscale</a></li>
+        <li><a href="#margins-collapse">And margins collapse as usage grows</a></li>
+        <li><a href="#saas-economics">High variance kills traditional SaaS unit economics</a></li>
+        <li><a href="#resource-allocation">It's a resource allocation problem</a></li>
+        <li><a href="#solutions">How to sidestep the pitfalls?</a></li>                            
+                            <!-- <li><a href="https://brandur.org/notifier#implementation">A few implementation details</a>
+                                <ol>
+                                    <li><a href="https://brandur.org/notifier#interruptible-receives">Interruptible
+                                            receives</a></li>
+                                    <li><a href="https://brandur.org/notifier#let-it-crash">Let it crash</a></li>
+                                </ol>
+                            </li>
+                            <li><a href="https://brandur.org/notifier#pgbouncer">PgBouncer</a></li> -->
+                        </ol>
+                    </div>
+                    </div> 
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="border-t p-8 w-vp dark:border-slate-700">
+        <div class="container max-w-[650px] mx-auto">
+            <div class="hyphens-auto
+                max-w-none
+                prose prose-sm dark:prose-invert
+                prose-a:border-b prose-a:border-slate-500 prose-a:font-sans prose-a:no-underline
+                hover:prose-a:border-b-slate-200
+                prose-code:prose-a:text-sm prose-code:prose-p:text-sm
+                prose-p:font-serif
+                prose-strong:font-sans
+                ">
+
+                <p><sup id="footnote-1"><a href="">1</a></sup> Footnotes go here</p>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+    <div class="border-t pb-20 p-8 w-vp dark:border-slate-700">
+        <div class="container max-w-[650px] mx-auto">
+            <div class="hyphens-auto
+            italic
+            max-w-none
+            prose prose-sm dark:prose-invert
+            prose-a:border-b prose-a:border-slate-500 prose-a:font-sans prose-a:no-underline
+            hover:prose-a:border-b-slate-200
+            prose-p:font-serif
+            ">
+
+                <p>
+                    Acknowledgements go here.
+                </p>
+
+            </div>
+        </div>
+    </div>
+<footer>
+  <p style="font-size: 0.9rem; text-align: center; color: rgba(0, 0, 0, 0.6); margin: 4rem 0;">
+    It's never too late to
+    <span id="scrollLink" style="opacity: 1; color: #0033cc; text-decoration: underline; cursor: pointer;">
+      start over</span>.
+  </p>
+</footer>
+</body>
+
+</html>
