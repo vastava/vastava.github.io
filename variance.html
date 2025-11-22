@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>A broken pricing paradigm</title>
+    <title>Variance scales with volume in AI, and that’s a pricing problem</title>
     <meta name="description" content="High variance breaks unit economics and threatens scale">
     <meta name="keywords" content="AI, pricing, Cursor, Anthropic, tokens, economics, cost structure">
     <meta name="author" content="Anjali Shrivastava">
@@ -48,7 +48,7 @@
         margin-bottom: 24px;
     }
 
-    .article-contents a {
+    .article-contents a, .footer a {
         margin-bottom: 1rem;
         text-decoration: underline;
         color: rgb(0, 51, 204);
@@ -56,7 +56,7 @@
         transition: color 0.2s;
     }
 
-    .article-contents a:hover {
+    .article-contents a:hover, .footer a:hover {
         color: orange;
         cursor: pointer;
     }
@@ -145,6 +145,32 @@
         font-family: "Helvetica Neue", sans-serif;
         color: #666666
     }
+
+#backToTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 0.5rem 1rem;
+            font-family: "EB Garamond", serif;
+            font-size: 1rem;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            opacity: 0.8;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        #backToTop:hover {
+            opacity: 1;
+        }
+
+        #scrollLink:hover { 
+            color: orange !important; 
+        }        
+
 </style>
 
 <body>
@@ -155,8 +181,8 @@
 
         <div class="container max-w-[1100px] mx-auto mt-8 px-4 xl:max-w-[1125px]">
             <div class="w-fit text-center mx-auto">
-                <h1 id="intro" class="title">A broken pricing paradigm</h1>
-                <h2 class="deckhead">High variance breaks unit economics and threatens scale</h2>
+                <h1 id="intro" class="title">Variance scales with volume in AI, <br> and that’s a pricing problem</h1>
+                <h2 class="deckhead">Fat tailed costs and unpredictable demand break per-token pricing at scale</h2>
             </div>
             <div class="md:flex">
                 <div class="max-w-[190px] flex-grow-0 flex-shrink-0 hidden md:block">
@@ -166,7 +192,7 @@
                             <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Article</div>
                             <div>
                                 <a href="https://anjalishriva.com/pricing_paradigm">
-                                    A broken pricing paradigm
+                                    Variance scales with volume in AI, and that’s a pricing problem
                                 </a>
                             </div>
                         </div>
@@ -250,14 +276,17 @@
                         <div class="table-of-contents md:hidden my-4">
                             <h3>Table of Contents</h3>
                             <ul>
+                                <li><a href="#intro">Intro</a></li>
                                 <li><a href="#token-not-fixed">A token is not a fixed, atomic unit of cost</a></li>
-                                <li><a href="#variance-scales">And variance scales with usage</a></li>
-                                <li><a href="#tail-risk">Tail risk compounds at hyperscale</a></li>
-                                <li><a href="#margins-collapse">And margins collapse as usage grows</a></li>
-                                <li><a href="#saas-economics">High variance kills traditional SaaS unit economics</a>
+                                <li><a href="#variance-scales">And tail risk compounds with usage</a></li>
+                                <li><a href="#tail-risk">Margins collapse at hyperscale</a></li>
+                                <li><a href="#tail-risk" class="ml-[20px] text-xs">Formalization</a></li>
+                                <li><a href="#margins-collapse">High variance forces startups to constrain demand</a></li>
+                                <li><a href="#saas-economics">Unpredictable costs kill SaaS-style margins</a>
                                 </li>
-                                <li><a href="#resource-allocation">It's a resource allocation problem</a></li>
-                                <li><a href="#solutions">How to sidestep the pitfalls?</a></li>
+                                <li><a href="#resource-allocation">Scaling AI and improving unit economics require the same fix</a></li>
+                                <li><a href="#solutions">Towards a new resource allocation (and pricing) paradigm</a></li>
+                                <li><a href="#solutions">Acknowledgements</a></li>
                             </ul>
                         </div>
                         <p>
@@ -559,8 +588,7 @@
                             <img src="images/image6.png" alt="Traditional SaaS vs AI pricing models comparison">
                         </div>
                         <p>(this can be its own article. If someone else writes it, I’ll link it here).</p>
-                        <h1 id="resource-allocation" class="section-head">Margin squeeze and system crashes are the same
-                            problem</h1>
+                        <h1 id="resource-allocation" class="section-head">Scaling AI and improving unit economics require the same fix</h1>
 
                         <p>Anthropic endured <a href="https://x.com/shidoxo/status/1948767104557019336">constant
                                 outages</a> <a href="https://x.com/mynamebedan/status/1945117071735480741">and</a>
@@ -698,14 +726,6 @@
                                 <li><a href="#resource-allocation">Scaling AI and improving unit economics require the same fix</a></li>
                                 <li><a href="#solutions">Towards a new resource allocation (and pricing) paradigm</a></li>
                                 <li><a href="#solutions">Acknowledgements</a></li>
-                                <!-- <li><a href="https://brandur.org/notifier#implementation">A few implementation details</a>
-                                <ol>
-                                    <li><a href="https://brandur.org/notifier#interruptible-receives">Interruptible
-                                            receives</a></li>
-                                    <li><a href="https://brandur.org/notifier#let-it-crash">Let it crash</a></li>
-                                </ol>
-                            </li>
-                            <li><a href="https://brandur.org/notifier#pgbouncer">PgBouncer</a></li> -->
                             </ol>
                         </div>
                     </div>
@@ -716,7 +736,7 @@
     </div>
 
     <div class="border-t border-b p-8 w-vp dark:border-slate-700">
-        <div class="container max-w-[650px] mx-auto">
+        <div class="container max-w-[650px] mx-auto footer">
             <div class="hyphens-auto
                 max-w-none
                 prose prose-sm dark:prose-invert
@@ -734,7 +754,7 @@
                         href="https://x.com/trickylabyrinth">@trickylabyrinth</a> and <a
                         href="https://joodaloop.com/">Judah</a> for their work, and to Jason Harrison, Anthony Crognale,
                     Suraj Srivats, Ade Oshineye and Alex Komoroske for feedback on early versions of this.
-                    <br><br>And to Brandur, for the layout inspiration.<br>
+                    <br><br>And to <a href="https://brandur.org/">Brandur</a>, for the layout inspiration.<br>
                     <!-- And to Analogue Group, for the push to set out on this expedition. -->
                 </p>
             </div>
@@ -773,6 +793,26 @@
                 start over</span>.
         </p>
     </footer>
+    <button id="backToTop" style="display: block;">↑ Top</button>
 </body>
+<script>
+// Scroll to top functionality
+document.getElementById('backToTop').addEventListener('click', function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});
 
+document.getElementById('scrollLink').addEventListener('click', function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+// Show/hide back to top button
+window.addEventListener('scroll', function() {
+    const backToTop = document.getElementById('backToTop');
+    if (window.pageYOffset > 300) {
+        backToTop.style.display = 'block';
+    } else {
+        backToTop.style.display = 'none';
+    }
+});
+</script>
 </html>
