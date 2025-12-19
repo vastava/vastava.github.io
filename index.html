@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anjali Shrivastava</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: "Helvetica Neue", sans-serif;
-            background-color: #f8f9fa;
+            /* background-color: #f8f9fa; */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
         }
 
         a {
-            margin-bottom: 1rem;            
+            margin-bottom: 1rem;
             text-decoration: underline;
             color: #0033cc;
-            font-size: 1.5rem;
-            transition: color 0.2s;  
+            /* font-size: 1.5rem; */
+            transition: color 0.2s;
         }
 
         a:hover {
             color: orange;
             cursor: pointer;
-        }        
+        }
 
         .container {
             text-align: center;
@@ -41,7 +46,7 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            margin-top:2rem;
+            margin-top: 2rem;
             margin-bottom: 2rem;
         }
 
@@ -54,15 +59,228 @@
         .secondary-link:hover {
             color: rgb(0, 51, 204);
         }
+
+        #table-of-contents ol,
+        blockquote,
+        .references {
+            font-size: 1.4rem;
+            line-height: 2.4rem;
+            margin-top: 2rem;
+            padding-right: 0;
+            vertical-align: baseline;
+        }
+
+        ul,
+        ol {
+            margin: 0;
+            padding: 0;
+            padding-left: 5%;
+        }
+
+        ul {
+            list-style-type: circle;
+        }
+
+        ol>li {
+            padding: 0.5rem 0;
+        }
+
+        .sub-item {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            /* font-family: Helvetica, sans-serif; */
+            margin-left: 5%;
+        }
+
+        .sub-item a {
+            font-family: Helvetica, sans-serif;
+            text-decoration: none;
+        }
+
+        /* .sidenote, .marginnote, figcaption { 
+    float: right;
+    clear: right;
+    margin-right: -60%;
+    width: 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    vertical-align: baseline;
+    position: relative; 
+}
+
+figcaption {
+    margin-right: -75%;
+    width: 55%;
+    clear: both;
+}
+
+.sidenote-number { counter-increment: sidenote-counter; color:#4682B4;}
+
+figcaption { counter-increment: figure-counter; }
+
+.sidenote-number:after, .sidenote:before { 
+    content: counter(sidenote-counter) " ";
+    position: relative;
+    color:#4682B4;
+    vertical-align: baseline; 
+}
+
+figcaption:before  { 
+    content: "Figure " counter(figure-counter) ": ";
+    position: relative;
+    vertical-align: baseline;
+    clear: right;
+    font-size: 1.2rem; 
+}
+
+.sidenote-number:after { 
+    content: counter(sidenote-counter);
+    font-family: monospace;
+    font-size: 1rem;
+    top: -0.5rem;
+    left: 0.1rem; 
+}
+
+.sidenote:before { 
+    content: counter(sidenote-counter) ":";
+    font-family:monospace;
+    margin-right:0.3rem;
+}         */
+
+        #table-of-contents {
+            /* max-width: 67.5%; */
+            margin-left: auto;
+            margin-right: auto;
+            /* padding-left: 12.5%; */
+            font-family: Merriweather, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+            color: #313131;
+            max-width: 1200px;
+            counter-reset: sidenote-counter figure-counter;
+        }
+
+        #table-of-contents ul {
+            width: 60%;
+        }
+
+        #table-of-contents ol li {
+            font-size: 1.8rem;
+        }
+
+        #table-of-contents ol {
+            width: 100%;
+            padding-left: 0px;
+            list-style: none;
+            counter-reset: my-awesome-counter;
+        }
+
+        #table-of-contents ol li {
+            counter-increment: my-awesome-counter;
+        }
+
+        #table-of-contents ol li::before {
+            content: counter(my-awesome-counter) " ";
+            color: #ccc;
+            font-weight: bold;
+            padding-right: 10px;
+            text-align: right;
+        }
+
+        .body-text {
+            font-family: Helvetica, sans-serif;
+            /* max-width: 60%; */
+            margin: 0 auto;
+        }
+
+        .body-text p {
+            font-size: 1.5rem;
+            line-height: 2.4rem;
+            margin: 0 0 0 0;
+        }
     </style>
 </head>
+
 <body>
+    <h1>Welcome</h1><br>
+    <section id="table-of-contents" class="level1">
+        <div class="body-text">
+            <p>I&apos;m Anjali, a monetization Data Scientist working my way through the realities of inference
+                economics. </p>
+            <br>
+            <p>
+                What this project isn't:
+            <ul>
+                <li>speculation about an impending "AI bubble"</li>
+                <li>analysis of macroeconomic impacts of AI</li>
+                <li>strategy or advice for VCs looking to capitalize</li>
+            </ul><br>
+            <p>Rather, this is my attempt to describe how AI challenges SaaS economies of scale, and develop an opinion
+                on how software pricing should evolve.</p>
+        </div>
+        <hr>
+        <h3>Essays</h3>
+        <!-- <p><a href="preface.html">Preface</a><br> <a href="acknowledgments.html">Acknowledgments</a></p> -->
+        <ol type="1">
+            <li>
+                <a href="/token_pricing.html">A token is not a stable unit of cost</a> (<a
+                    href="https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing">Google
+                    Doc</a>)
+                <div class="sub-item">
+                    <i>TL;DR</i><br>
+                    Input and output tokens are not stable units of cost, because the Nth token in a conversation is an
+                    order of magnitude more expensive than the first<br>
+                    Variable costs destabilize per-token API pricing, and Cursor and Anthropic&apos;s pricing changes
+                    indicate this<br>
+                    Heterogeneous usage leads to fat tailed risks that compound with usage growh<br>
+                    Tail risk represents lower margins, service degradation and system outages in extreme cases<br>
+
+                    <!-- <u>Kawin Ethayarajh</u>, Yejin Choi, and Swabha Swayamdipta.<br>
+						ICML 2022 (<b>outstanding paper</b> - top 10 of 1233 accepted).<br> -->
+                    <a href="https://www.youtube.com/watch?v=6AXMO2dW0LI"><span class="label label-default">Tim O&apos;Reilly
+                            Podcast</span></a>
+                    <a href="https://www.youtube.com/watch?v=SODf4_1CQqk"><span
+                            class="label label-danger">DSP Podcast</span></a>
+                    <a href="https://x.com/anjali_shriva/status/1960020334721347928"><span
+                            class="label label-info">Tweet</span></a>
+                    <!-- <a href="https://github.com/kawine/dataset_difficulty"><span class="label label-success">code</span></a>
+						<a href="https://huggingface.co/datasets/stanfordnlp/SHP"><span class="label label-danger">dataset 1</span></a>
+						<a href="https://huggingface.co/datasets/stanfordnlp/SHP-2"><span class="label label-danger">dataset 2</span></a> -->
+                </div>
+            </li>
+            <li><a
+                    href="https://docs.google.com/document/d/10WOc_dcFTHWD7Pcs8ZquxGWsilxpwFUJfny-0rXigNo/edit?usp=sharing">Why
+                    fat tails emerge at scale</a>
+                <div class="sub-item">
+                    <i>Suggestions welcome</i>
+            </li>
+            <li>Pricing experiments under infinite variance (wip)</li>
+            </div>
+        </ol>
+        <hr>
+        <div class="body-text">
+            <p>
+                what else I&apos;m thinking about:
+            <ul>
+                <li>the impact of sequence length on costs, and what entropy reveals about it</li>
+
+                <li>how entropy can be used to classify tasks and form the basis for clearer value stories</li>
+
+                <li>analogues to congestion-based pricing </li>
+
+                <li>credits as an evolutionary step towards value-based pricing and more experimentation</li>
+            </ul>
+            <br>
+            I'm at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter at
+            <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.
+            </p>
+        </div>
+    </section>
     <div class="container">
-        <div>
+        <!-- <div>
             <a href="pricing_paradigm">A broken pricing paradigm</a><br>
             <a href="https://scatterpad.com/page/01KA7HGHX3CF76F1YQ9YGV9AHM">Making sense of margins</a><br>
-            <!-- <a href="https://scatterpad.com/page/01KA7QVG5SQ09R3HT1T2X37WNS">Microsoft, GPU craziness and you </a> -->
-        </div>
+        </div> -->
         <img src="images/main.jpg" alt="Featured content" class="featured-image">
 
         <p>
@@ -70,4 +288,5 @@
         </p>
     </div>
 </body>
+
 </html>
