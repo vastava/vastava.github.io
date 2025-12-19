@@ -19,7 +19,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
+            font-size: 1.8rem;
         }
 
         a {
@@ -86,8 +86,8 @@
         }
 
         .sub-item {
-            font-size: 1.2rem;
-            line-height: 1.6rem;
+            /* font-size: 1.2rem; */
+            /* line-height: 1.6rem; */
             /* font-family: Helvetica, sans-serif; */
             margin-left: 5%;
         }
@@ -193,8 +193,8 @@ figcaption:before  {
             margin: 0 auto;
         }
 
-        .body-text p {
-            font-size: 1.5rem;
+        .body-text ul {
+            font-size: 1.7rem;
             line-height: 2.4rem;
             /* margin: 0 0 0 0; */
         }
@@ -227,22 +227,24 @@ figcaption:before  {
                     href="https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing">Google
                     Doc</a>)
                 <div class="sub-item">
-                    <i>TL;DR</i><br>
-                    Input and output tokens are not stable units of cost, because the Nth token in a conversation is an
-                    order of magnitude more expensive than the first<br>
-                    Variable costs destabilize per-token API pricing, and Cursor and Anthropic&apos;s pricing changes
-                    indicate this<br>
-                    Heterogeneous usage leads to fat tailed risks that compound with usage growh<br>
-                    Tail risk represents lower margins, service degradation and system outages in extreme cases<br>
-
                     <!-- <u>Kawin Ethayarajh</u>, Yejin Choi, and Swabha Swayamdipta.<br>
 						ICML 2022 (<b>outstanding paper</b> - top 10 of 1233 accepted).<br> -->
+                        <div style="margin-bottom: 1rem;">
+
                     <a href="https://www.youtube.com/watch?v=6AXMO2dW0LI"><span class="label label-default">Tim O&apos;Reilly
                             Podcast</span></a>
                     <a href="https://www.youtube.com/watch?v=SODf4_1CQqk"><span
                             class="label label-danger">DSP Podcast</span></a>
                     <a href="https://x.com/anjali_shriva/status/1960020334721347928"><span
                             class="label label-info">Tweet</span></a>
+                            </div>
+                    <i>TL;DR</i><br>
+                    The Nth token in a conversation is an
+                    order of magnitude more expensive than the first<br>
+                    Variable costs destabilize per-token API pricing, and Cursor and Anthropic&apos;s pricing changes
+                    indicate this<br>
+                    Heterogeneous usage leads to fat tailed risks that compound with usage growh<br>
+                    Tail risk represents lower margins, service degradation and system outages in extreme cases<br>                            
                     <!-- <a href="https://github.com/kawine/dataset_difficulty"><span class="label label-success">code</span></a>
 						<a href="https://huggingface.co/datasets/stanfordnlp/SHP"><span class="label label-danger">dataset 1</span></a>
 						<a href="https://huggingface.co/datasets/stanfordnlp/SHP-2"><span class="label label-danger">dataset 2</span></a> -->
