@@ -7,6 +7,7 @@
     <title>Anjali Shrivastava</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="./output.css" rel="stylesheet">
 
     <style>
         body {
@@ -79,6 +80,7 @@
 
         ul {
             list-style-type: circle;
+            margin-bottom: 10px;
         }
 
         ol>li {
@@ -198,26 +200,54 @@ figcaption:before  {
             line-height: 2.4rem;
             /* margin: 0 0 0 0; */
         }
+
+.img {
+  /* padding: .5rem; */
+  /* height: 64px; */
+  /* width: 10%;
+  height: 5%; */
+  box-sizing: border-box;
+}        
+
+/* .img__icon {
+  width:100%;
+  display: block;
+  outline: 1px solid;
+  color:rgba(0,0,0,.1)
+
+} */
     </style>
 </head>
 
 <body>
-    <h1>Welcome</h1><br>
+    <!-- <h1>Welcome</h1><br> -->
     <section id="table-of-contents" class="level1">
+<div class="flex lg:flex-row flex-col items-end space-y-10 lg:space-y-0 lg:space-x-6">
+    <!-- <div class="w-full"> -->
+        <img class="mb-5 h-[250px] w-auto" src="images/profile.png">
         <div class="body-text">
+            <h2>Welcome</h2>
             <p>I&apos;m Anjali, a monetization Data Scientist working my way through the realities of inference
                 economics. </p>
-            <br>
+            <!-- <br> -->
             <p>
                 What this project isn't:
             <ul>
                 <li>speculation about an impending "AI bubble"</li>
                 <li>analysis of macroeconomic impacts of AI</li>
                 <li>strategy or advice for VCs looking to capitalize</li>
-            </ul><br>
+            </ul>
+            <!-- <br> -->
             <p>Rather, this is my attempt to describe how AI challenges SaaS economies of scale, and develop an opinion
                 on how software pricing should evolve.</p>
         </div>
+
+
+    <!-- <div class="landing-body">
+        <p>I'm the founder of <a class="link" href="https://lexica.art">Lexica</a> – we're building creative tools backed by state-of-the-art generative models (P.S. <a class="link" href="https://lexica.art/careers">we're hiring</a>). I previously worked on a low-code tool powered by language models called Debuild. Before that, I built Vectordash, a peer-to-peer GPU cloud backed by Y Combinator.</p><br><p>I live in San Francisco and spend my free time experimenting with software design, researching genetics and longevity, and trying to <a href="/future" class="link">build the future.</a></p>
+    </div> -->
+<!-- </div>         -->
+</div>
         <hr>
         <h3>Essays</h3>
         <!-- <p><a href="preface.html">Preface</a><br> <a href="acknowledgments.html">Acknowledgments</a></p> -->
@@ -252,14 +282,47 @@ figcaption:before  {
             </li>
             <li><a
                     href="https://docs.google.com/document/d/10WOc_dcFTHWD7Pcs8ZquxGWsilxpwFUJfny-0rXigNo/edit?usp=sharing">Why
-                    fat tails emerge at scale</a>
+                    fat tails emerge at scale</a> (<i>Suggestions welcome</i>)
                 <div class="sub-item">
-                    <i>Suggestions welcome</i>
+                    <i>TL;DR</i><br>
+                    Price fluctuations and system crashes are downstream of a singular cause: infinite resource variance<br>  
+                    Resource costs are intrinsically varied due to handoff between prefill (compute-bound) and decode (memory-bound) <br>
+                    Variability in concurrency of requests, request lengths and response lengths exacerbate cost unpredictability    <br>    
+                    
             </li>
-            <li>Pricing experiments under infinite variance (wip)</li>
+            <li>Pricing experiments under infinite variance (<i>WIP</i>)</li>
             </div>
         </ol>
         <hr>
+        <h3>Diagrams</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <!-- <div class="img h-12 w-auto">
+                  <img src="./images/image2.png" alt="" class="img__icon" />
+              </div> -->
+              <div class="img">
+                  <img src="./images/image3.png" alt="" class="img__icon" />
+              </div>
+                <!-- <div class="img">
+                  <img src="./images/image4.png" alt="" class="img__icon" />
+              </div> -->
+
+              <!-- <div class="img">
+                  <img src="./images/image5.png" alt="" class="img__icon" />
+              </div> -->
+              <div class="img col-span-2">
+                  <img src="./images/image6.png" alt="" class="img__icon" />
+              </div>
+                <!-- <div class="img">
+                  <img src="./images/image7.png" alt="" class="img__icon" />
+              </div>               -->
+  
+              <!-- <div class="img">
+      <a href="https://vastava.github.io/chile-map/" class="db link dim tc no-link-underline">
+        <img src="./img/chile.png" alt="" class="img__icon">
+      </a>
+    </div> -->
+            </div>            
+            <hr>    
         <div class="body-text">
             <p>
                 what else I&apos;m thinking about:
@@ -283,7 +346,7 @@ figcaption:before  {
             <a href="pricing_paradigm">A broken pricing paradigm</a><br>
             <a href="https://scatterpad.com/page/01KA7HGHX3CF76F1YQ9YGV9AHM">Making sense of margins</a><br>
         </div> -->
-        <img src="images/main.jpg" alt="Featured content" class="featured-image">
+        <!-- <img src="images/main.jpg" alt="Featured content" class="featured-image"> -->
 
         <p>
             <a href="/vintage" class="secondary-link">View the old version of this site at /vintage</a>
