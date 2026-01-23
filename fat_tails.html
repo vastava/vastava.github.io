@@ -300,7 +300,7 @@
                         </div>
                         <p>
                             When Anthropic blocked OAuth access from third-party coding agents in early January, critics called it a rent-seeking move. The reaction echoes last year’s Cursor pricing drama, but misses the underlying cause: inference generates fat tailed costs, forcing providers to throttle demand. 
-<p>This is the same math I wrote about last August. I argued that fixed per-token pricing collapses under unpredictable resource costs and heterogeneous usage. Long-context, agentic workloads, and more users compound tail risk; tail risk here refers not just to profit loss, but overcommitting resources and crashing systems.</p>
+<p>This is the same math I <a href="https://www.anjalishriva.com/token_pricing.html">wrote about last August</a>. I argued that fixed per-token pricing collapses under unpredictable resource costs and heterogeneous usage. Long-context, agentic workloads, and more users compound tail risk; tail risk here refers not just to profit loss, but overcommitting resources and crashing systems.</p>
 
 
 <p>The latest dispute between Anthropic and OpenCode reinforces this insight, and also reveals structural forces pushing AI business models towards vertical integration, telemetry and contracted, priority service.
@@ -402,7 +402,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                         <p>Capacity is already unpredictable in controlled environments, and exacerbated in production due to variance in concurrency of requests, request lengths and response lengths. The clearest way to see why is to separate the tail behaviour of tokens per request and the true resource cost per request.</p>
                         <p>The mean tokens consumed per request must be finite since it is bounded by the context window limit. But variance is large due to heterogeneous usage, and is amplified as use cases explode and context windows become arbitrarily large with new model releases.</p>
                         <div class="image-container">
-                            <img src="images/fat_tails/image2.png" alt="Demand elasticity and code generation usage">
+                            <img src="images/fat_tails/image15.png" alt="Truncated power law distribution of tokens consumed">
                         </div>
 
                         <p>This was the starting intuition that informed my first essay on the instability of per-token pricing, and why AI costs are fat tailed.</p>
@@ -411,6 +411,9 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 
 <p>True resource costs are dependent on system state (batch size, temporal demand, P/D ratio, GPU capacity, etc.) which is highly variable, meaning the effective capacity boundary is not fixed in the same way the context window limit is. And because each of these state variables are non-stationary, the conditional mean will never converge.
 </p>
+                        <div class="image-container">
+                            <img src="images/fat_tails/image14.png" alt="Power law distribution of true resource costs">
+                        </div>
 <p>There&apos;s plenty of scenarios with a moving conditional mean like this. It’s only a problem because per-token pricing assumes an asymptotic mean cost per request exists, and it’s clearly not the case. You might think it’s not a significant issue due to falling costs, but I’ll address this towards the end.</p>
 <p>The takeaway I want you to have is that the marginal cost of a request is statistically impractical to predict. And the deeper implication is that costs aren’t per-request at all. They are a function of the peak system state.</p>
 
@@ -420,11 +423,11 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 <p>The Tensor Economics model showed that packing many unrelated user contexts into the same concurrent batch is risky because of KV cache memory pressure and its potential to explode. But Anthropic’s Message Batches API counteracts both of these forces, by splitting a single user’s long request into many sequential requests that are queued and can be executed asynchronously.</p>
 <p>So it simultaneously solves the problem of “unrelated contexts” and gives Anthropic temporal control. Which removes the possibility of concurrent long-KV caches exploding in cost.</p>
                         <div class="image-container">
-                            <img src="images/fat_tails/image12.png" alt="Traditional SaaS vs AI pricing models comparison">
+                            <img src="images/fat_tails/image12.png" alt="Documentation for Anthropic's product-level Message Batches API">
                         </div>
                         <p>You should now understand why Anthropic encourages batching for long requests, and why cache writes are more expensive than base input tokens.</p>
                         <div class="image-container">
-                            <img src="images/fat_tails/image8.png" alt="Traditional SaaS vs AI pricing models comparison">
+                            <img src="images/fat_tails/image8.png" alt="Anthropic cache write pricing ">
                         </div>
                         <p>And you also might have picked up on the catch-22: providers need sufficient demand to split model weights across large batches to be profitable. But handling many concurrent users (a large batch size of unrelated contexts) is severely limited by the total memory available.
 </p>
@@ -436,12 +439,12 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                         <p>But the deeper driver of walling off access is visibility: only the vertically-integrated stack gives the provider a real-time view of input/output ratios, cache pressure, and batch concurrency—exactly the levers needed to control costs.</p>
 <p>A Claude Code engineer said himself that 3rd party harnesses generate “unusual traffic patterns without any of the usual telemetry.”</p>
                         <div class="image-container">
-                            <img src="images/fat_tails/image10.png" alt="Token compute allocation">
+                            <img src="images/fat_tails/image10.png" alt="Thariq tweet">
                         </div>
 <p>Without that telemetry, subscription pricing is a blind bet on an infinite-variance variable; with it, the provider can at least throttle demand or plan for capacity accordingly. Which is why I believe Anthropic’s restrictions weren't solely to protect a distribution moat, but rather to maintain the feedback loop over unit economics.</p>
                       
 <div class="image-container">
-                            <img src="images/fat_tails/image11.png" alt="Traditional SaaS vs AI pricing models comparison">
+                            <img src="images/fat_tails/image13.png" alt="Chart of OpenCode downloads rising at the same time as Anthropic's restrictions">
                         </div>
                         <p>This particular episode may have been a response to a sudden influx of users on OpenCode’s platform, leading to a rare combination of long-context, high-variance, unique workloads.</p>
 
@@ -472,7 +475,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                         <p>
                             What I think is most interesting about priority service is that it marks a shift from a “per-request cost prediction problem” to an “aggregate capacity problem.” And making that shift requires assuming a design role and allocating specific time-slots instead of rolling the dice. 
                         </p>
-                        <p>These contracts could evolve into something like BigQuery’s pricing, that offers sophisticated forecasting for customers’ storage/processing needs and scales resources based on that forecast.</p>
+                        <p>These contracts could evolve into something like <a href=""https://medium.com/google-cloud/understanding-bigquery-pricing-a-comprehensive-guide-b775ed25399f>BigQuery’s pricing</a>, that offers sophisticated forecasting for customers’ storage/processing needs and scales resources based on that forecast.</p>
 
                         <h1 id="solutions" class="section-head">Pricing and capacity planning are an intertwined, moving target</h1>
 
@@ -481,7 +484,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                         <p>Falling absolute costs don’t fix the variance problem either. Even if the costs are a fraction of the sticker price on average, the spread around the shifting mean is still fat tailed. A rare combination of concurrent requests and unrelated contexts could wipe out the margin on the other 99% of requests in that time-window.</p>
                         <p>A business model predicated on static prices will either be wildly unprofitable, or end up like insurance-style schemes. </p>
                         <p>But the flip side of this is that you don’t need an accurate price that perfectly collapses compute/memory needs and variance into one scalar to improve unit economics. You only need a somewhat measurable signal for how much each request impacts the aggregate capacity state.</p>
-                        <p>With such a signal, you maintain a buffer around the critical resource pool, and your scheduling/pricing logic reacts to buffer consumption. I think there’s many candidates for such a proxy signal. Token entropy, for example, has been used to meaningfully predict sequence lengths, which is the primary cost driver. Or straightforwardly use a compute-time metric, like tokens per second, similar to AWS.</p>
+                        <p>With such a signal, you maintain a buffer around the critical resource pool, and your scheduling/pricing logic reacts to buffer consumption. I think there’s many candidates for such a proxy signal. Token entropy, for example, has been used to meaningfully <a href="https://openreview.net/pdf?id=3loQDtveWI">predict sequence lengths</a>, which is the primary cost driver. Or straightforwardly use a compute-time metric, like tokens per second, similar to AWS.</p>
                         <p>I believe a solution like this will be necessary in the near-term. It seems like right now, requests are prioritized and scheduled according to when they’re submitted. It’s fair, but suboptimal if your concern is increasing profit.</p>
                         <p>We see nods to contracted priority service as a way to optimize allocation, and counteract this pressure. Maybe this will look like contracts that are re-negotiated with each model release, and customers will estimate their own resource needs. But given how dynamic the resource load is and the sensitivity to temporal demand, that implies a real-time signal is necessary.
 </p>                    <p>In this world, tokens can still be the public metric for explainability but they wouldn’t be treated as the true pricing primitive — they’re an abstraction of the actual meter, that drives both costs and scaling. </p>

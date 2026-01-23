@@ -253,7 +253,7 @@ figcaption:before  {
         <!-- <p><a href="preface.html">Preface</a><br> <a href="acknowledgments.html">Acknowledgments</a></p> -->
         <ol type="1">
             <li>
-                <a href="/token_pricing.html">A token is not a stable unit of cost</a> (<a
+                <a href="/token_pricing">A token is not a stable unit of cost</a> (<a
                     href="https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing">Google
                     Doc</a>)
                 <div class="sub-item">
@@ -281,14 +281,14 @@ figcaption:before  {
                 </div>
             </li>
             <li><a
-                    href="https://docs.google.com/document/d/10WOc_dcFTHWD7Pcs8ZquxGWsilxpwFUJfny-0rXigNo/edit?usp=sharing">Why
-                    fat tails emerge at scale</a> (<i>Suggestions welcome</i>)
+                    href="/fat_tails">Why
+                    fat tails emerge at scale</a> (<a href="https://docs.google.com/document/d/10WOc_dcFTHWD7Pcs8ZquxGWsilxpwFUJfny-0rXigNo/edit?usp=sharing">Google Doc</a>)
                 <div class="sub-item">
                     <i>TL;DR</i><br>
-                    Price fluctuations and system crashes are downstream of a singular cause: infinite resource variance<br>  
-                    Resource costs are intrinsically varied due to handoff between prefill (compute-bound) and decode (memory-bound) <br>
-                    Variability in concurrency of requests, request lengths and response lengths exacerbate cost unpredictability    <br>    
-                    
+                    A few long-context requests can explode memory use since each carries its own non-shareable KV cache<br>
+Because real-world traffic has near-infinite variance, the mean cost per request doesn’t converge<br>
+Without live telemetry on cache pressure, batching logic and P/D ratios, providers can’t optimize unit economics<br>
+The emerging pricing fix is priority contracts that turn unpredictable per-request costs into a forecastable aggregate-capacity problem<br>                    
             </li>
             <li>Pricing experiments under infinite variance (<i>WIP</i>)</li>
             </div>
