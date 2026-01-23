@@ -197,7 +197,14 @@
                             </div>
                         </div>
 
-
+                       <div class="border-b px-4 py-4 dark:border-slate-700">
+                            <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Article</div>
+                            <div>
+                                <a href="https://anjalishriva.com/token_pricing">
+                                    A token is not a fixed unit of cost
+                                </a>
+                            </div>
+                        </div>
                         <div class="border-b flex items-stretch text-center dark:border-slate-700">
                             <div class="flex-grow dark:border-slate-700">
                                 <div class="flex h-full items-center">
@@ -228,7 +235,7 @@
                             </div> -->
                         </div>
 
-                        <div class="border-b px-4 py-4 dark:border-slate-700">
+                        <!-- <div class="border-b px-4 py-4 dark:border-slate-700">
                             This essay was widely shared and I went on two podcasts to discuss it:
                             <ol>
                             <li>
@@ -238,7 +245,7 @@
                                 <strong>🔗 <a href="https://www.youtube.com/watch?v=SODf4_1CQqk">--dangerously-skip-permissions</a> </strong>
                             </li>                            
                             </ol>
-                        </div>
+                        </div> -->
 
                         <div class="border-b px-4 py-4 dark:border-slate-700">
                             See comments, research notes and earlier drafts on <strong><a
@@ -301,7 +308,7 @@
                             </ul>
                         </div>
                         <p>
-                            When Anthropic blocked OAuth access from third-party coding agents in early January, critics called it a rent-seeking move. The reaction echoes last year’s Cursor pricing drama, and is driven by the same underlying cause: inference generates fat tailed costs, forcing providers to throttle demand. 
+                            When Anthropic blocked OAuth access from third-party coding agents in early January, critics called it a rent-seeking move. The reaction echoes last year’s Cursor pricing drama, but misses the underlying cause: inference generates fat tailed costs, forcing providers to throttle demand. 
 <p>This is the same math I wrote about last August. I argued that fixed per-token pricing collapses under unpredictable resource costs and heterogeneous usage. Long-context, agentic workloads, and more users compound tail risk; tail risk here refers not just to profit loss, but overcommitting resources and crashing systems.</p>
 
 
@@ -317,14 +324,14 @@
 <p>On the left, with a batch size of one request, you can see memory consumption rising with prompt length; when LLaMA 3.3 reaches its context limit, the KV cache for a single request consumes nearly 30% of the GB taken up by the model weights themselves. 
 </p>
 <p>
-The right-hand chart shows how this cache pressure scales when batching. KV-cache memory is bilinear in sequence length and batch size. While each dimension scales linearly, the product can quickly outgrow the fixed model weights.
+The right-hand chart shows how this cache pressure scales when batching. KV cache memory is bilinear in sequence length and batch size. While each dimension scales linearly, the product can quickly outgrow the fixed model weights.
 </p>
 
                         <div class="image-container">
-                            <img src="images/image7.png" alt="API pricing breakdown">
+                            <img src="images/fat_tails/image7.png" alt="API pricing breakdown">
                         </div>
 
-                        <p>In production, this means that once long contexts from many users arrive at the same time, their independent linear ramps add into a combined footprint that can outrun memory capacity. A setup of 8 H100s has a memory capacity of around 640 GB. Note how a batch of just 8 requests at the full context length of Llama comes close to that limit, at around 73%.</p>
+                        <p>In production, this means that once long contexts from many users arrive at the same time, their independent linear ramps multiply into a combined footprint that can outrun memory capacity. As an example, setup of 8 H100s has a memory capacity of around 640 GB: note how a batch of just 8 requests at the full context length of Llama comes close to that limit, at around 73%.</p>
 
                         <h1 id="variance-scales" class="section-head">Why bigger batches erode throughput</h1>
 
@@ -332,7 +339,7 @@ The right-hand chart shows how this cache pressure scales when batching. KV-cach
 <p>But the true resource costs are not linear, because every extra request in the batch carries its own KV cache, and that memory scales with both sequence length and batch size. Once the product (prompt length × users) outruns capacity, you hit a wall.</p>
 <p>Tensor Economics&apos; throughput model shows how fast the wall arrives.The blue curve is the predicted throughput based on the GPUs’ theoretical capacity (assuming 100% utilization). The green curve is the actual observed throughput.</p>
                         <div class="image-container">
-                            <img src="images/image1.png" alt="Cost per token variance">
+                            <img src="images/fat_tails/image1.png" alt="Cost per token variance">
                         </div>
 
                         <!-- <p>The underlined variables in our formula likely have fat tails — <strong>so it's all of them.</strong></p> -->
@@ -341,9 +348,9 @@ The right-hand chart shows how this cache pressure scales when batching. KV-cach
 At a batch size of 1 request, the actual throughput is only ~60% of the theoretical capacity. This is because in practice, GPUs achieve ~50-70% of their theoretical capacity due to inefficiencies like interconnect overhead (read more).
 At a batch size of 512 requests, the actual throughput is ~40% of the theoretical capacity, considerably worse than the starting throughput. As the batch size increases, the actual capacity appears to decrease at a consistent rate relative to the theoretical capacity. 
 </p>
-<p>The right-hand curve shows the fractional drop in throughput relative to the GPU’s theoretical maximum; the gap grows roughly exponentially with batch size before leveling off at ≈ 40%. While this memory capacity decay looks exponential, I would expect it to approach a saturation level rather than decay to zero.</p>
+<p>The right-hand curve shows the fractional drop in throughput relative to the GPU’s theoretical maximum; the gap grows roughly exponentially with batch size before leveling off at ≈40%. While this memory capacity decay looks exponential, I would expect it to approach a saturation level rather than decay to zero.</p>
                         <div class="image-container">
-                            <img src="images/image5.png" alt="Cost distribution">
+                            <img src="images/fat_tails/image5.png" alt="Cost distribution">
                         </div>
 
 <p>My point is that memory capacity is dependent on batch size, which itself is dependent on non-stationary distributions (GPU efficiency and temporal demand, among other variables). The next section will make this relationship clearer.</p>
@@ -377,7 +384,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                         <p>Capacity is already unpredictable in controlled environments, and exacerbated in production due to variance in concurrency of requests, request lengths and response lengths. The clearest way to see why is to separate the tail behaviour of tokens per request and the true resource cost per request.</p>
                         <p>The mean tokens consumed per request must be finite since it is bounded by the context window limit. But variance is large due to heterogeneous usage, and is amplified as use cases explode and context windows become arbitrarily large with new model releases.</p>
                         <div class="image-container">
-                            <img src="images/image3.png" alt="Demand elasticity and code generation usage">
+                            <img src="images/fat_tails/image2.png" alt="Demand elasticity and code generation usage">
                         </div>
 
                         <p>This was the starting intuition that informed my first essay on the instability of per-token pricing, and why AI costs are fat tailed.</p>
@@ -391,13 +398,16 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 
                         <h1 id="saas-economics" class="section-head">Systems crash when batching meets the memory wall</h1>
 
-                        <p>Once cache outweighs the model weights themselves, variance in usage compounds unpredictability of the effective capacity boundary. This explains why the risk of system outages increases with open-ended, agentic tasks like Claude Code: the longer sequence lengths push inference from the model weights being the primary memory consumer to the KV-cache-dominated regime, and the probability of exceeding memory capacity increases.</p>
+                        <p>Once cache outweighs the model weights themselves, variance in usage compounds unpredictability of the effective capacity boundary. This explains why the risk of system outages increases with open-ended, agentic tasks like Claude Code: the longer sequence lengths push inference from the model weights being the primary memory consumer to the KV cache-dominated regime, and the probability of exceeding memory capacity increases.</p>
 <p>The Tensor Economics model showed that packing many unrelated user contexts into the same concurrent batch is risky because of KV cache memory pressure and its potential to explode. But Anthropic’s Message Batches API counteracts both of these forces, by splitting a single user’s long request into many sequential requests that are queued and can be executed asynchronously.</p>
 <p>So it simultaneously solves the problem of “unrelated contexts” and gives Anthropic temporal control. Which removes the possibility of concurrent long-KV caches exploding in cost.</p>
                         <div class="image-container">
-                            <img src="images/image6.png" alt="Traditional SaaS vs AI pricing models comparison">
+                            <img src="images/fat_tails/image12.png" alt="Traditional SaaS vs AI pricing models comparison">
                         </div>
                         <p>You should now understand why Anthropic encourages batching for long requests, and why cache writes are more expensive than base input tokens.</p>
+                        <div class="image-container">
+                            <img src="images/fat_tails/image8.png" alt="Traditional SaaS vs AI pricing models comparison">
+                        </div>
                         <p>And you also might have picked up on the catch-22: providers need sufficient demand to split model weights across large batches to be profitable. But handling many concurrent users (a large batch size of unrelated contexts) is severely limited by the total memory available.
 </p>
 <p>The same economies of scale that make inference profitable eventually throttle it.
@@ -408,11 +418,13 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                         <p>But the deeper driver of walling off access is visibility: only the vertically-integrated stack gives the provider a real-time view of input/output ratios, cache pressure, and batch concurrency—exactly the levers needed to control costs.</p>
 <p>A Claude Code engineer said himself that 3rd party harnesses generate “unusual traffic patterns without any of the usual telemetry.”</p>
                         <div class="image-container">
-                            <img src="images/image4.png" alt="Token compute allocation">
+                            <img src="images/fat_tails/image10.png" alt="Token compute allocation">
                         </div>
 <p>Without that telemetry, subscription pricing is a blind bet on an infinite-variance variable; with it, the provider can at least throttle demand or plan for capacity accordingly. Which is why I believe Anthropic’s restrictions weren't solely to protect a distribution moat, but rather to maintain the feedback loop over unit economics.</p>
                       
-
+<div class="image-container">
+                            <img src="images/fat_tails/image11.png" alt="Traditional SaaS vs AI pricing models comparison">
+                        </div>
                         <p>This particular episode may have been a response to a sudden influx of users on OpenCode’s platform, leading to a rare combination of long-context, high-variance, unique workloads.</p>
 
                         <p>Seen this way, the structural push toward first-party harnesses is a separate, longer-run dynamic: once usage sits inside Claude Code, Anthropic gains the telemetry required to throttle or re-price in real time, something it still does not have for third-party API traffic—even if that traffic is now billed per-token.
@@ -425,45 +437,39 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 
                         <p>Margin pressure is fundamentally an internal, structural problem, made worse by external, competitive forces. </p>
 
-                        <h1 id="solutions" class="section-head">The pricing implications of infinite variance
+                        <h1 id="implications" class="section-head">The pricing implications of infinite variance</h1>
 
-                        </h1>
+                        <p>What should be apparent by now is that estimating the resource costs of a request in the real world is extremely challenging, even if you have historical data to go off of. An accurate estimator would require profiles of compute and memory
+<br>…for every {model weights size, batch size, sequence length} combination
+<br>…while also considering the batch scheduling logic, temporal patterns in demand and heterogeneous usage.
 
-                        <p>
-                            High variance in costs necessarily constrains demand; today, the constraints are reactive.
-                        </p>
-
-                        <p>
-                            To safely cushion from unbounded costs, a business model must price in the variance or be
-                            well above the true cost
-                            on average. Ideally by anchoring price to value delivered instead of token cost; but value
-                            delivered also happens
-                            to be highly variable and subjective. At the same time, there&apos;s structure to value:
-                            reliability, relevance, actionability.
-                        </p>
+</p>
 
                         <p>
-                            The key insight is that margin squeeze and resource misallocation are two sides of the same
-                            problem. Solving one side of the equation should solve the other. If you can measure the
-                            value delivered, you can price that instead of raw compute. And if you can price outcomes in
-                            terms of value delivered, you can budget the exact amount of compute and data that maximizes
-                            profit on each task.
+                            Given how dynamic the resource requirements are, scheduling and provisioning in real time sounds like a nightmare. That plus the need for greater telemetry might explain why Anthropic is experimenting with priority service contracts: upfront revenue, and requires customers to agree to fixed ratios of input to output tokens to make capacity planning more tractable.
                         </p>
-
+                        <div class="image-container">
+                            <img src="images/fat_tails/image9.png" alt="Traditional SaaS vs AI pricing models comparison">
+                        </div>
                         <p>
-                            So the layer that owns the meter also decides how much compute and data to deploy and keeps
-                            the spread between cost and price. Today that meter sits inside the model; tomorrow it could
-                            sit inside an orchestrator that plans the whole workflow.
+                            What I think is most interesting about priority service is that it marks a shift from a “per-request cost prediction problem” to an “aggregate capacity problem.” And making that shift requires assuming a design role and allocating specific time-slots instead of rolling the dice. 
                         </p>
+                        <p>These contracts could evolve into something like BigQuery’s pricing, that offers sophisticated forecasting for customers’ storage/processing needs and scales resources based on that forecast.</p>
 
-                        <p>
-                            The implication is technologic, not economic: the scaling prize may go to whoever defines
-                            and measures “intelligence value,” not necessarily whoever trains the biggest, most capable
-                            model.
-                        </p>
-                        <p style="font-style: italic; text-align: center; color: rgb(102, 102, 102);" class="mb-0!">
+                        <h1 id="solutions" class="section-head">The interconnected pricing and scaling issue</h1>
+
+                        <p>Once you realize how resource variance, heterogeneous usage and temporal demand collide to create a non-stationary, open state space, you also realize predictable budgets on a request-level or fair per-token prices may not matter in the end.</p>
+                        <p>This is the fundamental flaw of per-token and subscription pricing. A scalar price assumes that the resource costs will converge to a mean, when it is evidently non-stationary and shifting.</p>
+                        <p>Falling absolute costs don’t fix the variance problem either. Even if the costs are a fraction of the sticker price on average, the spread around the shifting mean is still fat tailed. A rare combination of concurrent requests and unrelated contexts could wipe out the margin on the other 99% of requests in that time-window.</p>
+                        <p>A business model predicated on static prices will either be wildly unprofitable, or end up like insurance-style schemes. </p>
+                        <p>But the flip side of this is that you don’t need an accurate price that perfectly collapses compute/memory needs and variance into one scalar to improve unit economics. You only need a somewhat measurable signal for how much each request impacts the aggregate capacity state.</p>
+                        <p>With such a signal, you maintain a buffer around the critical resource pool, and your scheduling/pricing logic reacts to buffer consumption. I think there’s many candidates for such a proxy signal. Token entropy, for example, has been used to meaningfully predict sequence lengths, which is the primary cost driver. Or straightforwardly use a compute-time metric, like tokens per second, similar to AWS.</p>
+                        <p>I believe a solution like this will be necessary in the near-term. It seems like right now, requests are prioritized and scheduled according to when they’re submitted. It’s fair, but suboptimal if your concern is increasing profit.</p>
+                        <p>We see nods to contracted priority service as a way to optimize allocation, and counteract this pressure. Maybe this will look like contracts that are re-negotiated with each model release, and customers will estimate their own resource needs. But given how dynamic the resource load is and the sensitivity to temporal demand, that implies a real-time signal is necessary.
+</p>                    <p>In this world, tokens can still be the public metric for explainability but they wouldn’t be treated as the true pricing primitive — they’re an abstraction of the actual meter, that drives both costs and scaling. </p>
+                        <!-- <p style="font-style: italic; text-align: center; color: rgb(102, 102, 102);" class="mb-0!">
                             Soren Larson, @trickylabyrinth and Judah contributed significantly to this piece.
-                        </p>
+                        </p> -->
 
 
                     </div>
