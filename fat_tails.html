@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A token is not a fixed unit of cost</title>
+    <meta name="description" content="High variance breaks unit economics and threatens scale">
+    <meta name="keywords" content="AI, pricing, Cursor, Anthropic, tokens, economics, cost structure">
+    <meta name="author" content="Anjali Shrivastava">
+    <link href="./output.css" rel="stylesheet">
+</head>
+<style>
+    .banner {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 1.25rem;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+
+    .title {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        font-family: "Helvetica Neue", sans-serif;
+    }
+
+    .deckhead {
+        font-family: Georgia, serif;
+        font-style: italic;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+        color: #666666;
+    }
+
+    .container {
+        line-height: 1.6;
+    }
+
+    .container p {
+        font-family: "Helvetica Neue", sans-serif;
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+
+    .article-contents a, .footer a {
+        margin-bottom: 1rem;
+        text-decoration: underline;
+        color: rgb(0, 51, 204);
+        /* font-size: 1rem; */
+        transition: color 0.2s;
+    }
+
+    .article-contents a:hover, .footer a:hover {
+        color: orange;
+        cursor: pointer;
+    }
+
+    .banner a {
+        margin-bottom: 1rem;
+        text-decoration: underline;
+        color: rgb(0, 51, 204);
+        /* font-size: 1rem; */
+        transition: color 0.2s;
+    }
+
+    .banner a:hover {
+        color: orange;
+        cursor: pointer;
+    }
+
+    .table-of-contents {
+        /* margin: 2rem 0; */
+        font-family: "EB Garamond", serif;
+    }
+
+    .table-of-contents h3 {
+        font-family: "EB Garamond", serif;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    .table-of-contents ul {
+        list-style: none;
+        padding-left: 0.5rem;
+        margin: 0;
+    }
+
+    .table-of-contents li {
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+
+    .table-of-contents a {
+        color: rgb(0, 51, 204);
+        text-decoration: none;
+        font-size: 1rem;
+        font-family: "EB Garamond", serif;
+    }
+
+    .table-of-contents a:hover {
+        color: white;
+        background-color: rgb(0, 51, 204);
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+
+    .article-metadata {
+        font-family: "EB Garamond", serif;
+    }
+
+    .section-head {
+        text-align: left;
+        line-height: 1.2;
+        font-family: "Helvetica Neue", sans-serif;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .formula {
+        font-family: "Courier New", monospace;
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+
+    .blockquote {
+        /* font-style: italic; */
+        border-left: 6px solid #333;
+        margin-left: 2rem;
+        padding-left: 0.8rem;
+        color: rgb(51, 51, 51);
+        font-family: "Helvetica Neue", sans-serif;
+        color: #666666
+    }
+
+#backToTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 0.5rem 1rem;
+            font-family: "EB Garamond", serif;
+            font-size: 1rem;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            opacity: 0.8;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        #backToTop:hover {
+            opacity: 1;
+        }
+
+        #scrollLink:hover { 
+            color: orange !important; 
+        }        
+
+</style>
+
+<body>
+    <div class="mx-auto max-w-[1200px]">
+        <div class="banner" role="banner" style="text-align: center;">
+            You can always <a href="https://anjalishriva.com/">go home</a>.
+        </div>
+
+        <div class="container max-w-[1100px] mx-auto mt-8 px-4 xl:max-w-[1125px]">
+            <div class="w-fit text-center mx-auto">
+                <h1 id="intro" class="title">A token is not a fixed unit of cost</h1>
+                <h2 class="deckhead">Variance in usage creates an interconnected pricing and scaling issue</h2>
+            </div>
+            <div class="md:flex">
+                <div class="max-w-[190px] flex-grow-0 flex-shrink-0 hidden md:block">
+                    <div
+                        class="article-metadata leading-normal tracking-tighter sticky text-center text-proseBody top-5 dark:text-proseInvertBody">
+                        <div class="border-b px-4 pb-4 dark:border-slate-700">
+                            <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Article</div>
+                            <div>
+                                <a href="https://anjalishriva.com/token_pricing">
+                                    A token is not a fixed unit of cost
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="border-b flex items-stretch text-center dark:border-slate-700">
+                            <div class="flex-grow dark:border-slate-700">
+                                <div class="flex h-full items-center">
+                                    <div class="px-4 py-4 border-r w-[50%]">
+                                        <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">
+                                            Published
+                                        </div>
+                                        <div class="leading-tight">August 23, 2025</div>
+                                    </div>
+
+                                    <div class="px-4 py-4 w-[50%]">
+                                        <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">
+                                            Revision
+                                        </div>
+                                        <div class="leading-tight">November 16, 2025</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="flex-grow h-full min-w-0">
+                                <div class="flex items-center">
+                                    <div class="px-4 py-4">
+                                        <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">
+                                            Revision
+                                        </div>
+                                        <div class="leading-tight">November 16, 2025</div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <div class="border-b px-4 py-4 dark:border-slate-700">
+                            This essay was widely shared and I went on two podcasts to discuss it:
+                            <ol>
+                            <li>
+                                <strong>🔗 <a href="https://www.youtube.com/watch?v=6AXMO2dW0LI">Live with Tim O&apos;Reilly</a> </strong>
+                            </li>
+                            <li>
+                                <strong>🔗 <a href="https://www.youtube.com/watch?v=SODf4_1CQqk">--dangerously-skip-permissions</a> </strong>
+                            </li>                            
+                            </ol>
+                        </div>
+
+                        <div class="border-b px-4 py-4 dark:border-slate-700">
+                            See comments, research notes and earlier drafts on <strong><a
+                                    href="https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing"
+                                    class="text-proseLinks dark:text-proseInvertLinks">Google Docs</a></strong>.
+                        </div>
+
+
+                        <div class="italic px-4 py-4">
+                            <p class="mb-2">I'm on Twitter at <a href="https://twitter.com/anjali_shriva"
+                                    class="font-bold text-proseLinks dark:text-proseInvertLinks">@anjali_shriva</a>.</p>
+                            <p>Email at <a href="mailto:anjali.shrivastava99@gmail.com"
+                                    class="font-bold text-proseLinks dark:text-proseInvertLinks">anjali.shrivastava99<br>@gmail.com</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-bold my-1 text-proseLinks text-sm dark:text-proseInvertLinks md:hidden">
+                    Published August&nbsp;23,&nbsp;2025
+                </div>
+
+                <div class="pb-8 md:border-l md:flex-grow md:min-w-0 dark:border-slate-700 md:pl-8 xl:pr-8">
+
+                    <div class="hyphens-auto
+                max-w-none
+                prose prose-lg dark:prose-invert
+                prose-a:border-b prose-a:border-slate-500 prose-a:font-sans prose-a:no-underline
+                prose-blockquote:font-normal prose-blockquote:text-slate-800 dark:prose-blockquote:text-slate-300
+                hover:prose-a:border-b-slate-200
+                prose-code:prose-a:text-sm prose-code:prose-p:text-sm
+                prose-img:w-full
+                prose-h1:font-bold prose-h1:text-base
+                prose-h2:text-base prose-h2:mb-1 prose-a:prose-h2:border-b-0 prose-a:prose-h2:font-bold
+                prose-h3:text-sm prose-h3:mb-1 prose-a:prose-h3:border-b-0 prose-a:prose-h3:font-bold
+                prose-h4:text-sm prose-h4:mb-1 prose-a:prose-h4:border-b-0 prose-a:prose-h4:font-bold
+                prose-hr:my-10 prose-hr:md:-mx-[2rem] prose-hr:md:w-[calc(100%+4rem)] dark:prose-hr:border-slate-700
+                prose-p:font-serif
+                prose-p:prose-blockquote:font-sans
+                prose-pre:leading-[1.15rem] prose-pre:text-[0.9rem]
+                prose-strong:font-sans dark:prose-strong:text-slate-100
+                prose-ol:font-serif
+                prose-ul:font-serif
+                article-contents
+                ">
+                        <div class="table-of-contents md:hidden my-4">
+                            <h3>Table of Contents</h3>
+                            <ul>
+                                <li><a href="#intro">Intro</a></li>
+                                <li><a href="#token-not-fixed">A token is not a fixed, atomic unit of cost</a></li>
+                                <li><a href="#variance-scales">And tail risk compounds with usage</a></li>
+                                <li><a href="#tail-risk">Margins collapse at hyperscale</a></li>
+                                <li><a href="#tail-risk" class="ml-[20px] text-xs">Formalization</a></li>
+                                <li><a href="#margins-collapse">High variance forces startups to constrain demand</a></li>
+                                <li><a href="#saas-economics">Unpredictable costs kill SaaS-style margins</a>
+                                </li>
+                                <li><a href="#resource-allocation">Scaling AI and improving unit economics require the same fix</a></li>
+                                <li><a href="#solutions">Towards a new resource allocation (and pricing) paradigm</a></li>
+                                <li><a href="#solutions">Acknowledgements</a></li>
+                            </ul>
+                        </div>
+                        <p>
+                            When Anthropic blocked OAuth access from third-party coding agents in early January, critics called it a rent-seeking move. The reaction echoes last year’s Cursor pricing drama, and is driven by the same underlying cause: inference generates fat tailed costs, forcing providers to throttle demand. 
+<p>This is the same math I wrote about last August. I argued that fixed per-token pricing collapses under unpredictable resource costs and heterogeneous usage. Long-context, agentic workloads, and more users compound tail risk; tail risk here refers not just to profit loss, but overcommitting resources and crashing systems.</p>
+
+
+<p>The latest dispute between Anthropic and OpenCode reinforces this insight, and also reveals structural forces pushing AI business models towards vertical integration, telemetry and contracted, priority service.
+</p>
+
+                        <h1 id="token-not-fixed" class="section-head">Memory costs scale with sequence length and batch size</h1>
+
+
+                        <p>KV cache turns attention from quadratic to linear, which decreases compute but adds per-user memory. That memory is small when weights dominate, yet it scales with prompt length and user count, so under batching it eventually eclipses the weights themselves.</p>
+
+<p>Charts from Tensor Economics&apos; experiments quantify these relationships:</p>                            
+<p>On the left, with a batch size of one request, you can see memory consumption rising with prompt length; when LLaMA 3.3 reaches its context limit, the KV cache for a single request consumes nearly 30% of the GB taken up by the model weights themselves. 
+</p>
+<p>
+The right-hand chart shows how this cache pressure scales when batching. KV-cache memory is bilinear in sequence length and batch size. While each dimension scales linearly, the product can quickly outgrow the fixed model weights.
+</p>
+
+                        <div class="image-container">
+                            <img src="images/image7.png" alt="API pricing breakdown">
+                        </div>
+
+                        <p>In production, this means that once long contexts from many users arrive at the same time, their independent linear ramps add into a combined footprint that can outrun memory capacity. A setup of 8 H100s has a memory capacity of around 640 GB. Note how a batch of just 8 requests at the full context length of Llama comes close to that limit, at around 73%.</p>
+
+                        <h1 id="variance-scales" class="section-head">Why bigger batches erode throughput</h1>
+
+                     <p>The headline cost driver is sequence length, and token-based pricing seems to cover it: longer prompts cost more, right?</p>
+<p>But the true resource costs are not linear, because every extra request in the batch carries its own KV cache, and that memory scales with both sequence length and batch size. Once the product (prompt length × users) outruns capacity, you hit a wall.</p>
+<p>Tensor Economics&apos; throughput model shows how fast the wall arrives.The blue curve is the predicted throughput based on the GPUs’ theoretical capacity (assuming 100% utilization). The green curve is the actual observed throughput.</p>
+                        <div class="image-container">
+                            <img src="images/image1.png" alt="Cost per token variance">
+                        </div>
+
+                        <!-- <p>The underlined variables in our formula likely have fat tails — <strong>so it's all of them.</strong></p> -->
+
+<p>Both curves have a sigmoid shape, but you can see the gap widening as the number of batches increases. There’s two things of note here:
+At a batch size of 1 request, the actual throughput is only ~60% of the theoretical capacity. This is because in practice, GPUs achieve ~50-70% of their theoretical capacity due to inefficiencies like interconnect overhead (read more).
+At a batch size of 512 requests, the actual throughput is ~40% of the theoretical capacity, considerably worse than the starting throughput. As the batch size increases, the actual capacity appears to decrease at a consistent rate relative to the theoretical capacity. 
+</p>
+<p>The right-hand curve shows the fractional drop in throughput relative to the GPU’s theoretical maximum; the gap grows roughly exponentially with batch size before leveling off at ≈ 40%. While this memory capacity decay looks exponential, I would expect it to approach a saturation level rather than decay to zero.</p>
+                        <div class="image-container">
+                            <img src="images/image5.png" alt="Cost distribution">
+                        </div>
+
+<p>My point is that memory capacity is dependent on batch size, which itself is dependent on non-stationary distributions (GPU efficiency and temporal demand, among other variables). The next section will make this relationship clearer.</p>
+                        <h1 id="tail-risk" class="section-head">Infinite variance creates scaling issues</h1>
+                        <p>
+                            What we&apos;ve discussed thus far is a fairly controlled scenario: 1 large language model, and a fixed input and output length. The only factor that’s varied in Tensor Economics’ model is the number of requests per batch.</p>
+                           <p>None of these cost drivers are independent (real world data rarely is); alone, sequence length and temporal demand imply infinite variance and blow open the aggregate cost distribution, especially when the handoff between prefill and decode is considered.</p> 
+                           <p>Prefill and decode phases have different bottlenecks; compute vs. memory-bandwidth-bound, respectively. A naïve scaling strategy over-provisions compute for decode or memory bandwidth for prefill.</p>
+                           <p>The dual bottleneck has made disaggregated serving, which separates prefill from the decode phase and allows for independent optimization, the industry standard. With disaggregated serving, maintaining the balance between prefill and decode instances becomes a key part of scheduling logic. </p>
+But counterintuitively, the optimal P/D ratio is not fixed in production-scale environments. Here’s two examples:
+
+Bytedance:
+
+                        </p>
+
+                        <p>From BurstGPT: A Real-World Workload Dataset to Optimize LLM Serving Systems </p>
+                        <p class="blockquote">
+As workloads vary rapidly in real-world serving, a fixed 𝑃𝐷 ratio is not always ideal. Instead, a dynamic 𝑃𝐷 ratio should be used. Figure 20 and Figure 19 show examples of goodput at different PD ratios. Since we lack preliminary workload traces before the real-world deployment of our serving system, we use BurstGPT in our simulation platform to determine the optimal PD ratio under various user, model, and system workloads.
+
+<br>
+                        </p>
+
+                        <p>
+The P/D ratio is not fixed because the stages cannot be fully separated. Consider prefill as the "Input," which generates the first KV cache and token, and decode as the "Output," accepting the KV cache and token to continue the autoregressive generation. That relationship is the basis of input and output tokens having different prices to begin with.
+                        </p>
+
+                        <p>The handoff between prefill and decode determines the throughput of a system. The optimal P/D ratio itself drifts with traffic mix, so capacity planning is definitionally a moving target.</p>
+
+                        <h1 id="margins-collapse" class="section-head">Token costs are fat-tailed; resource costs are fatter-tailed</h1>
+
+                        <p>Capacity is already unpredictable in controlled environments, and exacerbated in production due to variance in concurrency of requests, request lengths and response lengths. The clearest way to see why is to separate the tail behaviour of tokens per request and the true resource cost per request.</p>
+                        <p>The mean tokens consumed per request must be finite since it is bounded by the context window limit. But variance is large due to heterogeneous usage, and is amplified as use cases explode and context windows become arbitrarily large with new model releases.</p>
+                        <div class="image-container">
+                            <img src="images/image3.png" alt="Demand elasticity and code generation usage">
+                        </div>
+
+                        <p>This was the starting intuition that informed my first essay on the instability of per-token pricing, and why AI costs are fat tailed.</p>
+
+                        <p>So token consumption likely has a finite mean, and near-infinite variance. What does the distribution of the true resource costs per request look like then?</p>
+
+<p>True resource costs are dependent on system state (batch size, temporal demand, P/D ratio, GPU capacity, etc.) which is highly variable, meaning the effective capacity boundary is not fixed in the same way the context window limit is. And because each of these state variables are non-stationary, the conditional mean will never converge.
+</p>
+<p>There&apos;s plenty of scenarios with a moving conditional mean like this. It’s only a problem because per-token pricing assumes an asymptotic mean cost per request exists, and it’s clearly not the case. You might think it’s not a significant issue due to falling costs, but I’ll address this towards the end.</p>
+<p>The takeaway I want you to have is that the marginal cost of a request is statistically impractical to predict. And the deeper implication is that costs aren’t per-request at all. They are a function of the peak system state.</p>
+
+                        <h1 id="saas-economics" class="section-head">Systems crash when batching meets the memory wall</h1>
+
+                        <p>Once cache outweighs the model weights themselves, variance in usage compounds unpredictability of the effective capacity boundary. This explains why the risk of system outages increases with open-ended, agentic tasks like Claude Code: the longer sequence lengths push inference from the model weights being the primary memory consumer to the KV-cache-dominated regime, and the probability of exceeding memory capacity increases.</p>
+<p>The Tensor Economics model showed that packing many unrelated user contexts into the same concurrent batch is risky because of KV cache memory pressure and its potential to explode. But Anthropic’s Message Batches API counteracts both of these forces, by splitting a single user’s long request into many sequential requests that are queued and can be executed asynchronously.</p>
+<p>So it simultaneously solves the problem of “unrelated contexts” and gives Anthropic temporal control. Which removes the possibility of concurrent long-KV caches exploding in cost.</p>
+                        <div class="image-container">
+                            <img src="images/image6.png" alt="Traditional SaaS vs AI pricing models comparison">
+                        </div>
+                        <p>You should now understand why Anthropic encourages batching for long requests, and why cache writes are more expensive than base input tokens.</p>
+                        <p>And you also might have picked up on the catch-22: providers need sufficient demand to split model weights across large batches to be profitable. But handling many concurrent users (a large batch size of unrelated contexts) is severely limited by the total memory available.
+</p>
+<p>The same economies of scale that make inference profitable eventually throttle it.
+</p>
+                        <h1 id="resource-allocation" class="section-head">Vertical integration as cost control, not just a distribution moat</h1>
+
+                        <p>Anthropic restricting OpenCode’s OAuth access is primarily a pricing-segmentation fix: it eliminates the worst-case scenario of long-context, high-cost workloads being executed under an uncapped subscription.</p>
+                        <p>But the deeper driver of walling off access is visibility: only the vertically-integrated stack gives the provider a real-time view of input/output ratios, cache pressure, and batch concurrency—exactly the levers needed to control costs.</p>
+<p>A Claude Code engineer said himself that 3rd party harnesses generate “unusual traffic patterns without any of the usual telemetry.”</p>
+                        <div class="image-container">
+                            <img src="images/image4.png" alt="Token compute allocation">
+                        </div>
+<p>Without that telemetry, subscription pricing is a blind bet on an infinite-variance variable; with it, the provider can at least throttle demand or plan for capacity accordingly. Which is why I believe Anthropic’s restrictions weren't solely to protect a distribution moat, but rather to maintain the feedback loop over unit economics.</p>
+                      
+
+                        <p>This particular episode may have been a response to a sudden influx of users on OpenCode’s platform, leading to a rare combination of long-context, high-variance, unique workloads.</p>
+
+                        <p>Seen this way, the structural push toward first-party harnesses is a separate, longer-run dynamic: once usage sits inside Claude Code, Anthropic gains the telemetry required to throttle or re-price in real time, something it still does not have for third-party API traffic—even if that traffic is now billed per-token.
+</p>
+
+                        <p>And that may be the real force that pushes labs towards vertical integration; not distribution benefits of locking in customers to walled gardens, nor increased competition, but visibility for cost control.
+                        </p>
+
+                        <p>I find that analysis of AI business models consistently underestimates the impact of unit economics. When people say AI startups face margin squeeze, they point to external competitors or monopolistic GPU pricing as contributing factors. But it seems that the internal resource variance would still exert pressure, even if there was only one LLM provider and chips were abundant.</p>
+
+                        <p>Margin pressure is fundamentally an internal, structural problem, made worse by external, competitive forces. </p>
+
+                        <h1 id="solutions" class="section-head">The pricing implications of infinite variance
+
+                        </h1>
+
+                        <p>
+                            High variance in costs necessarily constrains demand; today, the constraints are reactive.
+                        </p>
+
+                        <p>
+                            To safely cushion from unbounded costs, a business model must price in the variance or be
+                            well above the true cost
+                            on average. Ideally by anchoring price to value delivered instead of token cost; but value
+                            delivered also happens
+                            to be highly variable and subjective. At the same time, there&apos;s structure to value:
+                            reliability, relevance, actionability.
+                        </p>
+
+                        <p>
+                            The key insight is that margin squeeze and resource misallocation are two sides of the same
+                            problem. Solving one side of the equation should solve the other. If you can measure the
+                            value delivered, you can price that instead of raw compute. And if you can price outcomes in
+                            terms of value delivered, you can budget the exact amount of compute and data that maximizes
+                            profit on each task.
+                        </p>
+
+                        <p>
+                            So the layer that owns the meter also decides how much compute and data to deploy and keeps
+                            the spread between cost and price. Today that meter sits inside the model; tomorrow it could
+                            sit inside an orchestrator that plans the whole workflow.
+                        </p>
+
+                        <p>
+                            The implication is technologic, not economic: the scaling prize may go to whoever defines
+                            and measures “intelligence value,” not necessarily whoever trains the biggest, most capable
+                            model.
+                        </p>
+                        <p style="font-style: italic; text-align: center; color: rgb(102, 102, 102);" class="mb-0!">
+                            Soren Larson, @trickylabyrinth and Judah contributed significantly to this piece.
+                        </p>
+
+
+                    </div>
+                </div>
+
+                <div class="max-w-[190px] border-l flex-grow-0 flex-shrink-0 hidden dark:border-slate-700 xl:block">
+
+                    <div class="
+                    mb-3
+                    pl-3
+                    pb-5
+                    prose prose-sm dark:prose-invert
+                    prose-li:my-2
+
+                    prose-ol:prose-li:list-[lower-alpha] prose-ol:prose-li:my-2
+                    prose-a:prose-li:prose-li:font-normal prose-li:prose-li:my-1 prose-li:prose-li:text-[0.65rem]
+
+                    prose-ol:prose-li:prose-li:list-[lower-roman]
+                    prose-li:prose-li:prose-li:text-[0.6rem]
+
+                    sticky top-5
+                    text-xs
+                ">
+                        <div class="table-of-contents">
+                            <h3>Table of Contents</h3>
+                            <ol>
+                                <li><a href="#intro">Intro</a></li>
+                                <li><a href="#token-not-fixed">A token is not a fixed, atomic unit of cost</a></li>
+                                <li><a href="#variance-scales">And tail risk compounds with usage</a></li>
+                                <li><a href="#tail-risk">Margins collapse at hyperscale</a></li>
+                                <li><a href="#tail-risk" class="ml-[20px] text-xs">Formalization</a></li>
+                                <li><a href="#margins-collapse">High variance forces startups to constrain demand</a></li>
+                                <li><a href="#saas-economics">Unpredictable costs kill SaaS-style margins</a>
+                                </li>
+                                <li><a href="#resource-allocation">Scaling AI and improving unit economics require the same fix</a></li>
+                                <li><a href="#solutions">Towards a new resource allocation (and pricing) paradigm</a></li>
+                                <li><a href="#solutions">Acknowledgements</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="border-t border-b p-8 w-vp dark:border-slate-700">
+        <div class="container max-w-[650px] mx-auto footer">
+            <div class="hyphens-auto
+                max-w-none
+                prose prose-sm dark:prose-invert
+                prose-a:border-b prose-a:border-slate-500 prose-a:font-sans prose-a:no-underline
+                hover:prose-a:border-b-slate-200
+                prose-code:prose-a:text-sm prose-code:prose-p:text-sm
+                prose-p:font-serif
+                prose-strong:font-sans
+                ">
+
+                <!-- <p><sup id="footnote-1"><a href="">1</a></sup> Footnotes go here</p>                 -->
+
+                <p style="font-style: italic; text-align: center; color: rgb(102, 102, 102); font-size: 0.9rem;">
+                    Thank you to <a href="https://x.com/hypersoren">@hypersoren</a>, <a
+                        href="https://x.com/trickylabyrinth">@trickylabyrinth</a> and <a
+                        href="https://joodaloop.com/">Judah</a> for their work, and to Jason Harrison, Anthony Crognale,
+                    Suraj Srivats, Ade Oshineye and Alex Komoroske for feedback on early versions of this.
+                    <br><br>And to <a href="https://brandur.org/">Brandur</a>, for the layout inspiration.<br>
+                    <!-- And to Analogue Group, for the push to set out on this expedition. -->
+                </p>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+    <!-- <div class="border-t pb-20 p-8 w-vp dark:border-slate-700">
+        <div class="container max-w-[650px] mx-auto">
+            <div class="hyphens-auto
+            italic
+            max-w-none
+            prose prose-sm dark:prose-invert
+            prose-a:border-b prose-a:border-slate-500 prose-a:font-sans prose-a:no-underline
+            hover:prose-a:border-b-slate-200
+            prose-p:font-serif
+            ">
+
+                <p>
+                    Acknowledgements go here.
+                </p>
+<p style="font-style: italic; text-align: center; color: rgb(102, 102, 102); font-size: 0.9rem;">
+    Thank you to <a href="https://x.com/hypersoren">@hypersoren</a>, <a href="https://x.com/trickylabyrinth">@trickylabyrinth</a> and <a href="https://joodaloop.com/">Judah</a> for their work, and to Jason Harrison, Anthony Crognale, Suraj Srivats, Ade Oshineye and Alex Komoroske for offering feedback on early versions of this. And to Analogue Group, for the push to set out on this expedition.
+</p>
+            </div>
+        </div>
+    </div> -->
+    <footer>
+        <p style="font-size: 0.9rem; text-align: center; color: rgba(0, 0, 0, 0.6); margin: 4rem 0;">
+            It's never too late to
+            <span id="scrollLink" style="opacity: 1; color: #0033cc; text-decoration: underline; cursor: pointer;">
+                start over</span>.
+        </p>
+    </footer>
+    <button id="backToTop" style="display: block;">↑ Top</button>
+</body>
+<script>
+// Scroll to top functionality
+document.getElementById('backToTop').addEventListener('click', function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+document.getElementById('scrollLink').addEventListener('click', function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+// Show/hide back to top button
+window.addEventListener('scroll', function() {
+    const backToTop = document.getElementById('backToTop');
+    if (window.pageYOffset > 300) {
+        backToTop.style.display = 'block';
+    } else {
+        backToTop.style.display = 'none';
+    }
+});
+</script>
+</html>
