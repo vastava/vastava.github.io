@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>A token is not a fixed unit of cost</title>
+    <title>Why fat tailed costs emerge at scale</title>
     <meta name="description" content="High variance breaks unit economics and threatens scale">
     <meta name="keywords" content="AI, pricing, Cursor, Anthropic, tokens, economics, cost structure">
     <meta name="author" content="Anjali Shrivastava">
@@ -73,7 +73,10 @@
         color: orange;
         cursor: pointer;
     }
-
+    ul {
+        list-style-type: circle;
+        margin-left: 50px;
+    }
     .table-of-contents {
         /* margin: 2rem 0; */
         font-family: "EB Garamond", serif;
@@ -181,8 +184,8 @@
 
         <div class="container max-w-[1100px] mx-auto mt-8 px-4 xl:max-w-[1125px]">
             <div class="w-fit text-center mx-auto">
-                <h1 id="intro" class="title">A token is not a fixed unit of cost</h1>
-                <h2 class="deckhead">Variance in usage creates an interconnected pricing and scaling issue</h2>
+                <h1 id="intro" class="title">Why fat tailed costs emerge at scale</h1>
+                <h2 class="deckhead">placeholder: shifting capacity, unrelated contexts, telemetry</h2>
             </div>
             <div class="md:flex">
                 <div class="max-w-[190px] flex-grow-0 flex-shrink-0 hidden md:block">
@@ -192,20 +195,18 @@
                             <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Article</div>
                             <div>
                                 <a href="https://anjalishriva.com/token_pricing">
-                                    A token is not a fixed unit of cost
+                                    Why fat tailed costs emerge at scale
                                 </a>
                             </div>
                         </div>
 
                        <div class="border-b px-4 py-4 dark:border-slate-700">
-                            <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Article</div>
+                            <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Published</div>
                             <div>
-                                <a href="https://anjalishriva.com/token_pricing">
-                                    A token is not a fixed unit of cost
-                                </a>
+                                January 17, 2026
                             </div>
                         </div>
-                        <div class="border-b flex items-stretch text-center dark:border-slate-700">
+                        <!-- <div class="border-b flex items-stretch text-center dark:border-slate-700">
                             <div class="flex-grow dark:border-slate-700">
                                 <div class="flex h-full items-center">
                                     <div class="px-4 py-4 border-r w-[50%]">
@@ -223,17 +224,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="flex-grow h-full min-w-0">
-                                <div class="flex items-center">
-                                    <div class="px-4 py-4">
-                                        <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">
-                                            Revision
-                                        </div>
-                                        <div class="leading-tight">November 16, 2025</div>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
+                        </div> -->
 
                         <!-- <div class="border-b px-4 py-4 dark:border-slate-700">
                             This essay was widely shared and I went on two podcasts to discuss it:
@@ -249,7 +240,7 @@
 
                         <div class="border-b px-4 py-4 dark:border-slate-700">
                             See comments, research notes and earlier drafts on <strong><a
-                                    href="https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing"
+                                    href="https://docs.google.com/document/d/10WOc_dcFTHWD7Pcs8ZquxGWsilxpwFUJfny-0rXigNo/edit?usp=sharing"
                                     class="text-proseLinks dark:text-proseInvertLinks">Google Docs</a></strong>.
                         </div>
 
@@ -320,16 +311,22 @@
 
                         <p>KV cache turns attention from quadratic to linear, which decreases compute but adds per-user memory. That memory is small when weights dominate, yet it scales with prompt length and user count, so under batching it eventually eclipses the weights themselves.</p>
 
-<p>Charts from Tensor Economics&apos; experiments quantify these relationships:</p>                            
-<p>On the left, with a batch size of one request, you can see memory consumption rising with prompt length; when LLaMA 3.3 reaches its context limit, the KV cache for a single request consumes nearly 30% of the GB taken up by the model weights themselves. 
+<p>Charts from <a href="https://www.tensoreconomics.com/p/llm-inference-economics-from-first">Tensor Economics&apos; experiments</a> quantify these relationships:</p>                            
+                        <div class="image-container">
+                            <img src="images/fat_tails/image7.png" alt="Memory consumption of KV Cache vs Model Weights">
+                        </div>
+<p>
+<ul>
+    <li>On the left, with a batch size of one request, you can see memory consumption rising with prompt length; when LLaMA 3.3 reaches its context limit, the KV cache for a single request consumes nearly 30% of the GB taken up by the model weights themselves. </li>
+    <li>The right-hand chart shows how this cache pressure scales when batching. KV cache memory is bilinear in sequence length and batch size. While each dimension scales linearly, the product can quickly outgrow the fixed model weights.</li>
+
+</ul>
+</p>
+<!-- <p>On the left, with a batch size of one request, you can see memory consumption rising with prompt length; when LLaMA 3.3 reaches its context limit, the KV cache for a single request consumes nearly 30% of the GB taken up by the model weights themselves. 
 </p>
 <p>
 The right-hand chart shows how this cache pressure scales when batching. KV cache memory is bilinear in sequence length and batch size. While each dimension scales linearly, the product can quickly outgrow the fixed model weights.
-</p>
-
-                        <div class="image-container">
-                            <img src="images/fat_tails/image7.png" alt="API pricing breakdown">
-                        </div>
+</p> -->
 
                         <p>In production, this means that once long contexts from many users arrive at the same time, their independent linear ramps multiply into a combined footprint that can outrun memory capacity. As an example, setup of 8 H100s has a memory capacity of around 640 GB: note how a batch of just 8 requests at the full context length of Llama comes close to that limit, at around 73%.</p>
 
@@ -345,8 +342,11 @@ The right-hand chart shows how this cache pressure scales when batching. KV cach
                         <!-- <p>The underlined variables in our formula likely have fat tails — <strong>so it's all of them.</strong></p> -->
 
 <p>Both curves have a sigmoid shape, but you can see the gap widening as the number of batches increases. There’s two things of note here:
-At a batch size of 1 request, the actual throughput is only ~60% of the theoretical capacity. This is because in practice, GPUs achieve ~50-70% of their theoretical capacity due to inefficiencies like interconnect overhead (read more).
-At a batch size of 512 requests, the actual throughput is ~40% of the theoretical capacity, considerably worse than the starting throughput. As the batch size increases, the actual capacity appears to decrease at a consistent rate relative to the theoretical capacity. 
+    <ul>
+        <li>At a batch size of 1 request, the actual throughput is only ≈60% of the theoretical capacity. This is because in practice, GPUs achieve ≈50-70% of their theoretical capacity due to inefficiencies like interconnect overhead (<a href="https://andrewtrask.substack.com/p/gpu-demand-is-1mx-distorted-by-efficiency">read more</a>).</li>
+        <li>At a batch size of 512 requests, the actual throughput is ≈40% of the theoretical capacity, considerably worse than the starting throughput. As the batch size increases, the actual capacity appears to decrease at a consistent rate relative to the theoretical capacity.</li>
+    </ul>
+    <!-- <br> -->
 </p>
 <p>The right-hand curve shows the fractional drop in throughput relative to the GPU’s theoretical maximum; the gap grows roughly exponentially with batch size before leveling off at ≈40%. While this memory capacity decay looks exponential, I would expect it to approach a saturation level rather than decay to zero.</p>
                         <div class="image-container">
@@ -361,16 +361,26 @@ At a batch size of 512 requests, the actual throughput is ~40% of the theoretica
                            <p>Prefill and decode phases have different bottlenecks; compute vs. memory-bandwidth-bound, respectively. A naïve scaling strategy over-provisions compute for decode or memory bandwidth for prefill.</p>
                            <p>The dual bottleneck has made disaggregated serving, which separates prefill from the decode phase and allows for independent optimization, the industry standard. With disaggregated serving, maintaining the balance between prefill and decode instances becomes a key part of scheduling logic. </p>
 But counterintuitively, the optimal P/D ratio is not fixed in production-scale environments. Here’s two examples:
-
-Bytedance:
+                        </p>
+                        <p><strong>1. Bytedance</strong></p>
+                        <div class="image-container">
+                            <img src="images/fat_tails/image4.png" alt="Maximum Tokens Per Second with different P/D ratios">
+                        </div>
+                        <p class="blockquote">
+                            This optimal P/D ratio is not fixed; in our production experience, it spans a considerable range—from 1P/5D to 9P/1D—depending on the input-output length distribution, hardware configurations, and SLO priorities … This variability underscores the need for a flexible scheduling algorithm capable of adapting to diverse P/D ratios.
+                            <br>       <br>
+                            From <a href="https://arxiv.org/pdf/2508.19559">Taming the Chaos: Coordinated Autoscaling for Heterogeneous and Disaggregated LLM Inference</a>                                            
 
                         </p>
-
-                        <p>From BurstGPT: A Real-World Workload Dataset to Optimize LLM Serving Systems </p>
+                        <!-- <p>From <a href="https://arxiv.org/pdf/2508.19559">Taming the Chaos: Coordinated Autoscaling for Heterogeneous and Disaggregated LLM Inference</a></p> -->
+                        <p><strong>2. Huawei</strong></p>
+                        <div class="image-container">
+                            <img src="images/fat_tails/image3.png" alt="The P/D ratio switches from 2:6 to 6:2 to impr">
+                        </div>
                         <p class="blockquote">
-As workloads vary rapidly in real-world serving, a fixed 𝑃𝐷 ratio is not always ideal. Instead, a dynamic 𝑃𝐷 ratio should be used. Figure 20 and Figure 19 show examples of goodput at different PD ratios. Since we lack preliminary workload traces before the real-world deployment of our serving system, we use BurstGPT in our simulation platform to determine the optimal PD ratio under various user, model, and system workloads.
-
-<br>
+                            As workloads vary rapidly in real-world serving, a fixed 𝑃𝐷 ratio is not always ideal. Instead, a dynamic 𝑃𝐷 ratio should be used. Figure 20 and Figure 19 show examples of goodput at different PD ratios. Since we lack preliminary workload traces before the real-world deployment of our serving system, we use BurstGPT in our simulation platform to determine the optimal PD ratio under various user, model, and system workloads.
+                            <br>       <br>
+                            From <a href="https://arxiv.org/pdf/2401.17644">BurstGPT: A Real-World Workload Dataset to Optimize LLM Serving Systems</a>                                            
                         </p>
 
                         <p>
