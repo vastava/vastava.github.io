@@ -185,7 +185,7 @@
         <div class="container max-w-[1100px] mx-auto mt-8 px-4 xl:max-w-[1125px]">
             <div class="w-fit text-center mx-auto">
                 <h1 id="intro" class="title">Why fat tailed costs emerge at scale</h1>
-                <h2 class="deckhead">placeholder: shifting capacity, unrelated contexts, telemetry</h2>
+                <h2 class="deckhead">Unrelated contexts and spiky concurrent traffic create a moving capacity boundary</h2>
             </div>
             <div class="md:flex">
                 <div class="max-w-[190px] flex-grow-0 flex-shrink-0 hidden md:block">
@@ -286,16 +286,16 @@
                             <h3>Table of Contents</h3>
                             <ul>
                                 <li><a href="#intro">Intro</a></li>
-                                <li><a href="#token-not-fixed">A token is not a fixed, atomic unit of cost</a></li>
-                                <li><a href="#variance-scales">And tail risk compounds with usage</a></li>
-                                <li><a href="#tail-risk">Margins collapse at hyperscale</a></li>
-                                <li><a href="#tail-risk" class="ml-[20px] text-xs">Formalization</a></li>
-                                <li><a href="#margins-collapse">High variance forces startups to constrain demand</a></li>
-                                <li><a href="#saas-economics">Unpredictable costs kill SaaS-style margins</a>
+                                <li><a href="#caching-concurrency">Caching, concurrency and unpredictable costs</a></li>
+                                <li class="ml-[20px] text-xs"><a href="#unique-contexts">Large contexts from many users can balloon cache</a></li>
+                                <li class="ml-[20px] text-xs"><a href="#batches-erode">Bigger batches erode throughput</a></li>
+                                <li class="ml-[20px] text-xs"><a href="#shifting-demand">Demand creates infinite variance in resource load</a></li>                            
+                                <li><a href="#fat-tailed">Token costs are fat-tailed; resource costs are fatter-tailed</a></li>
+                                <li><a href="#memory-wall">Systems crash when batching meets the memory wall</a>
                                 </li>
-                                <li><a href="#resource-allocation">Scaling AI and improving unit economics require the same fix</a></li>
-                                <li><a href="#solutions">Towards a new resource allocation (and pricing) paradigm</a></li>
-                                <li><a href="#solutions">Acknowledgements</a></li>
+                                <li><a href="#vertical-integration">Vertical integration as cost control, not just a distribution moat</a></li>
+                                <li><a href="#implications">Variance breaks pricing and pushes vendors toward contracts</a></li>
+                                <li><a href="#solutions">Pricing and capacity planning are an intertwined, moving target</a></li>
                             </ul>
                         </div>
                         <p>
@@ -305,8 +305,16 @@
 
 <p>The latest dispute between Anthropic and OpenCode reinforces this insight, and also reveals structural forces pushing AI business models towards vertical integration, telemetry and contracted, priority service.
 </p>
+                        <h1 id="caching-concurrency" class="section-head">Caching, concurrency and unpredictable costs</h1>
 
-                        <h1 id="token-not-fixed" class="section-head">Memory costs scale with sequence length and batch size</h1>
+<p>
+    What I didn’t include in last August’s essay is that Cursor’s price increase was triggered by Anthropic raising prices for writing to cache —  confusing, since conventional wisdom says caching reduces costs.
+</p>
+<p>There are scenarios where the cache bill explodes; unpacking why can feel like a detour, but it’s the quickest way to see why resource costs are even fatter-tailed than token costs. 
+</p>
+<p>(Skip ahead to <a href="#fat-tailed">Token costs are fat-tailed; resource costs are fatter-tailed</a> for analysis and pricing implications).
+</p>
+                        <h1 id="unique-contexts" class="section-head">Large contexts from many users can balloon cache</h1>
 
 
                         <p>KV cache turns attention from quadratic to linear, which decreases compute but adds per-user memory. That memory is small when weights dominate, yet it scales with prompt length and user count, so under batching it eventually eclipses the weights themselves.</p>
@@ -330,7 +338,7 @@ The right-hand chart shows how this cache pressure scales when batching. KV cach
 
                         <p>In production, this means that once long contexts from many users arrive at the same time, their independent linear ramps multiply into a combined footprint that can outrun memory capacity. As an example, setup of 8 H100s has a memory capacity of around 640 GB: note how a batch of just 8 requests at the full context length of Llama comes close to that limit, at around 73%.</p>
 
-                        <h1 id="variance-scales" class="section-head">Why bigger batches erode throughput</h1>
+                        <h1 id="batches-erode" class="section-head">Bigger batches erode throughput</h1>
 
                      <p>The headline cost driver is sequence length, and token-based pricing seems to cover it: longer prompts cost more, right?</p>
 <p>But the true resource costs are not linear, because every extra request in the batch carries its own KV cache, and that memory scales with both sequence length and batch size. Once the product (prompt length × users) outruns capacity, you hit a wall.</p>
@@ -354,7 +362,7 @@ The right-hand chart shows how this cache pressure scales when batching. KV cach
                         </div>
 
 <p>My point is that memory capacity is dependent on batch size, which itself is dependent on non-stationary distributions (GPU efficiency and temporal demand, among other variables). The next section will make this relationship clearer.</p>
-                        <h1 id="tail-risk" class="section-head">Infinite variance creates scaling issues</h1>
+                        <h1 id="shifting-demand" class="section-head">Shifting demand creates infinite variance in resource load</h1>
                         <p>
                             What we&apos;ve discussed thus far is a fairly controlled scenario: 1 large language model, and a fixed input and output length. The only factor that’s varied in Tensor Economics’ model is the number of requests per batch.</p>
                            <p>None of these cost drivers are independent (real world data rarely is); alone, sequence length and temporal demand imply infinite variance and blow open the aggregate cost distribution, especially when the handoff between prefill and decode is considered.</p> 
@@ -389,7 +397,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 
                         <p>The handoff between prefill and decode determines the throughput of a system. The optimal P/D ratio itself drifts with traffic mix, so capacity planning is definitionally a moving target.</p>
 
-                        <h1 id="margins-collapse" class="section-head">Token costs are fat-tailed; resource costs are fatter-tailed</h1>
+                        <h1 id="fat-tailed" class="section-head">Token costs are fat-tailed; resource costs are fatter-tailed</h1>
 
                         <p>Capacity is already unpredictable in controlled environments, and exacerbated in production due to variance in concurrency of requests, request lengths and response lengths. The clearest way to see why is to separate the tail behaviour of tokens per request and the true resource cost per request.</p>
                         <p>The mean tokens consumed per request must be finite since it is bounded by the context window limit. But variance is large due to heterogeneous usage, and is amplified as use cases explode and context windows become arbitrarily large with new model releases.</p>
@@ -406,7 +414,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 <p>There&apos;s plenty of scenarios with a moving conditional mean like this. It’s only a problem because per-token pricing assumes an asymptotic mean cost per request exists, and it’s clearly not the case. You might think it’s not a significant issue due to falling costs, but I’ll address this towards the end.</p>
 <p>The takeaway I want you to have is that the marginal cost of a request is statistically impractical to predict. And the deeper implication is that costs aren’t per-request at all. They are a function of the peak system state.</p>
 
-                        <h1 id="saas-economics" class="section-head">Systems crash when batching meets the memory wall</h1>
+                        <h1 id="memory-wall" class="section-head">Systems crash when batching meets the memory wall</h1>
 
                         <p>Once cache outweighs the model weights themselves, variance in usage compounds unpredictability of the effective capacity boundary. This explains why the risk of system outages increases with open-ended, agentic tasks like Claude Code: the longer sequence lengths push inference from the model weights being the primary memory consumer to the KV cache-dominated regime, and the probability of exceeding memory capacity increases.</p>
 <p>The Tensor Economics model showed that packing many unrelated user contexts into the same concurrent batch is risky because of KV cache memory pressure and its potential to explode. But Anthropic’s Message Batches API counteracts both of these forces, by splitting a single user’s long request into many sequential requests that are queued and can be executed asynchronously.</p>
@@ -422,7 +430,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 </p>
 <p>The same economies of scale that make inference profitable eventually throttle it.
 </p>
-                        <h1 id="resource-allocation" class="section-head">Vertical integration as cost control, not just a distribution moat</h1>
+                        <h1 id="vertical-integration" class="section-head">Vertical integration as cost control, not just a distribution moat</h1>
 
                         <p>Anthropic restricting OpenCode’s OAuth access is primarily a pricing-segmentation fix: it eliminates the worst-case scenario of long-context, high-cost workloads being executed under an uncapped subscription.</p>
                         <p>But the deeper driver of walling off access is visibility: only the vertically-integrated stack gives the provider a real-time view of input/output ratios, cache pressure, and batch concurrency—exactly the levers needed to control costs.</p>
@@ -447,7 +455,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 
                         <p>Margin pressure is fundamentally an internal, structural problem, made worse by external, competitive forces. </p>
 
-                        <h1 id="implications" class="section-head">The pricing implications of infinite variance</h1>
+                        <h1 id="implications" class="section-head">Variance breaks pricing and pushes vendors toward contracts</h1>
 
                         <p>What should be apparent by now is that estimating the resource costs of a request in the real world is extremely challenging, even if you have historical data to go off of. An accurate estimator would require profiles of compute and memory
 <br>…for every {model weights size, batch size, sequence length} combination
@@ -466,7 +474,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                         </p>
                         <p>These contracts could evolve into something like BigQuery’s pricing, that offers sophisticated forecasting for customers’ storage/processing needs and scales resources based on that forecast.</p>
 
-                        <h1 id="solutions" class="section-head">The interconnected pricing and scaling issue</h1>
+                        <h1 id="solutions" class="section-head">Pricing and capacity planning are an intertwined, moving target</h1>
 
                         <p>Once you realize how resource variance, heterogeneous usage and temporal demand collide to create a non-stationary, open state space, you also realize predictable budgets on a request-level or fair per-token prices may not matter in the end.</p>
                         <p>This is the fundamental flaw of per-token and subscription pricing. A scalar price assumes that the resource costs will converge to a mean, when it is evidently non-stationary and shifting.</p>
@@ -501,22 +509,22 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                     prose-li:prose-li:prose-li:text-[0.6rem]
 
                     sticky top-5
-                    text-xs
+                    ml-[20px] text-xs
                 ">
                         <div class="table-of-contents">
                             <h3>Table of Contents</h3>
                             <ol>
                                 <li><a href="#intro">Intro</a></li>
-                                <li><a href="#token-not-fixed">A token is not a fixed, atomic unit of cost</a></li>
-                                <li><a href="#variance-scales">And tail risk compounds with usage</a></li>
-                                <li><a href="#tail-risk">Margins collapse at hyperscale</a></li>
-                                <li><a href="#tail-risk" class="ml-[20px] text-xs">Formalization</a></li>
-                                <li><a href="#margins-collapse">High variance forces startups to constrain demand</a></li>
-                                <li><a href="#saas-economics">Unpredictable costs kill SaaS-style margins</a>
+                                <li><a href="#caching-concurrency">Caching, concurrency and unpredictable costs</a></li>
+                                <li class="ml-[20px] text-xs"><a href="#unique-contexts">Large contexts from many users can balloon cache</a></li>
+                                <li class="ml-[20px] text-xs"><a href="#batches-erode">Bigger batches erode throughput</a></li>
+                                <li class="ml-[20px] text-xs"><a href="#shifting-demand">Demand creates infinite variance in resource load</a></li>                            
+                                <li><a href="#fat-tailed">Token costs are fat-tailed; resource costs are fatter-tailed</a></li>
+                                <li><a href="#memory-wall">Systems crash when batching meets the memory wall</a>
                                 </li>
-                                <li><a href="#resource-allocation">Scaling AI and improving unit economics require the same fix</a></li>
-                                <li><a href="#solutions">Towards a new resource allocation (and pricing) paradigm</a></li>
-                                <li><a href="#solutions">Acknowledgements</a></li>
+                                <li><a href="#vertical-integration">Vertical integration as cost control, not just a distribution moat</a></li>
+                                <li><a href="#implications">Variance breaks pricing and pushes vendors toward contracts</a></li>
+                                <li><a href="#solutions">Pricing and capacity planning are an intertwined, moving target</a></li>
                             </ol>
                         </div>
                     </div>
@@ -541,10 +549,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                 <!-- <p><sup id="footnote-1"><a href="">1</a></sup> Footnotes go here</p>                 -->
 
                 <p style="font-style: italic; text-align: center; color: rgb(102, 102, 102); font-size: 0.9rem;">
-                    Thank you to <a href="https://x.com/hypersoren">@hypersoren</a>, <a
-                        href="https://x.com/trickylabyrinth">@trickylabyrinth</a> and <a
-                        href="https://joodaloop.com/">Judah</a> for their work, and to Jason Harrison, Anthony Crognale,
-                    Suraj Srivats, Ade Oshineye and Alex Komoroske for feedback on early versions of this.
+                    Thank you to Soren Larson, Judah and Suraj Srivats for feedback on early versions of this.
                     <br><br>And to <a href="https://brandur.org/">Brandur</a>, for the layout inspiration.<br>
                     <!-- And to Analogue Group, for the push to set out on this expedition. -->
                 </p>
