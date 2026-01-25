@@ -192,7 +192,8 @@ figcaption:before  {
         .body-text {
             font-family: Helvetica, sans-serif;
             /* max-width: 60%; */
-            margin: 0 auto;
+            /* margin: 0 auto; */
+            font-size: 1.7rem;
         }
 
         .body-text ul {
@@ -222,26 +223,51 @@ figcaption:before  {
 <body>
     <!-- <h1>Welcome</h1><br> -->
     <section id="table-of-contents" class="level1">
-<div class="flex lg:flex-row flex-col items-end space-y-10 lg:space-y-0 lg:space-x-6">
+<div class="grid grid-cols-4 md:grid-cols-6 md:gap-4 items-end space-y-10 lg:space-y-0 lg:space-x-6">
     <!-- <div class="w-full"> -->
-        <img class="mb-5 h-[250px] w-auto" src="images/profile.png">
-        <div class="body-text">
-            <h2>Welcome</h2>
+        <img class="self-start mt-[20px] row-start-1 md:h-[250px] w-auto" src="images/profile.png">
+        <div class="row-start-1 ml-[20px] body-text col-span-3">
+            <h3 class="mt-0">Welcome</h3>
             <p>I&apos;m Anjali, a monetization Data Scientist working my way through the realities of inference
                 economics. </p>
             <!-- <br> -->
+             <div class="hidden md:block!">
             <p>
                 What this project isn't:
             <ul>
                 <li>speculation about an impending "AI bubble"</li>
                 <li>analysis of macroeconomic impacts of AI</li>
-                <li>strategy or advice for VCs looking to capitalize</li>
+                <li>strategy or advice for VCs</li>
             </ul>
             <!-- <br> -->
             <p>Rather, this is my attempt to describe how AI challenges SaaS economies of scale, and develop an opinion
                 on how software pricing should evolve.</p>
+             </div>
+        </div>        
+        <div class="hidden md:block! md:col-span-2">
+            <!-- <img src="https://i.pinimg.com/originals/76/f0/c4/76f0c4fbd3f16f570e173a00f54a59f7.gif"> -->
+            <img src="images/cat_sketch.gif">
+             <!-- <img class="object-cover h-[250px]" src="https://pbs.twimg.com/profile_banners/975243637/1398726731/1500x500"> -->
         </div>
-
+        <div class="block body-text col-span-4 md:hidden">
+            <p> 
+                What this project isn't:
+            <ul>
+                <li>speculation about an impending "AI bubble"</li>
+                <li>analysis of macroeconomic impacts of AI</li>
+                <li>strategy or advice for VCs</li>
+            </ul>
+            <!-- <br> -->
+            <p>Rather, this is my attempt to describe how AI challenges SaaS economies of scale, and develop an opinion
+                on how software pricing should evolve.</p>
+             </div>        
+                <!-- <div class="body-text row-start-1 border-l px-4 dark:border-slate-700">
+            <h2>Get in Touch</h2>
+            Email<br>
+            Twitter<br>
+            Resume<br>
+            
+        </div> -->
 
     <!-- <div class="landing-body">
         <p>I'm the founder of <a class="link" href="https://lexica.art">Lexica</a> – we're building creative tools backed by state-of-the-art generative models (P.S. <a class="link" href="https://lexica.art/careers">we're hiring</a>). I previously worked on a low-code tool powered by language models called Debuild. Before that, I built Vectordash, a peer-to-peer GPU cloud backed by Y Combinator.</p><br><p>I live in San Francisco and spend my free time experimenting with software design, researching genetics and longevity, and trying to <a href="/future" class="link">build the future.</a></p>
@@ -295,11 +321,11 @@ The emerging pricing fix is priority contracts that turn unpredictable per-reque
         </ol>
         <hr>
         <h3>Diagrams</h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
               <!-- <div class="img h-12 w-auto">
                   <img src="./images/image2.png" alt="" class="img__icon" />
               </div> -->
-              <div class="img">
+              <div class="img col-span-2">
                   <img src="./images/image3.png" alt="" class="img__icon" />
               </div>
                 <!-- <div class="img">
@@ -309,8 +335,14 @@ The emerging pricing fix is priority contracts that turn unpredictable per-reque
               <!-- <div class="img">
                   <img src="./images/image5.png" alt="" class="img__icon" />
               </div> -->
-              <div class="img col-span-2">
+              <div class="img col-span-4">
                   <img src="./images/image6.png" alt="" class="img__icon" />
+              </div>
+              <div class="img col-span-3">
+                  <img src="./images/fat_tails/image15.png" alt="" class="img__icon" />
+              </div>
+                            <div class="img col-span-3">
+                  <img src="./images/fat_tails/image14.png" alt="" class="img__icon" />
               </div>
                 <!-- <div class="img">
                   <img src="./images/image7.png" alt="" class="img__icon" />
@@ -327,11 +359,13 @@ The emerging pricing fix is priority contracts that turn unpredictable per-reque
             <p>
                 what else I&apos;m thinking about:
             <ul>
+                <li>causal inference to understand the relationship between workload characteristics and resource load</li>
+
                 <li>the impact of sequence length on costs, and what entropy reveals about it</li>
 
-                <li>how entropy can be used to classify tasks and form the basis for clearer value stories</li>
+                <!-- <li>how entropy can be used to classify tasks and form the basis for clearer value stories</li>
 
-                <li>analogues to congestion-based pricing </li>
+                <li>analogues to congestion-based pricing </li> -->
 
                 <li>credits as an evolutionary step towards value-based pricing and more experimentation</li>
             </ul>
