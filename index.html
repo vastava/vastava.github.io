@@ -39,7 +39,8 @@
         .container {
             text-align: center;
             max-width: 600px;
-            padding: 2rem;
+            font-family: sans-serif;
+            /* padding: 2rem; */
         }
 
         .featured-image {
@@ -217,6 +218,63 @@ figcaption:before  {
   color:rgba(0,0,0,.1)
 
 } */
+
+
+        #projects {
+            margin: 3rem 0;
+        }
+
+        #projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        #projects-grid > article + article {
+            border-left: 1px solid #d0d0d0;
+            padding-left: 2rem;
+        }
+
+        #projects-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 1.2rem;
+            border: 1px solid #d9d9d9;
+        }
+
+        #projects-grid p {
+            margin: 0;
+            font-size: 1.55rem;
+            line-height: 1.75;
+            color: #2f2f2f;
+        }
+
+        #projects-grid strong {
+            color: #111;
+            font-weight: 700;
+        }
+
+        @media (max-width: 900px) {
+            #projects-grid {
+                grid-template-columns: 1fr;
+                row-gap: 1.75rem;
+            }
+
+            #projects-grid > article + article {
+                border-left: none;
+                border-top: 1px solid #d0d0d0;
+                padding-left: 0;
+                padding-top: 1.75rem;
+            }
+
+            #projects-grid img {
+                height: 220px;
+            }
+        }
+
+
     </style>
 </head>
 
@@ -261,19 +319,33 @@ figcaption:before  {
             <p>Rather, this is my attempt to describe how AI challenges SaaS economies of scale, and develop an opinion
                 on how software pricing should evolve.</p>
              </div>        
-                <!-- <div class="body-text row-start-1 border-l px-4 dark:border-slate-700">
-            <h2>Get in Touch</h2>
-            Email<br>
-            Twitter<br>
-            Resume<br>
-            
-        </div> -->
-
-    <!-- <div class="landing-body">
-        <p>I'm the founder of <a class="link" href="https://lexica.art">Lexica</a> – we're building creative tools backed by state-of-the-art generative models (P.S. <a class="link" href="https://lexica.art/careers">we're hiring</a>). I previously worked on a low-code tool powered by language models called Debuild. Before that, I built Vectordash, a peer-to-peer GPU cloud backed by Y Combinator.</p><br><p>I live in San Francisco and spend my free time experimenting with software design, researching genetics and longevity, and trying to <a href="/future" class="link">build the future.</a></p>
-    </div> -->
-<!-- </div>         -->
 </div>
+
+        <hr>
+        <section id="projects">
+            <h3>Selected Projects</h3>
+            <!-- Swap these image paths with your own files when you are ready. -->
+            <div id="projects-grid">
+                <article>
+                    <img src="images/inferlength.png" alt="InferLength project preview">
+                    <p><strong>InferLength:</strong> A Python package for prediction of LLM output length during local inference, built on entropy-guided representations from recent research.</p>
+                </article>
+                <article>
+                    <img src="images/samplesizecalc.png" alt="SampleSizeCalc.com project preview">
+                    <p><strong>SampleSizeCalc.com:</strong> An interactive sample size calculator for A/B that handles unequal split ratios, multiple treatments, Bonferroni correction.</p>
+                </article>
+                <article>
+                    <img src="images/statsim.png" alt="StatSim project preview">
+                    <p><strong>StatSim:</strong> A gamified SQL sandbox for practicing query fundamentals in a more interactive execution environment.</p>
+                </article>
+            </div>
+        </section>
+    <div class="container">
+        <p>
+            <a href="/vintage" class="secondary-link">Full collection of side projects, experiments, and half-finished things lives in /vintage</a>
+        </p>
+    </div>                
+
         <hr>
         <h3>Essays</h3>
         <!-- <p><a href="preface.html">Preface</a><br> <a href="acknowledgments.html">Acknowledgments</a></p> -->
@@ -377,12 +449,6 @@ The emerging pricing fix is priority contracts that turn unpredictable per-reque
         </div>
     </section>
     <div class="container">
-        <!-- <div>
-            <a href="pricing_paradigm">A broken pricing paradigm</a><br>
-            <a href="https://scatterpad.com/page/01KA7HGHX3CF76F1YQ9YGV9AHM">Making sense of margins</a><br>
-        </div> -->
-        <!-- <img src="images/main.jpg" alt="Featured content" class="featured-image"> -->
-
         <p>
             <a href="/vintage" class="secondary-link">View the old version of this site at /vintage</a>
         </p>
