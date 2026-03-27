@@ -1,0 +1,70 @@
+[
+  {
+    "title": "Scale: The Universal Laws of Growth, Innovation, Sustainability, and the Pace of Life in Organisms, Cities, Economies, and Companies",
+    "author": "Geoffrey West",
+    "status": "downloaded",
+    "path": "/Users/academic/Downloads/vastava.github.io/images/bookshelf/scale-the-universal-laws-of-growth-innovation-sustainability-and-the-pace-of-life-in-organisms-cities-economies-and-companies.jpg",
+    "source_url": "https://covers.openlibrary.org/b/id/8118023-L.jpg",
+    "note": "Open Library: Scale"
+  },
+  {
+    "title": "The Misbehavior of Markets: A Fractal View of Financial Turbulence",
+    "author": "Benoit B. Mandelbrot & Richard L. Hudson",
+    "status": "downloaded",
+    "path": "/Users/academic/Downloads/vastava.github.io/images/bookshelf/the-misbehavior-of-markets-a-fractal-view-of-financial-turbulence.jpg",
+    "source_url": "https://covers.openlibrary.org/b/id/298811-L.jpg",
+    "note": "Open Library: The (mis)behavior of markets"
+  },
+  {
+    "title": "Fluent Python: Clear, Concise, and Effective Programming",
+    "author": "Luciano Ramalho",
+    "status": "downloaded",
+    "path": "/Users/academic/Downloads/vastava.github.io/images/bookshelf/fluent-python-clear-concise-and-effective-programming.jpg",
+    "source_url": "https://covers.openlibrary.org/b/id/8743408-L.jpg",
+    "note": "Open Library: Fluent Python"
+  },
+  {
+    "title": "Virtual History: Alternatives And Counterfactuals",
+    "author": "Niall Ferguson",
+    "status": "downloaded",
+    "path": "/Users/academic/Downloads/vastava.github.io/images/bookshelf/virtual-history-alternatives-and-counterfactuals.jpg",
+    "source_url": "https://covers.openlibrary.org/b/id/5264295-L.jpg",
+    "note": "Open Library: Virtual History"
+  },
+  {
+    "title": "American Vandal",
+    "author": "Dan Perrault & Tony Yacenda",
+    "status": "downloaded",
+    "path": "/Users/academic/Downloads/vastava.github.io/images/bookshelf/american-vandal.jpg",
+    "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/168/420408.jpg",
+    "note": "poster via TVMaze"
+  },
+  {
+    "title": "Watchmen",
+    "author": "Alan Moore, Dave Gibbons & John Higgins",
+    "status": "downloaded",
+    "path": "/Users/academic/Downloads/vastava.github.io/images/bookshelf/watchmen.jpg",
+    "source_url": "https://covers.openlibrary.org/b/id/7774899-L.jpg",
+    "note": "Open Library: Watchmen"
+  },
+  {
+    "title": "Causal Inference for the Brave and True",
+    "author": "Matheus Facure",
+    "status": "downloaded",
+    "path": "/Users/academic/Downloads/vastava.github.io/images/bookshelf/causal-inference-for-the-brave-and-true.png",
+    "source_url": "https://matheusfacure.github.io/python-causality-handbook/_images/brave-and-true.png",
+    "note": "official cover from the author's site"
+  },
+  {
+    "title": "Reaction Wheel blog",
+    "author": "Jerry Neumann",
+    "status": "skipped",
+    "reason": "rendered directly in index.html from the site masthead"
+  },
+  {
+    "title": "argmin blog",
+    "author": "Ben Recht",
+    "status": "skipped",
+    "reason": "substack; leave the cover blank for now"
+  }
+]
