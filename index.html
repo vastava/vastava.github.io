@@ -236,12 +236,28 @@ figcaption:before  {
             padding-left: 2rem;
         }
 
+        #projects-grid .project-card {
+            display: block;
+            position: relative;
+            margin-bottom: 0;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        #projects-grid .project-card:hover,
+        #projects-grid .project-card:focus-visible {
+            color: inherit;
+            text-decoration: none;
+        }
+
         #projects-grid img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            display: block;
             margin-bottom: 1.2rem;
             border: 1px solid #d9d9d9;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         #projects-grid p {
@@ -254,6 +270,46 @@ figcaption:before  {
         #projects-grid strong {
             color: #111;
             font-weight: 700;
+            transition: color 0.2s ease;
+        }
+
+        #projects-grid .project-card:hover img,
+        #projects-grid .project-card:focus-visible img {
+            transform: translateY(-2px);
+            border-color: #b6b6b6;
+        }
+
+        #projects-grid .project-card:hover strong,
+        #projects-grid .project-card:focus-visible strong {
+            color: #0033cc;
+        }
+
+        #projects-grid .project-card:focus-visible {
+            outline: 2px solid #0033cc;
+            outline-offset: 6px;
+        }
+
+        #projects-grid .project-card--dm::after {
+            content: "dm me!";
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(17, 17, 17, 0.88);
+            color: #fff;
+            font-size: 1.2rem;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        #projects-grid .project-card--dm:hover::after,
+        #projects-grid .project-card--dm:focus-visible::after {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @media (max-width: 900px) {
@@ -270,6 +326,7 @@ figcaption:before  {
             }
 
             #projects-grid img {
+                aspect-ratio: auto;
                 height: 220px;
             }
         }
@@ -418,16 +475,22 @@ I&apos;m interested in how AI challenges SaaS economies of scale, and what that 
             <!-- Swap these image paths with your own files when you are ready. -->
             <div id="projects-grid">
                 <article>
-                    <img src="images/inferlength.png" alt="InferLength project preview">
-                    <p><strong>InferLength:</strong> A Python package for prediction of LLM output length during local inference, built on entropy-guided representations from recent research.</p>
+                    <a class="project-card" href="https://github.com/vastava/InferLength">
+                        <img src="images/inferlength.png" alt="InferLength project preview">
+                        <p><strong>InferLength:</strong> A Python package for prediction of LLM output length during local inference, built on entropy-guided representations from recent research.</p>
+                    </a>
                 </article>
                 <article>
-                    <img src="images/samplesizecalc.png" alt="SampleSizeCalc.com project preview">
-                    <p><strong>SampleSizeCalc.com:</strong> An interactive sample size calculator for A/B that handles unequal split ratios, multiple treatments, Bonferroni correction.</p>
+                    <a class="project-card" href="https://www.samplesizecalc.com/calculator?metricType=proportion">
+                        <img src="images/samplesizecalc.png" alt="SampleSizeCalc.com project preview">
+                        <p><strong>SampleSizeCalc.com:</strong> An interactive sample size calculator for A/B that handles unequal split ratios, multiple treatments, Bonferroni correction.</p>
+                    </a>
                 </article>
                 <article>
-                    <img src="images/statsim.png" alt="StatSim project preview">
-                    <p><strong>StatSim:</strong> A gamified SQL sandbox for practicing query fundamentals in a more interactive execution environment.</p>
+                    <a class="project-card project-card--dm" href="https://twitter.com/anjali_shriva">
+                        <img src="images/statsim.png" alt="StatSim project preview">
+                        <p><strong>StatSim:</strong> A gamified SQL sandbox for practicing query fundamentals in a more interactive execution environment.</p>
+                    </a>
                 </article>
             </div>
         </section>
