@@ -169,7 +169,52 @@
 
         #scrollLink:hover { 
             color: orange !important; 
-        }        
+        }
+
+        .copy-essay-toolbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .copy-essay-button {
+            appearance: none;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 999px;
+            background-color: rgb(0, 51, 204);
+            color: white;
+            cursor: pointer;
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.2;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            transition: background-color 0.2s, transform 0.2s, opacity 0.2s;
+        }
+
+        .copy-essay-button:hover {
+            background-color: rgb(0, 40, 160);
+            transform: translateY(-1px);
+        }
+
+        .copy-essay-button:focus-visible {
+            outline: 2px solid rgb(0, 40, 160);
+            outline-offset: 3px;
+        }
+
+        .copy-essay-button:disabled {
+            opacity: 0.85;
+            cursor: progress;
+            transform: none;
+        }
+
+        @media (max-width: 640px) {
+            .copy-essay-button {
+                width: min(100%, 22rem);
+            }
+        }
 
 </style>
 
@@ -183,6 +228,12 @@
             <div class="w-fit text-center mx-auto">
                 <h1 id="intro" class="title">A token is not a fixed unit of cost</h1>
                 <h2 class="deckhead">Variance in usage creates an interconnected pricing and scaling issue</h2>
+                <div class="copy-essay-toolbar">
+                    <button type="button" class="copy-essay-button" data-copy-essay-markdown
+                        data-essay-url="https://anjalishriva.com/token_pricing">
+                        Copy Essay as Markdown for LLMs
+                    </button>
+                </div>
             </div>
             <div class="md:flex">
                 <div class="max-w-[190px] flex-grow-0 flex-shrink-0 hidden md:block">
@@ -283,7 +334,7 @@
                 prose-ol:font-serif
                 prose-ul:font-serif
                 article-contents
-                ">
+                " data-essay-content>
                         <div class="table-of-contents md:hidden my-4">
                             <h3>Table of Contents</h3>
                             <ul>
@@ -806,6 +857,7 @@
     </footer>
     <button id="backToTop" style="display: block;">↑ Top</button>
 </body>
+<script src="./scripts/essay_markdown_copy.js"></script>
 <script>
 // Scroll to top functionality
 document.getElementById('backToTop').addEventListener('click', function() {

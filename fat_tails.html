@@ -172,7 +172,52 @@
 
         #scrollLink:hover { 
             color: orange !important; 
-        }        
+        }
+
+        .copy-essay-toolbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .copy-essay-button {
+            appearance: none;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 999px;
+            background-color: rgb(0, 51, 204);
+            color: white;
+            cursor: pointer;
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.2;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            transition: background-color 0.2s, transform 0.2s, opacity 0.2s;
+        }
+
+        .copy-essay-button:hover {
+            background-color: rgb(0, 40, 160);
+            transform: translateY(-1px);
+        }
+
+        .copy-essay-button:focus-visible {
+            outline: 2px solid rgb(0, 40, 160);
+            outline-offset: 3px;
+        }
+
+        .copy-essay-button:disabled {
+            opacity: 0.85;
+            cursor: progress;
+            transform: none;
+        }
+
+        @media (max-width: 640px) {
+            .copy-essay-button {
+                width: min(100%, 22rem);
+            }
+        }
 
 </style>
 
@@ -186,6 +231,12 @@
             <div class="w-fit text-center mx-auto">
                 <h1 id="intro" class="title">Why fat tailed costs emerge at scale</h1>
                 <h2 class="deckhead">Unrelated contexts and spiky concurrent traffic create a moving capacity boundary</h2>
+                <div class="copy-essay-toolbar">
+                    <button type="button" class="copy-essay-button" data-copy-essay-markdown
+                        data-essay-url="https://anjalishriva.com/fat_tails">
+                        Copy Essay as Markdown for LLMs
+                    </button>
+                </div>
             </div>
             <div class="md:flex">
                 <div class="max-w-[190px] flex-grow-0 flex-shrink-0 hidden md:block">
@@ -281,7 +332,7 @@
                 prose-ol:font-serif
                 prose-ul:font-serif
                 article-contents
-                ">
+                " data-essay-content>
                         <div class="table-of-contents md:hidden my-4">
                             <h3>Table of Contents</h3>
                             <ul>
@@ -344,7 +395,7 @@ The right-hand chart shows how this cache pressure scales when batching. KV cach
 <p>But the true resource costs are not linear, because every extra request in the batch carries its own KV cache, and that memory scales with both sequence length and batch size. Once the product (prompt length × users) outruns capacity, you hit a wall.</p>
 <p>Tensor Economics&apos; throughput model shows how fast the wall arrives.The blue curve is the predicted throughput based on the GPUs’ theoretical capacity (assuming 100% utilization). The green curve is the actual observed throughput.</p>
                         <div class="image-container">
-                            <img src="images/fat_tails/image1.png" alt="Cost per token variance">
+                            <img src="images/fat_tails/image1.png" alt="Theoretical versus observed throughput as batch size increases">
                         </div>
 
                         <!-- <p>The underlined variables in our formula likely have fat tails — <strong>so it's all of them.</strong></p> -->
@@ -358,7 +409,7 @@ The right-hand chart shows how this cache pressure scales when batching. KV cach
 </p>
 <p>The right-hand curve shows the fractional drop in throughput relative to the GPU’s theoretical maximum; the gap grows roughly exponentially with batch size before leveling off at ≈40%. While this memory capacity decay looks exponential, I would expect it to approach a saturation level rather than decay to zero.</p>
                         <div class="image-container">
-                            <img src="images/fat_tails/image5.png" alt="Cost distribution">
+                            <img src="images/fat_tails/image5.png" alt="Fractional throughput drops as batch size increases">
                         </div>
 
 <p>My point is that memory capacity is dependent on batch size, which itself is dependent on non-stationary distributions (GPU efficiency and temporal demand, among other variables). The next section will make this relationship clearer.</p>
@@ -383,7 +434,7 @@ But counterintuitively, the optimal P/D ratio is not fixed in production-scale e
                         <!-- <p>From <a href="https://arxiv.org/pdf/2508.19559">Taming the Chaos: Coordinated Autoscaling for Heterogeneous and Disaggregated LLM Inference</a></p> -->
                         <p><strong>2. Huawei</strong></p>
                         <div class="image-container">
-                            <img src="images/fat_tails/image3.png" alt="The P/D ratio switches from 2:6 to 6:2 to impr">
+                            <img src="images/fat_tails/image3.png" alt="Optimal prefill to decode ratio shifts from 2:6 to 6:2 as workloads change">
                         </div>
                         <p class="blockquote">
                             As workloads vary rapidly in real-world serving, a fixed 𝑃𝐷 ratio is not always ideal. Instead, a dynamic 𝑃𝐷 ratio should be used. Figure 20 and Figure 19 show examples of goodput at different PD ratios. Since we lack preliminary workload traces before the real-world deployment of our serving system, we use BurstGPT in our simulation platform to determine the optimal PD ratio under various user, model, and system workloads.
@@ -475,7 +526,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
                         <p>
                             What I think is most interesting about priority service is that it marks a shift from a “per-request cost prediction problem” to an “aggregate capacity problem.” And making that shift requires assuming a design role and allocating specific time-slots instead of rolling the dice. 
                         </p>
-                        <p>These contracts could evolve into something like <a href=""https://medium.com/google-cloud/understanding-bigquery-pricing-a-comprehensive-guide-b775ed25399f>BigQuery’s pricing</a>, that offers sophisticated forecasting for customers’ storage/processing needs and scales resources based on that forecast.</p>
+                        <p>These contracts could evolve into something like <a href="https://medium.com/google-cloud/understanding-bigquery-pricing-a-comprehensive-guide-b775ed25399f">BigQuery’s pricing</a>, that offers sophisticated forecasting for customers’ storage/processing needs and scales resources based on that forecast.</p>
 
                         <h1 id="solutions" class="section-head">Pricing and capacity planning are an intertwined, moving target</h1>
 
@@ -594,6 +645,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
     </footer>
     <button id="backToTop" style="display: block;">↑ Top</button>
 </body>
+<script src="./scripts/essay_markdown_copy.js"></script>
 <script>
 // Scroll to top functionality
 document.getElementById('backToTop').addEventListener('click', function() {
