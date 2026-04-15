@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="./output.css" rel="stylesheet">
+    <link href="./subscribe.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
@@ -204,6 +205,17 @@ figcaption:before  {
             font-size: 1.7rem;
             line-height: 2.4rem;
             /* margin: 0 0 0 0; */
+        }
+
+        .open-research-text {
+            font-family: Merriweather, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+            font-size: 1.7rem;
+        }
+
+        .open-research-text ul {
+            font-family: Merriweather, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+            font-size: 1.7rem;
+            line-height: 2.4rem;
         }
 
         .desktop-toc {
@@ -549,7 +561,10 @@ figcaption:before  {
             <h3 class="mt-0">Welcome</h3>
             <p class="hidden md:block!">I&apos;m Anjali, a monetization data scientist currently doing self-directed research on inference economics through the <a class="analogue-link" href="https://analoguegroup.org/">Analogue Group</a>.<br><br>
 
-I&apos;m interested in how AI challenges SaaS economies of scale, and what that means for software pricing. This is not AI bubble speculation, macro analysis of labor trends, or investment advice.</p>
+I&apos;m interested in how AI challenges SaaS economies of scale, and what that means for software pricing. This is not AI bubble speculation, macro analysis of labor trends, or investment advice.
+  <br><br>I&apos;m at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter at
+            <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.
+</p>
             <!-- <p>I&apos;m Anjali, a monetization Data Scientist working my way through the realities of inference
                 economics. </p>
              <div class="hidden md:block!">
@@ -567,52 +582,37 @@ I&apos;m interested in how AI challenges SaaS economies of scale, and what that 
         <nav class="desktop-toc hidden md:block! md:col-span-2 self-end" aria-label="On this page">
             <p class="desktop-toc__eyebrow">On this page</p>
             <ul class="desktop-toc__list">
-                <li><a href="#projects">Selected Projects</a></li>
                 <li><a href="#essays">Essays</a></li>
+                <li><a href="#projects">Selected Projects</a></li>
                 <li><a href="#diagrams">Diagrams</a></li>
                 <li><a href="#books">Bookshelf</a></li>
-                <li><a href="#books">Contact</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+                <li><a href="#open-research">Open Research</a></li>
             </ul>
         </nav>
         <div class="block body-text col-span-4 md:hidden">
             <p>I&apos;m Anjali, a monetization data scientist currently doing self-directed research on inference economics through the <a class="analogue-link" href="https://analoguegroup.org/">Analogue Group</a>.<br><br>
 
-I&apos;m interested in how AI challenges SaaS economies of scale, and what that means for software pricing. This is not AI bubble speculation, macro analysis of labor trends, or investment advice.</p>
-             </div>        
-</div>
+I&apos;m interested in how AI challenges SaaS economies of scale, and what that means for software pricing. This is not AI bubble speculation, macro analysis of labor trends, or investment advice.
 
-        <hr>
-        <section id="projects">
-            <h3>Selected Projects</h3>
-            <!-- Swap these image paths with your own files when you are ready. -->
-            <div id="projects-grid">
-                <article>
-                    <a class="project-card" href="https://github.com/vastava/InferLength">
-                        <img src="images/inferlength.png" alt="InferLength project preview">
-                        <p><strong>InferLength:</strong> A Python package for prediction of LLM output length during local inference, built on entropy-guided representations from recent research.</p>
-                    </a>
-                </article>
-                <article>
-                    <a class="project-card" href="https://www.samplesizecalc.com/calculator?metricType=proportion">
-                        <img src="images/samplesizecalc.png" alt="SampleSizeCalc.com project preview">
-                        <p><strong>SampleSizeCalc.com:</strong> An interactive sample size calculator for A/B that handles unequal split ratios, multiple treatments, Bonferroni correction.</p>
-                    </a>
-                </article>
-                <article>
-                    <a class="project-card project-card--dm" href="https://twitter.com/anjali_shriva">
-                        <img src="images/statsim.png" alt="StatSim project preview">
-                        <p><strong>StatSim:</strong> A gamified SQL sandbox for practicing query fundamentals in a more interactive execution environment.</p>
-                    </a>
-                </article>
-            </div>
-        </section>
-    <div class="container">
-        <p>
-            <a href="/vintage" class="secondary-link">Full collection of side projects, experiments, and half-finished things lives in /vintage</a>
-        </p>
-    </div>                
+  <br><br>I&apos;m at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter at
+            <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.</p>
 
-        <hr>
+             </div>     
+        <aside class="subscribe-shell col-span-4 md:col-span-6" aria-labelledby="essay-alerts-title">
+            <!-- <p id="essay-alerts-title">Sign up to be notified when I publish:</p> -->
+            <form class="subscribe-form embeddable-buttondown-form"
+                action="https://buttondown.com/api/emails/embed-subscribe/anjalishriva" method="post">
+                <label class="subscribe-visually-hidden" for="homepage-subscribe-email">Email address</label>
+                <input id="homepage-subscribe-email" class="subscribe-form__input" type="email" name="email"
+                    placeholder="your.email@domain.com" autocomplete="email" required data-buttondown-email>
+                <input type="hidden" name="embed" value="1">
+                <input class="subscribe-form__button" type="submit" value="Subscribe" data-buttondown-submit>
+            </form>
+        </aside>                 
+</div>        
+       
+        <!-- <hr> -->
         <h3 id="essays">Essays</h3>
         <!-- <p><a href="preface.html">Preface</a><br> <a href="acknowledgments.html">Acknowledgments</a></p> -->
         <ol type="1">
@@ -654,16 +654,58 @@ Because real-world traffic has near-infinite variance, the mean cost per request
 Without live telemetry on cache pressure, batching logic and P/D ratios, providers can’t optimize unit economics<br>
 The emerging pricing fix is priority contracts that turn unpredictable per-request costs into a forecastable aggregate-capacity problem<br>                    
             </li>
+            <li><a href="https://docs.google.com/document/d/1YWl-P_HupYMtR3g15MUbXT4_uemqumYR5LIsYAU_rtk/edit?usp=sharing">As variance compounds, cost and value diverge</a> (<i>Suggestions welcome</i>)
+            <div class="sub-item">
+                <i>TL;DR</i><br>
+                Cost, value and scale line up in software but not in AI<br>
+Compounding variance means cost and value diverge at scale<br>
+The Trilemma: every pricing metric forces a tradeoff<br>
+Value is in coordination, not outcomes<br>
+            </div>
+            </li>
             <li><a href="https://docs.google.com/document/d/173Z1gfurg7P2cOkeivwxrTPV5jEtPUuN13sZbn7-wGU/edit?usp=sharing">Opportunities for mechanism design</a> (<i>Suggestions welcome</i>)</li>
             <!-- <li>T (<i>WIP</i>)</li> -->
             </div>
         </ol>
+
     <div class="container">
         <p>
             <a href="/vintage/writing" class="secondary-link">I also write about things beyond pricing. See vintage/writing.
             </a>
         </p>
+    </div>
+
+        <hr>
+        <section id="projects">
+            <h3>Selected Projects</h3>
+            <!-- Swap these image paths with your own files when you are ready. -->
+            <div id="projects-grid">
+                <article>
+                    <a class="project-card" href="https://github.com/vastava/InferLength">
+                        <img src="images/inferlength.png" alt="InferLength project preview">
+                        <p><strong>InferLength:</strong> A Python package for prediction of LLM output length during local inference, built on entropy-guided representations from recent research.</p>
+                    </a>
+                </article>
+                <article>
+                    <a class="project-card" href="https://www.samplesizecalc.com/calculator?metricType=proportion">
+                        <img src="images/samplesizecalc.png" alt="SampleSizeCalc.com project preview">
+                        <p><strong>SampleSizeCalc.com:</strong> An interactive sample size calculator for A/B that handles unequal split ratios, multiple treatments, Bonferroni correction.</p>
+                    </a>
+                </article>
+                <article>
+                    <a class="project-card project-card--dm" href="https://twitter.com/anjali_shriva">
+                        <img src="images/statsim.png" alt="StatSim project preview">
+                        <p><strong>StatSim:</strong> A gamified SQL sandbox for practicing query fundamentals in a more interactive execution environment.</p>
+                    </a>
+                </article>
+            </div>
+        </section>
+    <div class="container">
+        <p>
+            <a href="/vintage" class="secondary-link">Full collection of side projects, experiments, and half-finished things lives in /vintage</a>
+        </p>
     </div>              
+
         <hr>
         <h3 id="diagrams">Diagrams</h3>
             <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
@@ -816,10 +858,25 @@ The emerging pricing fix is priority contracts that turn unpredictable per-reque
               </article>
     </section>            
     <hr>
+    <section id="open-research">
+        <h3>Open Research</h3>
+        <div class="open-research-text max-w-[950px]">
+            <p>I do this to get people to update their priors. The happiest moments are when someone takes a half-formed intuition of mine and builds something rigorous I couldn&apos;t have made myself. Like when:</p>
+            <p>I&apos;m treating AI pricing as an open research question. The best part of working in public is when people build on my work. Like when:</p>
+            <ul>
+                <li>Soren Larson took my observation about ill-defined AI outputs and modeled a <a href="https://hypersoren.xyz/posts/outcomes-protocol/">mechanism for evaluating outcomes</a>.</li>
+                <li>Mostly Borrowed Ideas cited my essays on inference economics as “required reading” and <a href="https://www.mbi-deepdives.com/fat-tail-ai/">analyzed the implications of resource variance</a> for Microsoft&apos;s Copilot strategy.</li>
+                <li>Tim O&apos;Reilly brought his historical lens of platform economics on <a href="https://www.oreilly.com/videos/live-with-tim/0642572259488/">his podcast</a>, which helped me see how current AI pricing fits into longer patterns of industry-wide shifts.</li>
+            </ul>
+            <p>I publish my drafts in public Google Docs. You can see the debates with editors in the comments, the dead ends, and the moments where my perspective changes.</p>
+            <p>I&apos;m trying to work at the intersection of classical pricing theory and the architecture of LLMs, where concurrency, memory constraints, and variance meet strategy and business opportunity. There aren&apos;t enough people grappling with what pricing reveals about the “intelligence” being sold, or questioning the foundational assumptions while staying grounded in empirical commercial reality.</p>
+            <p>If you&apos;re thinking about any of this, I&apos;d love to compare notes.</p>
+        </div>
+    </section>    
             <div class="body-text">
 
   </main>                
-            <p>
+            <p id="contact">
                 <!-- what else I&apos;m thinking about:
             <ul>
                 <li>causal inference to understand the relationship between workload characteristics and resource load</li>
@@ -829,8 +886,8 @@ The emerging pricing fix is priority contracts that turn unpredictable per-reque
                 <li>credits as an evolutionary step towards value-based pricing and more experimentation</li>
             </ul>
             <br> -->
-            I'm at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter at
-            <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.
+            <!-- I'm at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter at
+            <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>. -->
             </p>
         </div>
     </section>
@@ -839,6 +896,8 @@ The emerging pricing fix is priority contracts that turn unpredictable per-reque
             <a href="/vintage" class="secondary-link">View the old version of this site at /vintage</a>
         </p>
     </div>
+    <hr>
+
 </body>
 
 </html>
