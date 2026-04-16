@@ -225,26 +225,77 @@ figcaption:before  {
             line-height: 2.4rem;
         }
 
+        .open-research-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+            gap: 0;
+            align-items: stretch;
+        }
+
+        .open-research-panel {
+            min-height: 100%;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        .open-research-panel > :first-child {
+            margin-top: 0;
+        }
+
+        .open-research-panel > :last-child {
+            margin-bottom: 0;
+        }
+
+        .open-research-questions h4 {
+            margin: 0 0 1.4rem 0;
+            font-family: Merriweather, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+            font-size: 1.95rem;
+            line-height: 1.35;
+        }
+
+        .open-research-questions ul {
+            margin-bottom: 0;
+            padding-left: 1.8rem;
+        }
+
+        .open-research-questions li + li {
+            margin-top: 0.7rem;
+        }
+
+        .open-research-grid > :first-child {
+            padding-right: 28px;
+        }
+
+        .open-research-grid > :last-child {
+            padding-left: 28px;
+            border-left: 1px solid rgba(49, 49, 49, 0.2);
+        }
+
         #open-research {
             position: relative;
             isolation: isolate;
             overflow: hidden;
             border-top: 1px solid #d8dde5;
             padding: 28px 30px 32px;
+            background: transparent;
         }
 
         #open-research::before {
             content: "";
             position: absolute;
             inset: 0;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)),
-                url("images/footer.jpeg");
-            background-position: center;
+            background-image: url("images/footer.png");
+            background-position: center top;
             background-repeat: no-repeat;
             background-size: cover;
-            transform: scale(1.06);
-            transform-origin: center;
+            transform: scale(1.05);
+            transform-origin: 20% top;
+            opacity: 0.14;
             z-index: 0;
             pointer-events: none;
         }
@@ -252,6 +303,30 @@ figcaption:before  {
         #open-research > * {
             position: relative;
             z-index: 1;
+        }
+
+        @media (max-width: 900px) {
+            .open-research-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .open-research-grid > :first-child {
+                padding-right: 0;
+                padding-bottom: 22px;
+            }
+
+            .open-research-grid > :last-child {
+                padding-left: 0;
+                padding-top: 22px;
+                border-left: 0;
+                border-top: 1px solid rgba(49, 49, 49, 0.2);
+            }
+        }
+
+        @media (max-width: 640px) {
+            #open-research {
+                padding: 24px 20px 28px;
+            }
         }
 
         .desktop-toc {
@@ -1176,18 +1251,30 @@ I&apos;m interested in how AI challenges SaaS economies of scale, and what that 
     </section>            
     <br>
     <section id="open-research">
-        <h3>Open Research</h3>
-        <div class="open-research-text"> 
-            <p>I&apos;m treating AI pricing as an open research question. The most rewarding part of public-facing work is when someone builds on my ideas or pushes them into new territory. Like when:</p>
-            <ul>
-                <li>Soren Larson took my observation about ill-defined AI outputs and modeled a <a href="https://hypersoren.xyz/posts/outcomes-protocol/">mechanism for evaluating outcomes</a>.</li>
-                <li>Mostly Borrowed Ideas cited my essays on inference economics as “required reading” and <a href="https://www.mbi-deepdives.com/fat-tail-ai/">analyzed the implications of resource variance</a> for Microsoft&apos;s Copilot strategy.</li>
-                <li>Tim O&apos;Reilly brought his <a href="https://www.oreilly.com/videos/live-with-tim/0642572259488/">historical lens of platform economics</a>, which helped me see how current AI pricing fits into longer patterns of industry-wide shifts.</li>
-            </ul>
-            <p>I publish my drafts in public Google Docs. You can see revisions, debates with editors in the comments, and where my perspective changes.</p>
-            <p>I&apos;m trying to think at the intersection of classical pricing theory and the architecture of LLMs, where concurrency, memory constraints, and variance meet strategy. There aren&apos;t enough people asking these questions while staying grounded in empirical commercial reality and business opportunity.</p>
-            <p>If you&apos;re thinking about any of this, I&apos;d love to compare notes. I&apos;m at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.</p>
-        </div>
+        <!-- <hr> -->
+            <h3>Open Research</h3><br>
+        <div class="open-research-grid">
+            <div class="open-research-panel open-research-text">
+                <p>I&apos;m treating AI pricing as an open research question. The most rewarding part of public-facing work is when someone pushes them into new territory. Like when:</p>
+                <ul>
+                    <li>Soren Larson took my observation about ill-defined AI outputs and modeled a <a href="https://hypersoren.xyz/posts/outcomes-protocol/">mechanism for evaluating outcomes</a>.</li>
+                    <li>Mostly Borrowed Ideas <a href="https://www.mbi-deepdives.com/fat-tail-ai/">analyzed the implications of resource variance</a> for Microsoft&apos;s strategy and cited my essays as "required reading."</li>
+                    <li>Tim O&apos;Reilly brought a <a href="https://www.oreilly.com/videos/live-with-tim/0642572259488/">historical lens of platform economics</a>, which helped me see how current AI pricing fits into longer patterns of industry-wide shifts.</li>
+                </ul>
+                <p>I also publish my drafts in public Google Docs. You can see revisions, debates in the comments, and where my perspective changes.</p>
+                <p>There aren&apos;t enough people asking these questions while staying grounded in empirical commercial realities, architectural constraints and business opportunity.</p>                
+            </div>
+            <aside class="open-research-panel open-research-text open-research-questions" aria-labelledby="open-research-questions-title">
+                <p>Questions I'm thinking about:</p>
+                <ul>
+                    <li><strong>Market design as infrastructure.</strong> How do we build markets that can route intelligence at scale, when it has no natural atomic unit and resists normalization?</li>
+                    <li><strong>Real-time measurement.</strong> Which live signals best measure the current load on critical resource pool? Token entropy? Demand forecasts?</li>
+                    <li><strong>The value-based pricing shift.</strong> What do we need to go from price discrimination at the speed/inference throughput level to price discovery at the workload and task type level?</li>
+                    <li><strong>New equilibria.</strong> How do markets respond when high variance, fat-tailed intelligence diffuses throughout the economy?</li>
+                </ul>
+            </aside>
+        </div><br>
+        <p>If you&apos;re thinking about any of this, I&apos;d love to compare notes. I&apos;m at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.</p>
     </section>    
             <div class="body-text">
 
