@@ -220,7 +220,7 @@ figcaption:before  {
 
         .desktop-toc {
             margin-top: 0;
-            margin-bottom: 10px;
+            /* margin-bottom: 10px; */
             margin-left: 10px;
             font-family: Helvetica, sans-serif;
             text-align: left;
@@ -255,6 +255,103 @@ figcaption:before  {
         .desktop-toc__list a:focus-visible {
             color: #0033cc;
             text-decoration: none;
+        }
+
+        .intro-hero {
+            --intro-media-width: 96px;
+            --intro-media-gap: 20px;
+            --intro-background-cutoff: 35px;
+            position: relative;
+            isolation: isolate;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            row-gap: 20px;
+        }
+
+        .intro-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 var(--intro-background-cutoff) 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
+                url("images/main.jpeg");
+            background-position: center 32%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .intro-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-layout {
+            display: grid;
+            grid-template-columns: var(--intro-media-width) minmax(0, 1fr);
+            column-gap: var(--intro-media-gap);
+            row-gap: 12px;
+            align-items: end;
+        }
+
+        .intro-layout__image {
+            grid-column: 1;
+            grid-row: 1;
+            align-self: start;
+            margin-top: 20px;
+            width: 100%;
+            height: auto;
+        }
+
+        .intro-layout__heading {
+            grid-column: 2;
+            grid-row: 1;
+            margin: 0;
+        }
+
+        .intro-layout__copy {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .intro-hero {
+                --intro-media-width: 200px;
+                --intro-background-cutoff: 35px;
+                grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+                column-gap: 16px;
+                row-gap: 0;
+                align-items: end;
+            }
+
+            .intro-layout__image {
+                grid-row: 1 / span 2;
+            }
+
+            .intro-layout__copy {
+                grid-column: 2;
+            }
+
+            .intro-hero__toc {
+                grid-column: 2;
+                align-self: end;
+            }
+
+            .intro-hero > .subscribe-shell--intro {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .intro-hero {
+                --intro-background-cutoff: 32px;
+            }
+
+            .intro-hero::before {
+                background-position: center 24%;
+            }
         }
 
         .analogue-link,
@@ -554,32 +651,19 @@ figcaption:before  {
 <body>
     <!-- <h1>Welcome</h1><br> -->
     <section id="table-of-contents" class="level1">
-<div class="grid grid-cols-4 md:grid-cols-6 md:gap-4 items-end space-y-10 lg:space-y-0 lg:space-x-6">
+<div class="intro-hero">
     <!-- <div class="w-full"> -->
-        <img class="self-start mt-[20px] row-start-1 md:h-[250px] w-auto" src="images/profile.png">
-        <div id="about-text" class="row-start-1 ml-[20px] body-text col-span-3 self-end!">
-            <h3 class="mt-0">Welcome</h3>
-            <p class="hidden md:block!">I&apos;m Anjali, a monetization data scientist currently doing self-directed research on inference economics through the <a class="analogue-link" href="https://analoguegroup.org/">Analogue Group</a>.<br><br>
+        <div id="about-text" class="intro-layout">
+            <img class="intro-layout__image" src="images/profile.png" alt="Portrait of Anjali Shrivastava">
+            <h3 class="intro-layout__heading">Welcome</h3>
+            <div class="intro-layout__copy body-text">
+                <div>I&apos;m Anjali, a monetization data scientist currently doing self-directed research on inference economics through the <a class="analogue-link" href="https://analoguegroup.org/">Analogue Group</a>.<br><br>
 
-I&apos;m interested in how AI challenges SaaS economies of scale, and what that means for software pricing. This is not AI bubble speculation, macro analysis of labor trends, or investment advice.
-  <br><br>I&apos;m at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter at
-            <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.
-</p>
-            <!-- <p>I&apos;m Anjali, a monetization Data Scientist working my way through the realities of inference
-                economics. </p>
-             <div class="hidden md:block!">
-            <p>
-                What this body of work isn't:
-            <ul>
-                <li>speculation about an impending "AI bubble"</li>
-                <li>analysis of macroeconomic impacts of AI</li>
-                <li>investment advice</li>
-            </ul>
-            <p>Rather, this is my attempt to describe how AI challenges SaaS economies of scale, and develop an opinion
-                on how software pricing should evolve.</p>
-             </div> -->
+I&apos;m interested in how AI challenges SaaS economies of scale, and what that means for software pricing. This is not AI bubble speculation, macro analysis of labor trends, nor investment advice.
+  <br><br>I&apos;m at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.</div>
+            </div>
         </div>        
-        <nav class="desktop-toc hidden md:block! md:col-span-2 self-end" aria-label="On this page">
+        <nav class="desktop-toc intro-hero__toc hidden md:block!" aria-label="On this page">
             <p class="desktop-toc__eyebrow">On this page</p>
             <ul class="desktop-toc__list">
                 <li><a href="#essays">Essays</a></li>
@@ -590,26 +674,17 @@ I&apos;m interested in how AI challenges SaaS economies of scale, and what that 
                 <li><a href="#open-research">Open Research</a></li>
             </ul>
         </nav>
-        <div class="block body-text col-span-4 md:hidden">
-            <p>I&apos;m Anjali, a monetization data scientist currently doing self-directed research on inference economics through the <a class="analogue-link" href="https://analoguegroup.org/">Analogue Group</a>.<br><br>
-
-I&apos;m interested in how AI challenges SaaS economies of scale, and what that means for software pricing. This is not AI bubble speculation, macro analysis of labor trends, or investment advice.
-
-  <br><br>I&apos;m at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter at
-            <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.</p>
-
-             </div>     
-        <aside class="subscribe-shell col-span-4 md:col-span-6" aria-labelledby="essay-alerts-title">
-            <!-- <p id="essay-alerts-title">Sign up to be notified when I publish:</p> -->
+        <aside class="subscribe-shell subscribe-shell--intro" aria-labelledby="essay-alerts-title-intro">
+            <p id="essay-alerts-title-intro">Sign up to get emails when I publish:</p>
             <form class="subscribe-form embeddable-buttondown-form"
                 action="https://buttondown.com/api/emails/embed-subscribe/anjalishriva" method="post">
-                <label class="subscribe-visually-hidden" for="homepage-subscribe-email">Email address</label>
-                <input id="homepage-subscribe-email" class="subscribe-form__input" type="email" name="email"
+                <label class="subscribe-visually-hidden" for="homepage-subscribe-email-intro">Email address</label>
+                <input id="homepage-subscribe-email-intro" class="subscribe-form__input" type="email" name="email"
                     placeholder="your.email@domain.com" autocomplete="email" required data-buttondown-email>
                 <input type="hidden" name="embed" value="1">
                 <input class="subscribe-form__button" type="submit" value="Subscribe" data-buttondown-submit>
             </form>
-        </aside>                 
+        </aside>
 </div>        
        
         <!-- <hr> -->
@@ -668,13 +743,23 @@ Value is in coordination, not outcomes<br>
             </div>
         </ol>
 
-    <div class="container">
+        <aside class="subscribe-shell subscribe-shell--list" aria-labelledby="essay-alerts-title-essays">
+            <p id="essay-alerts-title-essays">Sign up to get emails when I publish:</p>
+            <form class="subscribe-form embeddable-buttondown-form"
+                action="https://buttondown.com/api/emails/embed-subscribe/anjalishriva" method="post">
+                <label class="subscribe-visually-hidden" for="homepage-subscribe-email-essays">Email address</label>
+                <input id="homepage-subscribe-email-essays" class="subscribe-form__input" type="email" name="email"
+                    placeholder="your.email@domain.com" autocomplete="email" required data-buttondown-email>
+                <input type="hidden" name="embed" value="1">
+                <input class="subscribe-form__button" type="submit" value="Subscribe" data-buttondown-submit>
+            </form>
+        </aside>
+            <div class="container">
         <p>
             <a href="/vintage/writing" class="secondary-link">I also write about things beyond pricing. See vintage/writing.
             </a>
         </p>
     </div>
-
         <hr>
         <section id="projects">
             <h3>Selected Projects</h3>
@@ -860,13 +945,12 @@ Value is in coordination, not outcomes<br>
     <hr>
     <section id="open-research">
         <h3>Open Research</h3>
-        <div class="open-research-text max-w-[950px]">
-            <p>I do this to get people to update their priors. The happiest moments are when someone takes a half-formed intuition of mine and builds something rigorous I couldn&apos;t have made myself. Like when:</p>
-            <p>I&apos;m treating AI pricing as an open research question. The best part of working in public is when people build on my work. Like when:</p>
+        <div class="open-research-text max-w-[950px]"> 
+            <p>I&apos;m treating AI pricing as an open research question. The most rewarding part of public-facing work is when someone builds on my ideas or pushes them into new territory. Like when:</p>
             <ul>
                 <li>Soren Larson took my observation about ill-defined AI outputs and modeled a <a href="https://hypersoren.xyz/posts/outcomes-protocol/">mechanism for evaluating outcomes</a>.</li>
                 <li>Mostly Borrowed Ideas cited my essays on inference economics as “required reading” and <a href="https://www.mbi-deepdives.com/fat-tail-ai/">analyzed the implications of resource variance</a> for Microsoft&apos;s Copilot strategy.</li>
-                <li>Tim O&apos;Reilly brought his historical lens of platform economics on <a href="https://www.oreilly.com/videos/live-with-tim/0642572259488/">his podcast</a>, which helped me see how current AI pricing fits into longer patterns of industry-wide shifts.</li>
+                <li>Tim O&apos;Reilly brought his <a href="https://www.oreilly.com/videos/live-with-tim/0642572259488/">historical lens of platform economics</a>, which helped me see how current AI pricing fits into longer patterns of industry-wide shifts.</li>
             </ul>
             <p>I publish my drafts in public Google Docs. You can see the debates with editors in the comments, the dead ends, and the moments where my perspective changes.</p>
             <p>I&apos;m trying to work at the intersection of classical pricing theory and the architecture of LLMs, where concurrency, memory constraints, and variance meet strategy and business opportunity. There aren&apos;t enough people grappling with what pricing reveals about the “intelligence” being sold, or questioning the foundational assumptions while staying grounded in empirical commercial reality.</p>
