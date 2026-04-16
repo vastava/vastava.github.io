@@ -454,7 +454,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 
                         <p>Capacity is already unpredictable in controlled environments, and exacerbated in production due to variance in concurrency of requests, request lengths and response lengths. The clearest way to see why is to separate the tail behaviour of tokens per request and the true resource cost per request.</p>
                         <p>The mean tokens consumed per request must be finite since it is bounded by the context window limit. But variance is large due to heterogeneous usage, and is amplified as use cases explode and context windows become arbitrarily large with new model releases.</p>
-                        <div class="image-container">
+                        <div id="token-costs-distribution-diagram" class="image-container">
                             <img src="images/fat_tails/image15.png" alt="Truncated power law distribution of tokens consumed">
                         </div>
 
@@ -464,7 +464,7 @@ The P/D ratio is not fixed because the stages cannot be fully separated. Conside
 
 <p>True resource costs are dependent on system state (batch size, temporal demand, P/D ratio, GPU capacity, etc.) which is highly variable, meaning the effective capacity boundary is not fixed in the same way the context window limit is. And because each of these state variables are non-stationary, the conditional mean will never converge.
 </p>
-                        <div class="image-container">
+                        <div id="resource-costs-distribution-diagram" class="image-container">
                             <img src="images/fat_tails/image14.png" alt="Power law distribution of true resource costs">
                         </div>
 <p>There&apos;s plenty of scenarios with a moving conditional mean like this. It’s only a problem because per-token pricing assumes an asymptotic mean cost per request exists, and it’s clearly not the case. You might think it’s not a significant issue due to falling costs, but I’ll address this towards the end.</p>
