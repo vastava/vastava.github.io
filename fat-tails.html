@@ -16,7 +16,7 @@
     .banner {
         text-align: center;
         margin-top: 1rem;
-        font-size: 1.25rem;
+        font-size: 1rem;
         color: rgba(0, 0, 0, 0.6);
     }
 
@@ -151,6 +151,18 @@
         color: #666666
     }
 
+    .author-note {
+        margin: 0 0 1.75rem;
+        padding: 1rem 1.15rem;
+        border: 1px dashed rgba(120, 103, 39, 0.38);
+        border-radius: 6px;
+        background-color: rgba(255, 247, 214, 0.82);
+    }
+
+    .author-note strong {
+        font-family: "Helvetica Neue", sans-serif;
+    }
+
 #backToTop {
             position: fixed;
             bottom: 2rem;
@@ -175,33 +187,30 @@
         #scrollLink:hover { 
             color: orange !important; 
         }
-
-        .copy-essay-toolbar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 1.5rem;
-        }
-
         .copy-essay-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             appearance: none;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 999px;
+            /* border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 999px; */
             background-color: rgb(0, 51, 204);
             color: white;
             cursor: pointer;
             font-family: "Helvetica Neue", sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            line-height: 1.2;
-            padding: 0.75rem 1.25rem;
-            margin-bottom: 1rem;
-            transition: background-color 0.2s, transform 0.2s, opacity 0.2s;
+            line-height: 1.1;
+            letter-spacing: 0.01em;
+            padding: 0.4rem 0.6rem;
+            text-align: center;
+            transition: background-color 0.2s, opacity 0.2s;
+            white-space: normal;
+            text-wrap: balance;
         }
 
         .copy-essay-button:hover {
             background-color: rgb(0, 40, 160);
-            transform: translateY(-1px);
         }
 
         .copy-essay-button:focus-visible {
@@ -212,12 +221,48 @@
         .copy-essay-button:disabled {
             opacity: 0.85;
             cursor: progress;
-            transform: none;
+        }
+
+        .copy-essay-button--meta {
+            width: auto;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            color: rgb(0, 51, 204);
+            font-size: 0.78rem;
+            line-height: 1.25;
+            text-decoration: none;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .copy-essay-icon {
+            width: 0.9rem;
+            height: 0.9rem;
+            flex: 0 0 auto;
+            margin-right: 0.35rem;
+        }
+
+        .copy-essay-button--mobile {
+            margin: 0.55rem 0 1rem;
+        }
+
+        .copy-essay-button--meta:hover {
+            background: transparent;
+            color: orange;
+        }
+
+        .copy-essay-button--meta:focus-visible {
+            outline: 1px solid rgb(0, 40, 160);
+            outline-offset: 2px;
         }
 
         @media (max-width: 640px) {
             .copy-essay-button {
-                width: min(100%, 22rem);
+                max-width: min(100%, 14rem);
             }
         }
 
@@ -233,24 +278,27 @@
             <div class="w-fit text-center mx-auto">
                 <h1 id="intro" class="title">Why fat tailed costs emerge at scale</h1>
                 <h2 class="deckhead">Unrelated contexts and spiky concurrent traffic create a moving capacity boundary</h2>
-                <div class="copy-essay-toolbar">
-                    <button type="button" class="copy-essay-button" data-copy-essay-markdown
-                        data-essay-url="https://anjalishriva.com/fat-tails">
-                        Copy Essay as Markdown for LLMs
-                    </button>
-                </div>
             </div>
             <div class="md:flex">
                 <div class="max-w-[190px] flex-grow-0 flex-shrink-0 hidden md:block">
                     <div
                         class="article-metadata leading-normal tracking-tighter sticky text-center text-proseBody top-5 dark:text-proseInvertBody">
-                        <div class="border-b px-4 pb-4 dark:border-slate-700">
-                            <div class="font-bold mb-0.5 text-proseLinks dark:text-proseInvertLinks">Article</div>
-                            <div>
+                        <div class="border-b px-4 py-4 dark:border-slate-700">
+                                        <div>
+                                <button type="button" class="copy-essay-button copy-essay-button--meta" data-copy-essay-markdown
+                                    data-essay-url="https://anjalishriva.com/token-pricing">
+                                    <svg class="copy-essay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                    Copy as Markdown
+                                </button>
+                            </div>
+                            <!-- <div>
                                 <a href="https://anjalishriva.com/fat-tails">
                                     Why fat tailed costs emerge at scale
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
 
                        <div class="border-b px-4 py-4 dark:border-slate-700">
@@ -309,7 +357,13 @@
                 </div>
 
                 <div class="font-bold my-1 text-proseLinks text-sm dark:text-proseInvertLinks md:hidden">
-                    Published January&nbsp;17,&nbsp;2025
+                    Published January&nbsp;17,&nbsp;2026
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="copy-essay-button copy-essay-button--mobile" data-copy-essay-markdown
+                        data-essay-url="https://anjalishriva.com/fat-tails">
+                        Copy Essay as Markdown for LLMs
+                    </button>
                 </div>
 
                 <div class="pb-8 md:border-l md:flex-grow md:min-w-0 dark:border-slate-700 md:pl-8 xl:pr-8">
@@ -333,8 +387,9 @@
                 prose-strong:font-sans dark:prose-strong:text-slate-100
                 prose-ol:font-serif
                 prose-ul:font-serif
-                article-contents
+                        article-contents
                 " data-essay-content>
+                        <p class="author-note"><strong>Author&apos;s note:</strong> This essay builds on the systems analysis presented in <a href="/token-pricing.html">A token is not a fixed unit of cost</a>. Together, they explain the quantitative relationship between fixed prices and variable compute costs under fat-tailed demand. I focus on Claude Code, Cursor and OpenCode in this series because their public pricing changes make these tradeoffs the most visible in the industry. But the dynamic applies to any provider running inference at scale.
                         <div class="table-of-contents md:hidden my-4">
                             <h3>Table of Contents</h3>
                             <ul>
