@@ -318,8 +318,14 @@
             return;
         }
 
+        const label = button.querySelector("[data-copy-essay-label]");
+
         button.dataset.copyEssayReady = "true";
-        button.dataset.defaultLabel = button.textContent.trim();
+        button.dataset.defaultLabel = (label || button).textContent.trim();
+
+        function setButtonLabel(value) {
+            (label || button).textContent = value;
+        }
 
         button.addEventListener("click", async function () {
             const defaultLabel = button.dataset.defaultLabel || "Copy Essay as Markdown for LLMs";
@@ -330,19 +336,19 @@
             }
 
             button.disabled = true;
-            button.textContent = "Copying...";
+            setButtonLabel("Copying...");
 
             try {
                 const markdown = buildEssayMarkdown(button);
                 await copyTextToClipboard(markdown);
-                button.textContent = "Copied Markdown";
+                setButtonLabel("Copied Markdown");
             } catch (error) {
-                button.textContent = "Copy Failed";
+                setButtonLabel("Copy Failed");
             } finally {
                 button.disabled = false;
 
                 const timerId = window.setTimeout(function () {
-                    button.textContent = defaultLabel;
+                    setButtonLabel(defaultLabel);
                     delete button.dataset.resetTimerId;
                 }, 3000);
 
