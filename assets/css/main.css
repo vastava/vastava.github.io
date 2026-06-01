@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@source "hugo_stats.json";
+
+@theme {
+  --color-bloo: #0033cc;
+  --font-serif: Georgia, serif;
+  --breakpoint-md: 60rem;
+  --breakpoint-sm: 36rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fdfefa;
+}
+
+::selection {
+  background-color: #0033cc22;
+}
+
+.toc {
+  color: var(--color-bloo);
+  line-height: 1.3em;
+}
+
+.toc ul ul {
+  margin-left: 1.2em;
+  margin-top: 0.5em;
+}
+
+.toc ul li {
+  margin-bottom: 0.6em;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
