@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
 
+
     {{ $desc := (or .Description .Summary) | plainify | chomp }}
     <title>{{ .Title }}</title>
     <meta name="description" content="{{ $desc }}" />
+    <meta name="author" content="Anjali Shrivastava">
+    <meta name="keywords" content="{{.Keywords}}">
     <link rel="canonical" href="{{ .Permalink }}" />
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/card.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/card.png" />

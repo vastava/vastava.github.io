@@ -134,7 +134,3 @@ related:
       weight: 10
   threshold: 80
   toLower: true
-
-frontmatter:
-  lastmod:
-    - lastmod

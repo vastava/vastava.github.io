@@ -1,7 +1,7 @@
-{{ define "main" }}
+{{ define "main" }} {{ $opts := dict "display" "block" }}
 
 <div class="max-w-290 mx-auto pt-4">
-  <div class="">You can always <a class="text-bluey underline" href="/">go home</a>.</div>
+  <div class="">You can always <a class="text-bloo underline" href="/">go home</a>.</div>
 
   <div class="w-full flex flex-col items-center justify-center pt-21 mx-auto">
     <header class="flex flex-col gap-0">
@@ -14,7 +14,7 @@
     </header>
     <div class="flex">
       <section class="self-start sticky top-4 min-w-52 text-sm">
-        <div class="flex flex-col gap-3.5 p-4 border-b border-b-[#000000] text-bluey font-semibold">
+        <div class="flex flex-col gap-3.5 p-4 border-b border-b-[#000000] text-bloo font-semibold">
           <button class="items-center flex gap-2 cursor-pointer">
             <svg
               viewBox="0 0 24 24"
@@ -86,18 +86,18 @@
           {{ end }}
         </div>
         {{ if .Params.sidebar_note }}
-        <div class="p-3 border-b border-b-[#000000] [&_a]:text-bluey [&_ul]:mt-2 [&_li]:mb-1">
+        <div class="p-3 border-b border-b-[#000000] [&_a]:text-bloo [&_ul]:mt-2 [&_li]:mb-1">
           {{ .Params.sidebar_note | markdownify }}
         </div>
         {{ end }} {{ if .Params.doc_link }}
         <div class="p-3 border-b border-b-[#000000]">
           See comments, research notes and earlier drafts on
-          <a class="text-bluey" href="{{.Params.doc_link}}">Google Docs</a>.
+          <a class="text-bloo" href="{{.Params.doc_link}}">Google Docs</a>.
         </div>
         {{ end }}
       </section>
       <main
-        class="prose border-l border-l-solid border-l-[#000000] border-r border-r-solid border-r-[#000000] px-9 pb-12 min-h-dvh"
+        class="prose border-l border-l-solid border-l-[#000000] border-r border-r-solid border-r-[#000000] px-9 pb-12 min-h-dvh text-lg font-serif"
       >
         {{.Content}}
       </main>
@@ -107,5 +107,49 @@
       </section>
     </div>
   </div>
+</div>
+
+<div class="border-t p-8 py-12">
+  <div class="max-w-160 mx-auto">
+    <p>Sign up to be notified when I write:</p>
+    <form
+      class="embeddable-buttondown-form"
+      action="https://buttondown.com/api/emails/embed-subscribe/anjalishriva"
+      method="post"
+    >
+      <label class="visually-hidden" for="email-label">Email address</label>
+      <div class="flex gap-2 mt-4 font-serif">
+        <input
+          id="email-label"
+          class="w-full p-2 px-3 bg-white border border-gray-300 rounded-md"
+          type="email"
+          name="email"
+          placeholder="real.human@website.com"
+          autocomplete="email"
+          required
+          data-buttondown-email
+        />
+        <input type="hidden" name="embed" value="1" />
+        <button
+          class="bg-stone-100 border border-stone-400 rounded-md px-4"
+          type="submit"
+          value="Submit"
+          data-buttondown-submit
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="border-t p-8 text-center text-sm">
+  <div class="text-center max-w-160 mx-auto prose text-sm text-balance">
+    {{ if .Params.footer}} {{.Params.footer | .RenderString $opts }} {{ end }}
+    <p>Credit to <a href="https://brandur.org/">Brandur</a> for layout inspiration.</p>
+  </div>
+</div>
+
+<div class="border-t p-8 text-center text-sm">
+  It's never too late to <a class="text-bloo underline" href="#">start over</a>.
 </div>
 {{ end }}

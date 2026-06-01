@@ -2,14 +2,18 @@
 title: A token is not a fixed unit of cost
 description: Variance in usage creates an interconnected pricing and scaling issue
 date: 2025-08-23
-lastmod: 2025-11-16
+modifed: 2025-11-16
+keywords: AI, pricing, Cursor, Anthropic, tokens, economics, cost structure
 aliases:
   - /token_pricing
-doc_link: https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing
-sidebar_note: | 
-  This essay was widely shared and I went on two podcasts to discuss it:
-  - 🔗  [Live with Tim O'Reilly](https://www.youtube.com/watch?v=6AXMO2dW0LI)
-  - 🔗  [--dangerously-skip-permissions](https://www.youtube.com/watch?v=SODf4_1CQqk)
+params:
+  footer: |
+    Thank you to [@hypersoren](https://x.com/hypersoren), [@trickylabyrinth](https://x.com/trickylabyrinth) and [Judah](https://joodaloop.com/) for their work, and to Jason Harrison, Anthony Crognale, Suraj Srivats, Ade Oshineye and Alex Komoroske for feedback on early versions of this.
+  doc_link: https://docs.google.com/document/d/1pAtbkNXb-Myxdi7wgxMGBID9VRjhA7yKY26ubI_TyIQ/edit?usp=sharing
+  sidebar_note: | 
+    This essay was widely shared and I went on two podcasts to discuss it:
+    - 🔗  [Live with Tim O'Reilly](https://www.youtube.com/watch?v=6AXMO2dW0LI)
+    - 🔗  [--dangerously-skip-permissions](https://www.youtube.com/watch?v=SODf4_1CQqk)
 ---
 
 <div class="authors-note">

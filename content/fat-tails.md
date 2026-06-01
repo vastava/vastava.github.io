@@ -2,9 +2,11 @@
 title: Why fat tailed costs emerge at scale
 description: Unrelated contexts and spiky concurrent traffic create a moving capacity boundary
 date: 2026-01-17
+keywords: AI, pricing, Cursor, Anthropic, tokens, economics, cost structure
 aliases:
   - /fat_tails
-doc_link: https://docs.google.com/document/d/10WOc_dcFTHWD7Pcs8ZquxGWsilxpwFUJfny-0rXigNo/edit?usp=sharing
+params:
+  doc_link: https://docs.google.com/document/d/10WOc_dcFTHWD7Pcs8ZquxGWsilxpwFUJfny-0rXigNo/edit?usp=sharing
 ---
 
 <div class="authors-note">

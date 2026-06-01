@@ -2,8 +2,9 @@
 title:  RLWD
 description: What?
 date: 2026-06-02
-lastmod: 2026-06-04
-doc_link: https://docs.google.com/document/d/1MB30nGWrsgdtnfq0ITbx8IRb_QgPjPpj_iW5RIz8jKM/edit?usp=sharing
+modifed: 2026-06-04
+params:
+  doc_link: https://docs.google.com/document/d/1MB30nGWrsgdtnfq0ITbx8IRb_QgPjPpj_iW5RIz8jKM/edit?usp=sharing
 ---
 
 ## Introduction

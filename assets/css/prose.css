@@ -1,6 +1,4 @@
 .prose {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 18px;
   line-height: 1.65em;
 }
 
@@ -18,7 +16,7 @@
 
 .prose a {
   text-decoration: underline;
-  color: var(--color-bluey);
+  color: var(--color-bloo);
 }
 
 .prose p {
@@ -86,7 +84,7 @@
   font-size: var(--text-base);
   line-height: 1.5em;
   padding: 1em 1.2em;
-  border: dashed 1px var(--color-bluey);
+  border: dashed 1px var(--color-bloo);
   border-radius: 8px;
   background-color: #0033cc0a;
 }
