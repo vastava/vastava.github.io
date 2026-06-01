@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+
+    {{ $desc := (or .Description .Summary) | plainify | chomp }}
+    <title>{{ .Title }}</title>
+    <meta name="description" content="{{ $desc }}" />
+    <link rel="canonical" href="{{ .Permalink }}" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/card.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/card.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/card.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+    <meta property="og:site_name" content="{{ .Site.Title }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:title" content="{{ .Title }}" />
+    <meta property="og:description" content="{{ $desc }}" />
+    <meta property="og:image" content="{{ "wide-card.jpg" | absURL }}" />
+
+    <!-- Twitter Card (large image) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    {{ with .Site.Params.twitterCreator }}<meta name="twitter:creator" content="{{ . }}" />{{ end }}
+    <meta name="twitter:title" content="{{ .Title }}" />
+    <meta name="twitter:description" content="{{ $desc }}" />
+    <meta name="twitter:image" content="{{ "wide-card.jpg" | absURL }}" />
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ .Site.Title }}." href="/index.xml" />
+
+    {{ with (templates.Defer (dict "key" "global")) }}
+      {{ partial "css.html" . }}
+    {{ end }}
+
+    {{ range slice "css/prose.css" }} {{ with resources.Get . |
+    minify | fingerprint "sha256" }}
+    <link rel="stylesheet" type="text/css" href="{{ .RelPermalink }}" integrity="{{.Data.Integrity }}" />
+    {{ end }} {{ end }}
+  </head>
+
+  <body>
+    {{ block "main" . }}
+    {{ end }}
+  </body>
+</html>

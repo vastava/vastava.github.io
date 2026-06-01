@@ -1,0 +1,140 @@
+baseURL: "https://www.anjalishriva.com/"
+
+build:
+  buildStats:
+    enable: true
+  cachebusters:
+    - source: 'assets/notwatching/hugo_stats\.json'
+      target: css
+    - source: '(postcss|tailwind)\.config\.js'
+      target: css
+
+module:
+  mounts:
+    - source: assets
+      target: assets
+    - source: hugo_stats.json
+      target: assets/notwatching/hugo_stats.json
+      disableWatch: true
+
+languageCode: en-us
+defaultContentLanguage: en
+title: Anjali Shrivastava
+description: Anjali Shrivastava — Data Science + Viz portfolio
+
+summarylength: 10
+
+taxonomies:
+  tag: "tags"
+  topics: "topics"
+  category: "categories"
+
+imaging:
+  quality: 99
+
+enableRobotsTXT: true
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+services:
+  rss:
+    limit: 30
+
+outputs:
+  home:
+    - html
+    - rss
+    - json
+  page:
+    - html
+  section:
+    - html
+
+disableKinds:
+  - sitemap
+  - taxonomy
+  - term
+
+tdewolff:
+  css:
+    keepCSS2: true
+    precision: 0
+  html:
+    keepComments: false
+    keepConditionalComments: true
+    keepDefaultAttrVals: true
+    keepDocumentTags: true
+    keepEndTags: true
+    keepQuotes: false
+    keepWhitespace: false
+  js:
+    keepVarNames: false
+    noNullishOperator: false
+    precision: 0
+  json:
+    keepNumbers: false
+    precision: 0
+  svg:
+    keepComments: false
+    precision: 0
+  xml:
+    keepWhitespace: false
+
+params:
+  AuthorName: Anjali
+  GitHubUser: vastava
+  # Set to a Twitter/X handle (e.g. "@anjali") to emit a twitter:creator tag; leave empty to omit.
+  twitterCreator: ""
+  description: Anjali Shrivastava — Data Science + Viz portfolio
+  # For more date formats see https://gohugo.io/functions/format/
+  dateFormat: Jan 2, 2006
+  katex: true
+
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    extensions:
+      footnote: true
+      linkify: true
+      linkifyProtocol: https
+      strikethrough: true
+      taskList: true
+      typographer: true
+      extras:
+        mark:
+          enable: true
+    parser:
+      attribute:
+        block: true
+        title: true
+      autoHeadingID: true
+    renderer:
+      hardWraps: false
+      unsafe: true
+  highlight:
+    codeFences: false
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: true
+    style: monokai
+    tabWidth: 4
+  tableOfContents:
+    endLevel: 3
+    startLevel: 2
+
+related:
+  includeNewer: true
+  indices:
+    - name: keywords
+      weight: 100
+    - name: date
+      weight: 10
+  threshold: 80
+  toLower: true
+
+frontmatter:
+  lastmod:
+    - lastmod

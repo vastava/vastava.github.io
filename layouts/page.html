@@ -13,7 +13,7 @@
       </div>
     </header>
     <div class="flex">
-      <section class="sticky top-8 min-w-52 text-sm">
+      <section class="self-start sticky top-4 min-w-52 text-sm">
         <div class="flex flex-col gap-3.5 p-4 border-b border-b-[#000000] text-bluey font-semibold">
           <button class="items-center flex gap-2 cursor-pointer">
             <svg
@@ -101,8 +101,8 @@
       >
         {{.Content}}
       </main>
-      <section class="flex flex-col min-w-52 gap-2 pl-4 pt-2 font-sans text-sm">
-        <div class="font-bold">Table of Contents</div>
+      <section class="self-start sticky top-4 min-w-52 pl-4 font-sans text-sm">
+        <div class="font-bold py-2 text-base">Table of Contents</div>
         <div class="toc">{{ .TableOfContents }}</div>
       </section>
     </div>

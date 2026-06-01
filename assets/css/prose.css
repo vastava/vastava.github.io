@@ -1,0 +1,145 @@
+.prose {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 1.65em;
+}
+
+.prose *:first-child {
+  margin-top: 0px;
+}
+
+.prose *:last-child {
+  margin-bottom: 0px;
+}
+
+.prose a {
+  text-decoration: underline;
+  color: var(--color-bluey);
+}
+
+.prose p {
+  margin-bottom: 1em;
+}
+
+.prose h2 {
+  font-size: 1.7em;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  margin-bottom: 0.6em;
+  margin-top: 1em;
+}
+
+.prose h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.prose h4 {
+  font-size: 1em;
+  font-weight: 800;
+  font-family: var(--font-sans);
+  margin-bottom: 0.75em;
+  margin-top: 1.2em;
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: 1.2em;
+  padding-left: 2em;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li > ul:first-child,
+.prose li > ol:first-child {
+  padding-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+}
+
+.prose li p {
+  margin-bottom: 0.75em;
+}
+
+.prose li blockquote {
+  margin-bottom: 0.75em;
+  padding-bottom: 0.25em;
+}
+
+.prose blockquote {
+  margin-bottom: 1.2em;
+  text-wrap: pretty;
+  padding: 0px 1.5em;
+  color: #0033ccdd;
+}
+
+.prose blockquote blockquote {
+  margin: 1.5em 0px;
+}
+
+img,
+video {
+  width: 100%;
+  border-radius: var(--radius);
+  min-height: 48px;
+  max-height: 36rem;
+  object-fit: cover;
+  border: var(--border) var(--b-width) var(--t-lightest);
+  margin: calc(0.5 * var(--spacing)) 0px;
+}
+
+video {
+  margin-bottom: var(--spacing);
+}
+
+p:has(img) {
+  line-height: 0px;
+}
+
+figure {
+  padding: var(--spacing);
+}
+
+figcaption {
+  font-size: 0.8em;
+  line-height: 1.3em;
+  margin-top: 3px;
+}
+
+td,
+th {
+  vertical-align: top;
+  padding: 0.6em 0.25em;
+  font-size: 0.9em;
+  line-height: 1.35em;
+}
+
+th {
+  font-weight: 800;
+  font-size: 1em;
+}
+
+strong {
+  font-weight: 700;
+}
+
+cite {
+  display: block;
+  font-weight: 600;
+  font-style: normal;
+}
+
+cite a {
+  font-style: italic;
+}

@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@source "hugo_stats.json";
+
+@theme {
+  --color-bluey: #0033cc;
+}
+
+.authors-note {
+  margin-bottom: 18px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  padding: 16px;
+  background-color: #fff7d6d1;
+  border: 1px dashed #78672761;
+}
+
+.toc {
+  color: var(--color-bluey);
+  line-height: 1.3em;
+}
+
+.toc ul ul {
+  margin-left: 1.2em;
+  margin-top: 0.5em;
+}
+
+.toc ul li {
+  margin-bottom: 0.5em;
+}
