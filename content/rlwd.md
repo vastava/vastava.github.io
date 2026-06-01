@@ -1,5 +1,9 @@
 ---
 title:  RLWD
+description: What?
+date: 2026-06-02
+lastmod: 2026-06-04
+doc_link: https://docs.google.com/document/d/1MB30nGWrsgdtnfq0ITbx8IRb_QgPjPpj_iW5RIz8jKM/edit?usp=sharing
 ---
 
 ## Introduction
@@ -44,13 +48,13 @@ Below is a list of interaction examples, hopefully each one results in a jolt of
 
 Now that you have a felt sense for what work data looks like, here’s a more concrete definition:
 
-### **It’s the traces of workflow…**
+### It’s the traces of workflow…
 
 The record of work that arises from a session of active interaction, decisions that arise in pursuit of a long-running goal. Not data that comes from static context (like docs) or just the output at the end of a session.
 
 The list above included examples of what these records might look like, and you can build your own list by answering the question: “what do you find yourself telling agents often?”
 
-### **…captured within the tools of the trade**
+### …captured within the tools of the trade
 
 There is a tempting category error here: ChatGPT is widely [adopted](https://www.pewresearch.org/short-reads/2025/06/25/34-of-us-adults-have-used-chatgpt-about-double-the-share-in-2023/) by white collar professionals. Surely the labs are seeing these workflows?
 
@@ -62,7 +66,7 @@ Work data comes from the surface where the work happens. Think about the canonic
 - For designers, the process lives in [Figma](https://www.figma.com/blog/the-figma-canvas-is-now-open-to-agents/) or Photoshop. Layers, edits,   
 - In l[ogistics](https://unfilteredramblings.substack.com/p/sidecar-and-hayeks-revenge), scheduling and quoting shipments happens largely over email
 
-### **What do these traces actually look like?**
+### What do these traces actually look like?
 
 The most useful work data doesn’t just consist of the name of the tool, and a list of “decisions taken”. The more detailed the interaction and the [specifics of the environment](https://x.com/jayfarei/status/2047237833388175518?s=20), the more valuable it is for training agents that work with that tool. 
 
@@ -88,12 +92,14 @@ From 2026 onwards, the labs are in the business of selling agents. They don’t 
 A still-popular framing for AI products is “copilot for X” — an assistant or tool that plays a small role in a larger workflow. But it was only the limitations of the model’s capabilities that kept that product cycle going — the endgame was always going to be agents, because:
 
 1. Agents are what users want.  
+   
    > Fundamentally, autonomous agent AIs are what we and the free market want; everything else is a surrogate or irrelevant loss function. We don’t want low log-loss error on ImageNet, we want to refind a particular personal photo; we don’t want excellent advice on which stock to buy for a few microseconds, we want a money pump spitting cash at us \[…\]. Agent AIs will be chosen over Tool AIs because agents are what users want, lack of agency is something that will be penalized in competitive scenarios such as free markets or military uses, and because people will differ on preferences and some will inevitably choose to use agents.
+   >
    > <cite>Gwern, [Why Tool AIs Want to Be Agent AIs](https://gwern.net/tool-ai)</cite>
 2. Agents are also what enterprises really, really want. Demand for these is strong enough to make this whole thing [not a bubble](https://stratechery.com/2026/agents-over-bubbles/).  
 3. Labs have been raising money on the assumption that their TAM is all knowledge work, a market that requires selling digital *workers*, not tools. The end goal is the platonic “drop-in remote worker”, an agent that can be added to any company and quickly start being productive.
 
-### **Agents have to be capable of acting as white-collar employees**
+### Agents have to be capable of acting as white-collar employees
 
 White collar jobs consist of:
 
@@ -109,7 +115,7 @@ For agents to be effective workers, they will have to climb the competence ladde
 
 Improving agents goes beyond simple task statements and corresponding work outputs, and into the realm of process. When the end goal is not fully known to either the user or the model at the start (it gets shaped turn by turn), the goal shifts from optimizing for individual requests using an immediate per-step reward (token likelihood), to delivering value across the full trajectory of the interaction.
 
-### **Agents need to be *trained***
+### Agents need to be *trained*
 
 When agents are your main product, the work of doing “as little as possible as much as necessary” expands to much more than sending text completions over an API. The labs used to sell intelligence as something separable, abstracted, piped in, and paid for by the unit. 
 
@@ -143,7 +149,7 @@ Training your super-intelligent, all-capable genius that lives in a data center 
 
 But there are a few things that make it difficult to train these digital employees:
 
-### **There is no internet-scale dataset of “white collar” work lying around**
+### There is no internet-scale dataset of “white collar” work lying around
 
 Kevin Lu at Thinking Machines made a sharper version of this point: [the Internet is what unlocked generally capable models, not transformers](https://kevinlu.ai/the-only-important-technology-is-the-internet). Train an LLM, but limit the dataset to every textbook and scientific paper (what we might consider the pinnacle of human intelligence) and the results are middling compared to today’s SOTA.
 
@@ -159,7 +165,7 @@ Some players (see [Surge’s Workforce](https://surgehq.ai/workforce)) in the da
 - The data generated is also much narrower, there’s a higher chance of distribution collapse compared to an organic process like the internet.  
 - Worse, it's prone to overfitting: even in self-driving — a much more defined problem than open-ended knowledge work — researchers couldn't rely on simulated data alone. They had to leverage interactive correction data to prevent small errors from compounding over the trajectory.
 
-### **Nor is there a “work RL environment” outside of actual work**
+### Nor is there a “work RL environment” outside of actual work
 
 Recent capabilities improvements in some fields (math and code in particular) owe a lot to a training paradigm called RLVR (Reinforcement Learning with Verifiable Rewards), that works *very* well for…well, verifiable problems. 
 
@@ -206,7 +212,9 @@ This is why labs have been forced to get into product, moving from “genius mod
 Not consumer applications though, since:
 
 1. > consumers just do not have very many long chains of tasks which can be automated end to end to unlock huge value. their chains are shallow almost always in enterprise, org processes form very long chains, so the reward for automation is much higher. why are most consumer AI agent demos still effectively at the "book a flight for you" level of complexity? that's not a coincidence
+   >
    > <cite>Herbie Bradley, [tweeting](https://x.com/herbiebradley/status/2052555225089929438?s=20)</cite>
+
 2. Consumers usually lack the expertise necessary to provide feedback and correction to the model, and are not looking to engage in iterative processes either. 
 
 ## What the future looks like…
@@ -260,21 +268,34 @@ But the new influx of work data going into their training leads to a class of ma
   > \> Ask it if I can do something  
   > \> It says "no you can't \[incredibly twisted restatement of what I asked but also not at all what I asked\]"  
   > \> It then tells me how to do the thing wonderfully  
-  > \> And finishes with an insulting "But you can't just \[stupid thing I never actually said\]"    <cite>Ryan Florence, [tweeting](https://x.com/ryanflorence/status/2048538797638599109)</cite>
+  > \> And finishes with an insulting "But you can't just \[stupid thing I never actually said\]"
+  > 
+  > <cite>Ryan Florence, [tweeting](https://x.com/ryanflorence/status/2048538797638599109)</cite>
+
 - **More/less instruction-following behaviour**  
-  > It is both a thing to exploit and a curse that GPT is so good at instruction following. But i as a human am lazy and bad at giving instructions. Implicit in almost every prompt I give is “also understand the set of principles I am using to give this prompt and apply that higher level guidance to everything you do”. Alas, I often devolve into rapid fire steering before catching myself that now is the time I need to prompt more diligently. Really I cannot wait for the models to pad their stats on conscientiousness.  
+  > It is both a thing to exploit and a curse that GPT is so good at instruction following. But i as a human am lazy and bad at giving instructions. Implicit in almost every prompt I give is “also understand the set of principles I am using to give this prompt and apply that higher level guidance to everything you do”. Alas, I often devolve into rapid fire steering before catching myself that now is the time I need to prompt more diligently. Really I cannot wait for the models to pad their stats on conscientiousness.
+  > 
   > <cite>Ryan Lopopolo, [tweeting](https://x.com/_lopopolo/status/2054027190967349685?s=20)</cite>
+
 - **[Where the goblins came from](https://openai.com/index/where-the-goblins-came-from/)**  
   > When we began testing GPT‑5.5 in Codex, OpenAI employees immediately noticed the strange affinity for goblins, and we added a developer-prompt instruction⁠(opens in a new window) to mitigate. Codex is, after all, quite nerdy.  
+
 - > Nobody:   
   > Somebody somewhere occasionally: uses the term "smoke test" very occasionally  
   > Claude Opus 4.7 every other sentence: let's run a smoke test  
+  > 
   > <cite>Aaron Bergman, [tweeting](https://x.com/AaronBergman18/status/2056257501251694662)</cite>
+
 - > Agentic focus requires models to follow instructions carefully: do everything explicitly stated and don’t do things not stated, generally. In contrast conversational models are better when they can “read between the lines”. 
+  > 
   > <cite>@distributionat, [tweeting](https://x.com/distributionat/status/2060450016809124040?s=20)</cite>
-- > i need someone at @OpenAI and @AnthropicAI to teach the models that while prototyping, backwards compatibility is just a bad idea  
+
+- > i need someone at @OpenAI and @AnthropicAI to teach the models that while prototyping, backwards compatibility is just a bad idea
+  > 
   > <cite>Leandro Ostera, [tweeting](https://x.com/leostera/status/2057910208966328717)</cite>
+
 - > i am so confident that our frontier models are losing a non-trivial amount of capability due to priors about what's reasonable to just ask "someone" to do and what's not reasonable  
+  > 
   > <cite>@snwy_me, [tweeting](https://x.com/snwy_me/status/2052300585743929661)</cite>
 
 ### More closing of loops
@@ -301,8 +322,9 @@ But neither Anthropic nor OpenAI train on enterprise data, likely because of str
 
 In addition to in-house forward-deployed engineers, both labs have incorporated separate entities to further deploy their products (OpenAI’s The Deployment Company and Anthropic’s unnamed joint venture). This can be read as a bid for more work data access that circumvents privacy expectations.
 
-*We launched the OpenAI Deployment Company as a standalone business unit so it can develop the operating model, pace, and customer focus this work requires. At the same time, the OpenAI Deployment Company will operate as an extension of OpenAI, keeping customers closely connected to the research, product, and in-house deployment teams shaping frontier AI.*  
-— [OpenAI launches the OpenAI Deployment Company to help businesses build around intelligence](https://openai.com/index/openai-launches-the-deployment-company/) 
+> We launched the OpenAI Deployment Company as a standalone business unit so it can develop the operating model, pace, and customer focus this work requires. At the same time, the OpenAI Deployment Company will operate as an extension of OpenAI, keeping customers closely connected to the research, product, and in-house deployment teams shaping frontier AI.
+> 
+> <cite> OpenAI, [OpenAI launches the OpenAI Deployment Company to help businesses build around intelligence](https://openai.com/index/openai-launches-the-deployment-company/) </cite>
 
 #### Confusing messaging
 
@@ -310,6 +332,7 @@ Since they were founded, the labs have been loud about building AGI, the all-cap
 
 They will say one thing:   
 > if you are building knowledge worker agents that require more setup than the equivalent of "here's a laptop in the mail show up to the office Tuesday at 8:30am" you're ngmi
+> 
 > <cite>Ryan Lopopolo, [tweeting](https://x.com/%5C_lopopolo/status/2054077733232341483?s=20)</cite>
 
 While also saying the opposite:  
@@ -318,9 +341,10 @@ While also saying the opposite:
 > To put a finer point on this, you know how like, ioctls are like "huh that's weird but I guess whatever it's what we've got we can work with that"? It is exact the same with like, the particular JSON construction the Codex shell tool uses.
 > 
 > The model used to mangle nested quotes in this monstrosity RPC all the time but now it does not and it does not matter that the API is bad because billions of failed invocations are used to train to the harness we have, not the harness we deserve.
+> 
 > <cite>Ryan Lopopolo, [deleted tweet](https://web.archive.org/web/20260502223331/https://twitter.com/_lopopolo/status/2050705271840989347)</cite>
 
-["AGI, but only with our harness](https://x.com/badlogicgames/status/2050855836193288665?s=20)” is a contradiction in terms.
+Obviously, ["AGI, but only with our harness](https://x.com/badlogicgames/status/2050855836193288665?s=20)” is a contradiction in terms.
 
 #### Insular optimization goals
 
@@ -347,6 +371,7 @@ Developers as a group have always been tool optimizers, and harnesses provide th
 As opposed to lab rhetoric (“the model is the product”), end users see the value in [unhobbling](https://x.com/curious_vii/status/2003830464906494297?s=20), and take it seriously as an endeavor of its own.
 
 > One thing I've noticed about Harness discussion is there are some people who think it means \*the cybernetics work you do to connect models to value\* and others see it as a convention for terminal interaction tool shapes and there is some talking past one another btwn them
+> 
 > <cite>Josh Purtell, [tweeting](https://x.com/JoshPurtell/status/2051020216876818877)</cite>
 
 > …higher level of abstraction coordination mechanisms are far less dependent on fiddly details like JSON construction, and you benefit much more from a model-agnostic approach
