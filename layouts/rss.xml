@@ -1,0 +1,27 @@
+{{- $pages := where .Site.RegularPages "Section" "in" (slice "writing" "riffs") -}}
+{{- if ne .Kind "home" -}}
+  {{- $pages = .RegularPages -}}
+{{- end -}}
+{{- $feed := .OutputFormats.Get "rss" -}}
+{{- $channelDescription := .Description | default .Site.Params.description | default .Site.Title -}}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ .Title }}</title>
+    <link>{{ .Permalink }}</link>
+    {{ with $feed }}<atom:link href="{{ .Permalink }}" rel="self" type="{{ .MediaType.Type }}" />{{ end }}
+    <description>{{ $channelDescription | transform.XMLEscape | safeHTML }}</description>
+    <generator>Hugo -- gohugo.io</generator>
+    {{ with .Site.LanguageCode }}<language>{{ . }}</language>{{ end }}
+    {{ with .Site.Copyright }}<copyright>{{ . | transform.XMLEscape | safeHTML }}</copyright>{{ end }}
+    {{ if not .Lastmod.IsZero }}<lastBuildDate>{{ .Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>{{ end }}
+    {{ range first .Site.Config.Services.RSS.Limit $pages.ByDate.Reverse }}
+    <item>
+      <title>{{ .Title | transform.XMLEscape | safeHTML }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      <guid isPermaLink="true">{{ .Permalink }}</guid>
+      <description>{{ .Summary | plainify | htmlUnescape | transform.XMLEscape | safeHTML }}</description>
+    </item>
+    {{ end }}
+  </channel>
+</rss>
