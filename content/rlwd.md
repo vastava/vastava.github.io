@@ -4,6 +4,8 @@ description: What?
 date: 2026-06-02
 modifed: 2026-06-04
 params:
+  note: |
+    **Author's note:** This essay and [Why Fat Tails Emerge at Scale](/fat-tails) offer a systems analysis of inference economics. Together, they explain the quantitative relationship between fixed prices and variable compute costs under fat-tailed demand. I focus on Claude Code, Cursor and OpenCode in this series because their public pricing changes make these tradeoffs the most visible in the industry. But the dynamic applies to any provider running inference at scale.
   doc_link: https://docs.google.com/document/d/1MB30nGWrsgdtnfq0ITbx8IRb_QgPjPpj_iW5RIz8jKM/edit?usp=sharing
 ---
 

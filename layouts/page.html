@@ -1,21 +1,21 @@
 {{ define "main" }} {{ $opts := dict "display" "block" }}
 
 <div class="max-w-290 mx-auto pt-4">
-  <div class="">You can always <a class="text-bloo underline" href="/">go home</a>.</div>
+  <div class="pl-4">You can always <a class="text-bloo underline" href="/">go home</a>.</div>
 
-  <div class="w-full flex flex-col items-center justify-center pt-21 mx-auto">
-    <header class="flex flex-col gap-0">
-      <h1 class="text-6xl text-center font-sans font-extrabold mb-6">{{.Title}}</h1>
+  <div class="w-full flex flex-col items-center justify-center pt-16 mx-auto">
+    <header class="flex flex-col gap-0 text-center mb-4 sm:mb-16 px-6">
+      <h1 class="text-6xl font-sans font-extrabold mb-3">{{.Title}}</h1>
       <div
-        class="text-[24px] mb-8 -mt-4 text-center leading-[160%] font-['Georgia-Italic','Georgia',system-ui,sans-serif] italic flex justify-center flex-wrap text-[color(display-p3_0_0_0)]"
+        class="text-2xl italic font-serif"
       >
         {{ .Description }}
       </div>
     </header>
-    <div class="flex">
-      <section class="self-start sticky top-4 min-w-52 text-sm">
-        <div class="flex flex-col gap-3.5 p-4 border-b border-b-[#000000] text-bloo font-semibold">
-          <a target="_blank" href="{{ with .OutputFormats.Get "markdown" }}{{ .RelPermalink }}{{ end }}" class="items-center flex gap-2 cursor-pointer">
+    <div class="sm:flex">
+      <section class="sm:h-dvh mb-8 overflow-auto self-start sm:sticky top-0 shrink-0 max-w-xs mx-auto sm:w-56 md:w-52 text-sm">
+        <div class="flex flex-col items-center sm:items-start gap-3.5 p-4 sm:border-b font-semibold">
+          <a target="_blank" href="{{ with .OutputFormats.Get "markdown" }}{{ .RelPermalink }}{{ end }}" class="items-center flex gap-2 cursor-pointer text-bloo">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -49,7 +49,7 @@
             </svg>-->
             <div>View as Markdown</div>
           </a>
-          <a href="mailto:anjali.shrivastava99@gmail.com" class="items-center flex gap-2">
+          <a href="mailto:anjali.shrivastava99@gmail.com" class="items-center flex gap-2 text-bloo">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -69,7 +69,7 @@
             </svg>
             <div>Send me an email</div>
           </a>
-          <a href="https://twitter.com/anjali_shriva" class="items-center flex gap-2">
+          <a href="https://twitter.com/anjali_shriva" class="items-center flex gap-2 text-bloo">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -91,35 +91,55 @@
             <div>Reach out on Twitter</div>
           </a>
         </div>
-        <div class="flex border-b border-b-[#000000] text-center">
+        <div class="flex sm:border-b text-center">
           <div class="p-3 w-full">
             <p class="font-bold mb-1">Published</p>
             <time datetime="{{ .Date }}">{{ .Date.Format "January 2, 2006" }}</time>
           </div>
           {{ if not .Lastmod.IsZero }}
-          <div class="p-3 w-full border-l border-l-black">
+          <div class="p-3 w-full sm:border-l">
             <p class="font-bold mb-1">Revised</p>
             <time datetime="{{ .Lastmod }}">{{ .Lastmod.Format "January 2, 2006" }} </time>
           </div>
           {{ end }}
         </div>
-        {{ if .Params.sidebar_note }}
-        <div class="p-3 border-b border-b-[#000000] [&_a]:text-bloo [&_ul]:mt-2 [&_li]:mb-1">
-          {{ .Params.sidebar_note | markdownify }}
-        </div>
-        {{ end }} {{ if .Params.doc_link }}
-        <div class="p-3 border-b border-b-[#000000]">
+        {{ if .Params.doc_link }}
+        <div class="p-3 text-center sm:text-left sm:border-b">
           See comments, research notes and earlier drafts on
           <a class="text-bloo" href="{{.Params.doc_link}}">Google Docs</a>.
         </div>
         {{ end }}
+        {{ if .Params.sidebar_note }}
+        <div class="p-3 sm:border-b [&_a]:text-bloo [&_ul]:mt-2 [&_li]:mb-1">
+          {{ .Params.sidebar_note | markdownify }}
+        </div>
+        {{ end }}
+        <div class="hidden sm:block md:hidden pl-4 pr-3 pb-4">
+          <div class="font-bold py-3 text-base">Table of Contents</div>
+          <div class="toc">{{ .TableOfContents }}</div>
+        </div>
       </section>
-      <main
-        class="prose border-l border-l-solid border-l-[#000000] border-r border-r-solid border-r-[#000000] px-9 pb-12 min-h-dvh text-lg font-serif"
+      <div
+        class="sm:border-l md:border-r px-6 md:px-9 pb-12 min-h-dvh md:text-lg font-serif"
       >
+        {{ if .Params.note }}
+        <div class="prose mb-8 rounded-md font-sans p-4 bg-[#fff7d6d1]
+        border border-dashed border-[#78672761]">
+          {{ .Params.note | markdownify}}
+        </div>
+        {{ end }}
+
+        <div class="sm:hidden pb-8">
+          <div class="font-bold pb-3 text-base">Table of Contents</div>
+          <div class="toc">{{ .TableOfContents }}</div>
+        </div>
+        <main
+          class="prose"
+        >
         {{.Content}}
-      </main>
-      <section class="self-start sticky top-4 min-w-52 pl-4 pb-4 font-sans text-sm">
+        </main>
+      </div>
+      <section class="hidden md:block self-start sticky top-4 min-w-56 pl-4 pr-2 pb-4 font-sans text-sm">
         <div class="font-bold py-2 text-base">Table of Contents</div>
         <div class="toc">{{ .TableOfContents }}</div>
       </section>

@@ -4,6 +4,8 @@
 @theme {
   --color-bloo: #0033cc;
   --font-serif: Georgia, serif;
+  --breakpoint-md: 60rem;
+  --breakpoint-sm: 36rem;
 }
 
 html {
@@ -18,15 +20,6 @@ body {
   background-color: #0033cc22;
 }
 
-.authors-note {
-  margin-bottom: 18px;
-  border-radius: 8px;
-  font-family: var(--font-sans);
-  padding: 16px;
-  background-color: #fff7d6d1;
-  border: 1px dashed #78672761;
-}
-
 .toc {
   color: var(--color-bloo);
   line-height: 1.3em;
@@ -38,7 +31,7 @@ body {
 }
 
 .toc ul li {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.6em;
 }
 
 .visually-hidden {
