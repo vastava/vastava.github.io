@@ -5,4 +5,5 @@ Website built using bootstrap.
 ## todo
 - Back to top button
 - Mobile layout
-- Markdown version of pages
+- Migrate home.html to Tailwind
+- Migrate contents of fat-tails and token-pricing
