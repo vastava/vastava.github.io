@@ -1,19 +1,22 @@
 {{ define "main" }} {{ $opts := dict "display" "block" }}
 
 <div class="max-w-290 mx-auto pt-4">
-  <div class="pl-4">You can always <a class="text-bloo underline" href="/">go home</a>.</div>
+  <div class="pl-4 select-none">You can always <a class="text-bloo underline" href="/">go home</a>.</div>
 
-  <div class="w-full flex flex-col items-center justify-center pt-16 mx-auto">
-    <header class="flex flex-col gap-0 text-center mb-4 sm:mb-16 px-6">
-      <h1 class="text-6xl font-sans font-extrabold mb-3">{{.Title}}</h1>
+  <div class="w-full pt-16 mx-auto">
+    <header class="text-center mb-6 sm:mb-12 px-6">
+      {{ if .Params.thumbnail }}
+        <img src="{{.Params.thumbnail}}" class="mb-4 max-h-100 grow-0 mx-auto"/>
+      {{ end }}
+      <h1 class="text-5xl md:text-6xl font-sans text-balance font-extrabold mb-3">{{.Title}}</h1>
       <div
-        class="text-2xl italic font-serif"
+        class="text-xl md:text-2xl italic font-serif text-balance"
       >
         {{ .Description }}
       </div>
     </header>
     <div class="sm:flex">
-      <section class="sm:h-dvh mb-8 overflow-auto self-start sm:sticky top-0 shrink-0 max-w-xs mx-auto sm:w-56 md:w-52 text-sm">
+      <section class="sm:h-dvh mb-8 overflow-auto self-start sm:sticky top-0 shrink-0 max-w-xs mx-auto sm:w-56 md:w-52 text-sm select-none">
         <div class="flex flex-col items-center sm:items-start gap-3.5 p-4 sm:border-b font-semibold">
           <a target="_blank" href="{{ with .OutputFormats.Get "markdown" }}{{ .RelPermalink }}{{ end }}" class="items-center flex gap-2 cursor-pointer text-bloo">
             <svg
@@ -101,7 +104,7 @@
           {{ .Params.sidebar_note | markdownify }}
         </div>
         {{ end }}
-        <div class="hidden sm:block md:hidden pl-4 pr-3 pb-4">
+        <div class="hidden sm:block md:hidden pl-4 pr-3 pb-4 select-none">
           <div class="font-bold py-3 text-base">Table of Contents</div>
           <div class="toc">{{ .TableOfContents }}</div>
         </div>
@@ -126,7 +129,7 @@
         {{.Content}}
         </main>
       </div>
-      <section class="hidden md:block self-start sticky top-4 min-w-56 pl-4 pr-2 pb-4 font-sans text-sm">
+      <section class="hidden md:block self-start sticky top-4 min-w-56 pl-4 pr-2 pb-4 font-sans text-sm select-none">
         <div class="font-bold py-2 text-base">Table of Contents</div>
         <div class="toc">{{ .TableOfContents }}</div>
       </section>
@@ -134,7 +137,7 @@
   </div>
 </div>
 
-<div class="border-t p-8 py-12">
+<div class="border-t p-8 py-12 select-none">
   <div class="max-w-160 mx-auto">
     <p class="text-xl">Sign up to be notified when I write:</p>
     <form
@@ -174,9 +177,9 @@
   </div>
 </div>
 
-<div class="border-t p-8 text-center text-sm">
+<div class="border-t p-8 text-center text-sm select-none">
   It's never too late to <a class="text-bloo underline" href="#">start over</a>.
 </div>
 
-<a href="#" class="sm:hidden fixed bottom-0 right-0 bg-bloo text-white pl-3 pr-4 py-1"> ↑ Top</a>
+<a href="#" class="sm:hidden fixed bottom-0 right-0 bg-bloo text-white rounded-tl-md pl-3 pr-4 py-1 text-sm"> ↑ Top</a>
 {{ end }}

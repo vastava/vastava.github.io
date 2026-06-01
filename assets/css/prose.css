@@ -24,7 +24,8 @@
 }
 
 .prose h2 {
-  font-size: 1.7em;
+  font-size: 1.6em;
+  line-height: 1.2em;
   font-weight: 600;
   font-family: var(--font-sans);
   margin-bottom: 0.6em;
@@ -42,7 +43,7 @@
   font-size: 1em;
   font-weight: 800;
   font-family: var(--font-sans);
-  margin-bottom: 0.75em;
+  margin-bottom: 0.5em;
   margin-top: 1.2em;
 }
 
@@ -89,19 +90,31 @@
   background-color: #0033cc0a;
 }
 
-img,
-video {
+.prose .formula {
   width: 100%;
-  border-radius: var(--radius);
-  min-height: 48px;
-  max-height: 36rem;
-  object-fit: cover;
-  border: var(--border) var(--b-width) var(--t-lightest);
-  margin: calc(0.5 * var(--spacing)) 0px;
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1.3em;
 }
 
-video {
-  margin-bottom: var(--spacing);
+.prose .formula strong {
+  font-family: var(--font-sans);
+}
+
+.prose pre code {
+  font-family: "Courier New", monospace;
+}
+
+.prose img,
+.prose video {
+  width: 100%;
+  border: solid 0.5px #ccc;
+  margin-bottom: 1.2em;
 }
 
 p:has(img) {
