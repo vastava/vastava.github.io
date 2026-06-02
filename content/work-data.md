@@ -2,13 +2,17 @@
 title:  Agents need Work Data
 description: A primer on RLWD, or Reinforcement Learning on Work Data
 date: 2026-05-31
-modifed: 2026-06-01
+modified: 2026-06-01
 params:
   note: |
-    **Author's note:** something about how this is about how the client-platform boundary breaks in API model, and set up coordination problems
+    **Author's note:** We are not claiming work data explains all recent model progress. The dynamics described are inferred from product moves and published research. 
+    
+    This piece is about one underrated driver of agent improvement; the next essay picks up on the deployment and economics questions that follow once those capabilities exist.
 
-    *— Anjali & Judah*
+    *— [Anjali](anjalishriva.com) & [Judah](joodaloop.com)*
   doc_link: https://docs.google.com/document/d/1MB30nGWrsgdtnfq0ITbx8IRb_QgPjPpj_iW5RIz8jKM/edit?usp=sharing
+  sidebar_note: | 
+    This piece was co-authored with Judah ([joodaloop.com](joodaloop.com)) who can be found at [@joodalooped](https://x.com/joodalooped) on Twitter
 ---
 
 ## Introduction

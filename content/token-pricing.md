@@ -2,7 +2,7 @@
 title: A token is not a fixed unit of cost
 description: Variance in usage creates an interconnected pricing and scaling issue
 date: 2025-08-23
-modifed: 2025-11-16
+modified: 2025-11-16
 keywords: AI, pricing, Cursor, Anthropic, tokens, economics, cost structure
 aliases:
   - /token_pricing

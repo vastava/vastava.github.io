@@ -9,4 +9,8 @@ date: {{ .Date.Format "2006-01-02" }}
 source: {{ with .OutputFormats.Get "html" }}{{ .Permalink }}{{ end }}
 ---
 
+{{ with .Params.authors_note }}
+{{ . }}
+
+{{ end -}}
 {{ .RawContent }}
