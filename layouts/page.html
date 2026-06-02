@@ -1,7 +1,7 @@
 {{ define "main" }} {{ $opts := dict "display" "block" }}
 
 <div class="max-w-290 mx-auto pt-4">
-  <div class="pl-4 select-none">You can always <a class="text-bloo underline" href="/">go home</a>.</div>
+  <div class="pl-4 select-none prose">You can always <a href="/">go home</a>.</div>
 
   <div class="w-full pt-16 mx-auto">
     <header class="text-center mb-6 sm:mb-12 px-6">
@@ -16,7 +16,7 @@
       </div>
     </header>
     <div class="sm:flex">
-      <section class="sm:h-dvh mb-8 overflow-auto self-start sm:sticky top-0 shrink-0 max-w-xs mx-auto sm:w-56 md:w-52 text-sm select-none">
+      <section class="link sm:h-dvh mb-8 overflow-auto self-start sm:sticky top-0 shrink-0 max-w-xs mx-auto sm:w-56 md:w-52 text-sm select-none">
         <div class="flex flex-col items-center sm:items-start gap-3.5 p-4 sm:border-b font-semibold">
           <a target="_blank" href="{{ with .OutputFormats.Get "markdown" }}{{ .RelPermalink }}{{ end }}" class="items-center flex gap-2 cursor-pointer text-bloo">
             <svg
@@ -106,7 +106,7 @@
         {{ end }}
         <div class="hidden sm:block md:hidden pl-4 pr-3 pb-4 select-none">
           <div class="font-bold py-3 text-base">Table of Contents</div>
-          <div class="toc">{{ .TableOfContents }}</div>
+          <div class="toc link">{{ .TableOfContents }}</div>
         </div>
       </section>
       <div
@@ -129,9 +129,9 @@
         {{.Content}}
         </main>
       </div>
-      <section class="hidden md:block self-start sticky top-4 min-w-56 pl-4 pr-2 pb-4 font-sans text-sm select-none">
+      <section class="hidden md:block self-start sticky top-2 min-w-56 pl-4 pr-2 pb-4 font-sans text-sm select-none">
         <div class="font-bold py-2 text-base">Table of Contents</div>
-        <div class="toc">{{ .TableOfContents }}</div>
+        <div class="toc link">{{ .TableOfContents }}</div>
       </section>
     </div>
   </div>
@@ -170,15 +170,15 @@
     </form>
   </div>
 </div>
-<div class="border-t p-8 text-center text-sm">
-  <div class="text-center max-w-160 mx-auto prose text-sm text-balance">
+<div class="prose border-t p-8 text-center text-sm">
+  <div class="text-center max-w-160 mx-auto text-sm text-balance">
     {{ if .Params.footer}} {{.Params.footer | .RenderString $opts }} {{ end }}
     <p>Credit to <a href="https://brandur.org/">Brandur</a> for layout inspiration.</p>
   </div>
 </div>
 
-<div class="border-t p-8 text-center text-sm select-none">
-  It's never too late to <a class="text-bloo underline" href="#">start over</a>.
+<div class="prose border-t p-8 text-center text-sm select-none">
+  It's never too late to <a href="#">start over</a>.
 </div>
 
 <a href="#" class="sm:hidden fixed bottom-0 right-0 bg-bloo text-white rounded-tl-md pl-3 pr-4 py-1 text-sm"> ↑ Top</a>
