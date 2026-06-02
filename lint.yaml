@@ -1,0 +1,21 @@
+paths:
+  markdown_root: content
+  build_root: public
+
+sections:
+  root:
+    description: { type: string, min: 1, max: 160, required: true }
+    date: { type: date }
+    type: { type: enum, values: [list, meta] }
+
+index_pages:
+  root:
+    title: { type: string, required: true }
+    description: { type: string, required: true }
+    type: { type: enum, values: [list] }
+
+links:
+  site_hosts: [anjalishriva.com, www.anjalishriva.com]
+
+spelling:
+  dict: scripts/spelling-dict.txt

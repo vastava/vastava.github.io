@@ -1,3 +1,4 @@
+{{ define "main" }}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,6 @@
     <title>Anjali Shrivastava</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="./output.css" rel="stylesheet">
     <link href="./subscribe.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@
             list-style-position: outside;
         }
 
-        /* .sidenote, .marginnote, figcaption { 
+        /* .sidenote, .marginnote, figcaption {
     float: right;
     clear: right;
     margin-right: -60%;
@@ -121,7 +121,7 @@
     font-size: 1.1rem;
     line-height: 1.3;
     vertical-align: baseline;
-    position: relative; 
+    position: relative;
 }
 
 figcaption {
@@ -134,30 +134,30 @@ figcaption {
 
 figcaption { counter-increment: figure-counter; }
 
-.sidenote-number:after, .sidenote:before { 
+.sidenote-number:after, .sidenote:before {
     content: counter(sidenote-counter) " ";
     position: relative;
     color:#4682B4;
-    vertical-align: baseline; 
+    vertical-align: baseline;
 }
 
-figcaption:before  { 
+figcaption:before  {
     content: "Figure " counter(figure-counter) ": ";
     position: relative;
     vertical-align: baseline;
     clear: right;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
 }
 
-.sidenote-number:after { 
+.sidenote-number:after {
     content: counter(sidenote-counter);
     font-family: monospace;
     font-size: 1rem;
     top: -0.5rem;
-    left: 0.1rem; 
+    left: 0.1rem;
 }
 
-.sidenote:before { 
+.sidenote:before {
     content: counter(sidenote-counter) ":";
     font-family:monospace;
     margin-right:0.3rem;
@@ -480,7 +480,7 @@ figcaption:before  {
   /* width: 10%;
   height: 5%; */
   box-sizing: border-box;
-}        
+}
 
 .diagram-card {
   display: block;
@@ -921,7 +921,7 @@ body.diagram-modal-open {
       .title {
         margin-bottom: 8px;
       }
-    }        
+    }
 
 
     </style>
@@ -945,7 +945,7 @@ Before this, I led monetization data science for Adobe's new products team and G
   <!-- <br><br>I&apos;m at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>. -->
 </div>
             </div>
-        </div>        
+        </div>
         <nav class="desktop-toc intro-hero__toc hidden md:block!" aria-label="On this page">
             <p class="desktop-toc__eyebrow">On this page</p>
             <ul class="desktop-toc__list">
@@ -968,8 +968,8 @@ Before this, I led monetization data science for Adobe's new products team and G
                 <input class="subscribe-form__button" type="submit" value="Subscribe" data-buttondown-submit>
             </form>
         </aside>
-</div>        
-       
+</div>
+
         <!-- <hr> -->
         <section id="projects">
             <h3>Selected Projects</h3>
@@ -977,19 +977,19 @@ Before this, I led monetization data science for Adobe's new products team and G
             <div id="projects-grid">
                 <article>
                     <a class="project-card" href="https://github.com/vastava/InferLength">
-                        <img src="images/inferlength.png" alt="InferLength project preview">
+                        <img src="/images/inferlength.png" alt="InferLength project preview">
                         <p><strong>InferLength:</strong> A Python package for prediction of LLM output length during local inference, built on entropy-guided representations from recent research.</p>
                     </a>
                 </article>
                 <article>
                     <a class="project-card" href="https://www.samplesizecalc.com/calculator?metricType=proportion">
-                        <img src="images/samplesizecalc.png" alt="SampleSizeCalc.com project preview">
+                        <img src="/images/samplesizecalc.png" alt="SampleSizeCalc.com project preview">
                         <p><strong>SampleSizeCalc.com:</strong> An interactive sample size calculator for A/B that handles unequal split ratios, multiple treatments, Bonferroni correction.</p>
                     </a>
                 </article>
                 <article>
                     <a class="project-card project-card--dm" href="https://twitter.com/anjali_shriva">
-                        <img src="images/statsim.png" alt="StatSim project preview">
+                        <img src="/images/statsim.png" alt="StatSim project preview">
                         <p><strong>StatSim:</strong> A gamified SQL sandbox for practicing query fundamentals in a more interactive execution environment.</p>
                     </a>
                 </article>
@@ -999,7 +999,7 @@ Before this, I led monetization data science for Adobe's new products team and G
         <p>
             <a href="/vintage" class="secondary-link">Full collection of side projects, experiments, and half-finished things lives in /vintage</a>
         </p>
-    </div>              
+    </div>
 
         <hr>
         <h3 id="essays">Essays</h3>
@@ -1058,7 +1058,7 @@ Before this, I led monetization data science for Adobe's new products team and G
                 </ul>
             </div> -->
             </li>
-            <li><a href="https://docs.google.com/document/d/173Z1gfurg7P2cOkeivwxrTPV5jEtPUuN13sZbn7-wGU/edit?usp=sharing">Opportunities for mechanism design</a> (<i>Suggestions welcome</i>)</li>            
+            <li><a href="https://docs.google.com/document/d/173Z1gfurg7P2cOkeivwxrTPV5jEtPUuN13sZbn7-wGU/edit?usp=sharing">Opportunities for mechanism design</a> (<i>Suggestions welcome</i>)</li>
             <!-- <li>T (<i>WIP</i>)</li> -->
             </div>
         </ol>
@@ -1076,7 +1076,7 @@ Before this, I led monetization data science for Adobe's new products team and G
         </aside>
             <div class="container">
         <p>
-            <a href="/vintage/writing" class="secondary-link">I also write about things beyond pricing. See vintage/writing.
+            <a href="/vintage/writing.html" class="secondary-link">I also write about things beyond pricing. See vintage/writing.
             </a>
         </p>
     </div>
@@ -1132,20 +1132,20 @@ Before this, I led monetization data science for Adobe's new products team and G
                 <!-- <div class="img">
                   <img src="./images/image7.png" alt="" class="img__icon" />
               </div>               -->
-  
+
               <!-- <div class="img">
       <a href="https://vastava.github.io/chile-map/" class="db link dim tc no-link-underline">
         <img src="./img/chile.png" alt="" class="img__icon">
       </a>
     </div> -->
-            </div>    
+            </div>
     <div class="container">
         <p>
-            <a href="/vintage/work" class="secondary-link">I used to build data viz professionally; more of that work lives in /vintage/work.
+            <a href="/vintage/work.html" class="secondary-link">I used to build data viz professionally; more of that work lives in /vintage/work.
             </a>
         </p>
-    </div>                          
-            <hr>    
+    </div>
+            <hr>
             <h3 id="books">Some things I 100% recommend:</h3>
     <section class="bookshelf">
       <article class="book-card">
@@ -1254,7 +1254,7 @@ Before this, I led monetization data science for Adobe's new products team and G
                   </div>
                 </a>
               </article>
-    </section>            
+    </section>
     <br>
     <section id="open-research">
         <!-- <hr> -->
@@ -1282,10 +1282,10 @@ Before this, I led monetization data science for Adobe's new products team and G
             </aside>
         </div><br>
         <p>If you&apos;re thinking about any of this, I&apos;d love to compare notes. I&apos;m at <a href="mailto:anjali.shrivastava99@gmail.com">anjali.shrivastava99@gmail.com</a> and on Twitter <a href="https://twitter.com/anjali_shriva">@anjali_shriva</a>.</p>
-    </section>    
+    </section>
             <div class="body-text">
 
-  </main>                
+  </main>
             <p id="contact">
                 <!-- what else I&apos;m thinking about:
             <ul>
@@ -1320,8 +1320,10 @@ Before this, I led monetization data science for Adobe's new products team and G
             <a class="diagram-modal__context" data-diagram-modal-context href="" target="_self" rel="noopener">See it in context</a>
         </div>
     </div>
-    <script src="./scripts/diagram_lightbox.js"></script>
+    <script src="./diagram_lightbox.js"></script>
 
 </body>
 
 </html>
+
+{{ end }}

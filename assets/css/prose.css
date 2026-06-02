@@ -1,0 +1,144 @@
+.prose {
+  line-height: 1.65em;
+}
+
+.prose * {
+  scroll-margin-top: 24px;
+}
+
+.prose *:first-child {
+  margin-top: 0px;
+}
+
+.prose *:last-child {
+  margin-bottom: 0px;
+}
+
+.prose a {
+  text-decoration: underline;
+  color: var(--color-bloo);
+}
+
+.prose p {
+  margin-bottom: 1em;
+}
+
+.prose h2 {
+  font-size: 1.6em;
+  line-height: 1.2em;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  margin-bottom: 0.6em;
+  margin-top: 1em;
+}
+
+.prose h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.prose h4 {
+  font-size: 1em;
+  font-weight: 800;
+  font-family: var(--font-sans);
+  margin-bottom: 0.5em;
+  margin-top: 1.2em;
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: 1.2em;
+  padding-left: 2em;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li > ul:first-child,
+.prose li > ol:first-child {
+  padding-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose li {
+  margin-bottom: 0.75em;
+}
+
+.prose li p {
+  margin-bottom: 0.5em;
+}
+
+.prose li blockquote {
+  margin: 0.75em 0px;
+}
+
+.prose blockquote {
+  margin: 1.2em 0px;
+  text-wrap: pretty;
+  font-size: var(--text-base);
+  line-height: 1.5em;
+  padding: 1em 1.2em;
+  border: dashed 1px var(--color-bloo);
+  border-radius: 8px;
+  background-color: #0033cc0a;
+}
+
+.prose cite {
+  display: block;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.prose cite a {
+  font-style: italic;
+}
+
+.prose .formula {
+  width: 100%;
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1.3em;
+}
+
+.prose .formula strong {
+  font-family: var(--font-sans);
+}
+
+.prose pre code {
+  font-family: "Courier New", monospace;
+}
+
+.prose img,
+.prose video {
+  width: 100%;
+  border: solid 0.5px #ccc;
+  margin-bottom: 1.2em;
+}
+
+p:has(img) {
+  line-height: 0px;
+}
+
+a {
+  text-underline-offset: 2px;
+  transition:
+    text-underline-offset 0.15s ease,
+    text-decoration-color 0.15s ease;
+}
+
+.prose a:hover {
+  text-decoration-color: #ffa503;
+  text-underline-offset: 3px;
+}
