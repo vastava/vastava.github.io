@@ -10,6 +10,8 @@ params:
     This piece is about one underrated driver of agent improvement; the next essay picks up on the deployment and economics questions that follow once those capabilities exist.
 
     *— [Anjali](/) & [Judah](https://joodaloop.com/)*
+  footer: |
+    Thank you to [Divya Venn](https://divyavenn.com/), [Nihal Sahu](https://nihalsahu.net/), [Nobu](https://x.com/nobu_hibiki/), Peyton Casper, Herbie Bradley, Josh Purtell and Karthik Balaji for feedback on early versions of this.    
   doc_link: https://docs.google.com/document/d/1MB30nGWrsgdtnfq0ITbx8IRb_QgPjPpj_iW5RIz8jKM/edit?usp=sharing
   sidebar_note: | 
     This piece was co-authored with Judah ([joodaloop.com](https://joodaloop.com/)) who can be found at [@joodalooped](https://x.com/joodalooped) on Twitter
