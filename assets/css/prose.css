@@ -130,3 +130,15 @@
 p:has(img) {
   line-height: 0px;
 }
+
+a {
+  text-underline-offset: 2px;
+  transition:
+    text-underline-offset 0.15s ease,
+    text-decoration-color 0.15s ease;
+}
+
+.prose a:hover {
+  text-decoration-color: #ffa503;
+  text-underline-offset: 3px;
+}
