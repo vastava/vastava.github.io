@@ -11,7 +11,9 @@ params:
 
     *— [Anjali](/) & [Judah](https://joodaloop.com/)*
   footer: |
-    Thank you to [Divya Venn](https://divyavenn.com/), [Nihal Sahu](https://nihalsahu.net/), [Nobu](https://x.com/nobu_hibiki/), Peyton Casper, Herbie Bradley, Josh Purtell and Karthik Balaji for feedback on early versions of this.    
+    Thank you to [Divya Venn](https://divyavenn.com/) and [Nihal Sahu](https://nihalsahu.net/) for their edits, and to [Nobu](https://x.com/nobu_hibiki/), [Peyton Casper](https://peytoncasper.com/), [Herbie Bradley](https://x.com/herbiebradley), [Josh Purtell](https://www.linkedin.com/in/joshua-purtell/) and Karthik Balaji for feedback on early versions of this.    
+
+    And to [Analogue Group](https://analoguegroup.org/) for platforming this work.
   doc_link: https://docs.google.com/document/d/1MB30nGWrsgdtnfq0ITbx8IRb_QgPjPpj_iW5RIz8jKM/edit?usp=sharing
   sidebar_note: | 
     This piece was co-authored with Judah ([joodaloop.com](https://joodaloop.com/)) who can be found at [@joodalooped](https://x.com/joodalooped) on Twitter
@@ -92,7 +94,7 @@ So a good trace is just “the whole session”, captured in as much fidelity as
 
 Coding agents provide the easiest example. You can read an entire session in the form of text messages back and forth between the user and the agents, interspersed with tool calls and file reads/writes. [Here’s one](https://huggingface.co/datasets/badlogicgames/pi-mono/blob/main/2026-01-16T11-12-35-796Z_105b45a9-be31-4997-95c3-c95ab814daf8.jsonl) from Mario Zechner (a character who shows up later in this essay) and his tool [Pi](https://pi.dev/). 
 
-![][image1]
+![PI traces](/images/traces.png)
 
 For other domains, things aren’t so well-defined, but…
 
@@ -136,7 +138,8 @@ But they can no longer afford to treat the model as the site of intelligence and
 
 As an example, look at how quickly Claude Code took over the arena from Cursor. Cursor built one of the most valuable AI applications on top of APIs, but had no way to feed its live signals back into the model across the API boundary. The bar for the first agents were so low, simply having a co-evolution loop jumped Anthropic into the lead.
 
-![][image2]  
+!['What AI tools do you use for coding?' chart](/images/claude-code-chart.png)
+
 [Claude Code went from zero to the \#1 tool among respondents to Pragmatic Engineer’s AI tooling Survey within eight months.](https://newsletter.pragmaticengineer.com/p/ai-tooling-2026)  
 
 If training models as agents makes such a big difference, and slapping a harness on top of a generic smart model doesn’t work as well, *why did the model-application separation last so long?* 
