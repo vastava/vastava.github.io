@@ -233,6 +233,12 @@ Not consumer applications though, since:
 
 ## What the future looks like…
 
+Until the tail end of 2025, models were largely differentiated on cost and benchmarked capability. But we’re seeing a new differentiation emerge from data — and who has access to it. 
+
+As we progress towards online learning, models will become more varied and differentiated. Many may start from a common base, but they could specialize into a particular domain or use case, depending on the proprietary data streams and feedback loops they inhabit.
+
+This will have many consequences…
+
 ### Progress across domains/industries
 
 #### Schleppy progress
@@ -360,11 +366,20 @@ While also saying the opposite:
 
 Obviously, ["AGI, but only with our harness](https://x.com/badlogicgames/status/2050855836193288665?s=20)” is a contradiction in terms.
 
+Models trained through work data are inherently differentiated and just as protected as proprietary enterprise datasets are. The idea that a "model" is a general artifact, and not as proprietary as the business itself, is an indication that we are still in the early innings of wide-scale AI deployment.
+
+
 #### Insular optimization goals
 
-Work data also gives the labs a pathway to better unit economics. [Adaptive reasoning](https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking) varies compute spend according to task difficulty and is a common approach for cost control — especially in a capacity-constrained world.
+Work data also gives the labs a pathway to better unit economics. Anthropic has already indicated it needs telemetry to optimize usage:
 
-Not every task requires the same level of intelligence, and having access to the raw work data helps with task classification.
+“Third-party harnesses using Claude subscriptions create problems for users and are prohibited by our Terms of Service.
+
+> They generate unusual traffic patterns without any of the usual telemetry that the Claude Code harness provides, making it really hard for us to help debug when they have questions about rate limit usage or account bans and they don’t have any other avenue for this support.”
+>
+> <cite> Thariq Shihipar, [tweeting](https://x.com/trq212/status/2009689811616182404) </cite>
+
+And that same telemetry gives them a lever to [optimize unit economics](https://anjalishriva.com/fat-tails/#vertical-integration-as-cost-control-not-just-a-distribution-moat) through approaches like [adaptive reasoning](https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking), which varies compute spend according to task difficulty. Having access to the raw work data (“task telemetry”) helps with classification. This will become increasingly important in a capacity constrained world.
 
 ### Battles for independence
 
