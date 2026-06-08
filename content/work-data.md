@@ -2,7 +2,7 @@
 title:  Agents need Work Data
 description: A primer on RLWD, or Reinforcement Learning on Work Data
 date: 2026-05-31
-modified: 2026-06-01
+modified: 2026-06-08
 params:
   note: |
     **Author's note:** We are not claiming work data explains all recent model progress. The dynamics described are inferred from product moves and published research. 
@@ -95,8 +95,6 @@ So a good trace is just “the whole session”, captured in as much fidelity as
 Coding agents provide the easiest example. You can read an entire session in the form of text messages back and forth between the user and the agents, interspersed with tool calls and file reads/writes. [Here’s one](https://huggingface.co/datasets/badlogicgames/pi-mono/blob/main/2026-01-16T11-12-35-796Z_105b45a9-be31-4997-95c3-c95ab814daf8.jsonl) from Mario Zechner (a character who shows up later in this essay) and his tool [Pi](https://pi.dev/). 
 
 ![PI traces](/images/traces.png)
-
-For other domains, things aren’t so well-defined, but…
 
 ## Why do labs care about work data?
 
