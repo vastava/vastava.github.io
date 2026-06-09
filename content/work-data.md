@@ -11,7 +11,7 @@ params:
 
     *— [Anjali](/) & [Judah](https://joodaloop.com/)*
   footer: |
-    Thank you to [Divya Venn](https://divyavenn.com/) and [Nihal Sahu](https://nihalsahu.net/) for their edits, and to [Nobu](https://x.com/nobu_hibiki/), [Peyton Casper](https://peytoncasper.com/), [Herbie Bradley](https://x.com/herbiebradley), [Josh Purtell](https://www.linkedin.com/in/joshua-purtell/) and Karthik Balaji for feedback on early versions of this.    
+    Thank you to [Divya Venn](https://divyavenn.com/) and [Nihal Sahu](https://nihalsahu.net/) for their edits, and to [Peyton Casper](https://peytoncasper.com/), [Herbie Bradley](https://x.com/herbiebradley), [Josh Purtell](https://www.linkedin.com/in/joshua-purtell/), [Nobu](https://x.com/nobu_hibiki/), [Shashank](https://x.com/shacrw_) and [Karthik Balaji](https://x.com/akbirthko) for feedback on early versions of this.    
 
     And to [Analogue Group](https://analoguegroup.org/) for platforming this work.
   doc_link: https://docs.google.com/document/d/1MB30nGWrsgdtnfq0ITbx8IRb_QgPjPpj_iW5RIz8jKM/edit?usp=sharing
