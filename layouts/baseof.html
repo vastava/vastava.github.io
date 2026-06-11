@@ -34,6 +34,13 @@
 
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ .Site.Title }}." href="/index.xml" />
 
+    <script
+      id="counterscale-script"
+      data-site-id="VASTAVA"
+      defer
+      src="/hi.js"
+    ></script>
+
     {{ with (templates.Defer (dict "key" "global")) }}
       {{ partial "css.html" . }}
     {{ end }}
